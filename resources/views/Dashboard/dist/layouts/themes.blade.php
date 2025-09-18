@@ -1,8 +1,8 @@
 <div class="offcanvas offcanvas-end shadow" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header p-4 border-bottom">
         <h5 id="offcanvasLeftLabel" class="mb-0">
-            <img src="assets/images/logo-dark.png" height="24" class="light-version" alt="">
-            <img src="assets/images/logo-light.png" height="24" class="dark-version" alt="">
+            <img src="{{ asset('assets/images/logo-dark.png') }}" height="24" class="light-version" alt="">
+            <img src="{{ asset('assets/images/logo-light.png') }}" height="24" class="dark-version" alt="">
         </h5>
         <button type="button" class="btn-close d-flex align-items-center text-dark" data-bs-dismiss="offcanvas" aria-label="Close"><i class="uil uil-times fs-4"></i></button>
     </div>
@@ -13,25 +13,25 @@
                     <h6 class="fw-bold">Theme Options</h6>
 
                     <ul class="text-center style-switcher list-unstyled mt-4">
-                        <li class="d-grid"><a href="javascript:void(0)" class="rtl-version t-rtl-light" onclick="setTheme('style-rtl')"><img src="assets/images/demos/rtl.png"
+                        <li class="d-grid"><a href="javascript:void(0)" class="rtl-version t-rtl-light" onclick="setTheme('style-rtl')"><img src="{{ asset('assets/images/demos/rtl.png') }}"
                                     class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 230px;" alt=""><span class="text-dark fw-medium mt-3 d-block">RTL Version</span></a>
                         </li>
-                        <li class="d-grid"><a href="javascript:void(0)" class="ltr-version t-ltr-light" onclick="setTheme('style')"><img src="assets/images/demos/ltr.png"
+                        <li class="d-grid"><a href="javascript:void(0)" class="ltr-version t-ltr-light" onclick="setTheme('style')"><img src="{{ asset('assets/images/demos/ltr.png') }}"
                                     class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 230px;" alt=""><span class="text-dark fw-medium mt-3 d-block">LTR Version</span></a>
                         </li>
-                        <li class="d-grid"><a href="javascript:void(0)" class="dark-rtl-version t-rtl-dark" onclick="setTheme('style-dark-rtl')"><img src="assets/images/demos/dark-rtl.png"
+                        <li class="d-grid"><a href="javascript:void(0)" class="dark-rtl-version t-rtl-dark" onclick="setTheme('style-dark-rtl')"><img src="{{ asset('assets/images/demos/dark-rtl.png') }}"
                                     class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 230px;" alt=""><span class="text-dark fw-medium mt-3 d-block">RTL Version</span></a>
                         </li>
-                        <li class="d-grid"><a href="javascript:void(0)" class="dark-ltr-version t-ltr-dark" onclick="setTheme('style-dark')"><img src="assets/images/demos/dark.png"
+                        <li class="d-grid"><a href="javascript:void(0)" class="dark-ltr-version t-ltr-dark" onclick="setTheme('style-dark')"><img src="{{ asset('assets/images/demos/dark.png') }}"
                                     class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 230px;" alt=""><span class="text-dark fw-medium mt-3 d-block">LTR Version</span></a>
                         </li>
-                        <li class="d-grid"><a href="javascript:void(0)" class="dark-version t-dark mt-4" onclick="setTheme('style-dark')"><img src="assets/images/demos/dark.png"
+                        <li class="d-grid"><a href="javascript:void(0)" class="dark-version t-dark mt-4" onclick="setTheme('style-dark')"><img src="{{ asset('assets/images/demos/dark.png') }}"
                                     class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 230px;" alt=""><span class="text-dark fw-medium mt-3 d-block">Dark Version</span></a>
                         </li>
-                        <li class="d-grid"><a href="javascript:void(0)" class="light-version t-light mt-4" onclick="setTheme('style')"><img src="assets/images/demos/ltr.png"
+                        <li class="d-grid"><a href="javascript:void(0)" class="light-version t-light mt-4" onclick="setTheme('style')"><img src="{{ asset('assets/images/demos/ltr.png') }}"
                                     class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 230px;" alt=""><span class="text-dark fw-medium mt-3 d-block">Light Version</span></a>
                         </li>
-                        <li class="d-grid"><a href="../../landing/dist/index.html" target="_blank" class="mt-4"><img src="assets/images/demos/landing.png"
+                        <li class="d-grid"><a href="../../landing/dist/index.html" target="_blank" class="mt-4"><img src="{{ asset('assets/images/demos/landing.png') }}"
                                     class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 230px;" alt=""><span class="text-dark fw-medium mt-3 d-block">Landing</span></a></li>
                     </ul>
                 </div>

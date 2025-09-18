@@ -13,28 +13,28 @@
     <meta name="Version" content="v5.0.0" />
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" />
     <!-- Css -->
-    <link href="assets/libs/simplebar/simplebar.min.css" rel="stylesheet">
+    <link href="{{ asset('assets/libs/simplebar/simplebar.min.css') }}" rel="stylesheet">
     <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" class="theme-opt" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" class="theme-opt" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/libs/@iconscout/unicons/css/line.css" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('assets/libs/@mdi/font/css/materialdesignicons.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/libs/@iconscout/unicons/css/line.css') }}" type="text/css" rel="stylesheet" />
     <!-- Style Css-->
-    <link href="assets/css/style.min.css" class="theme-opt" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/style.min.css') }}" class="theme-opt" rel="stylesheet" type="text/css" />
 
 </head>
 
 <body>
     <!-- Loader -->
-    <!-- <div id="preloader">
-            <div id="status">
-                <div class="spinner">
-                    <div class="double-bounce1"></div>
-                    <div class="double-bounce2"></div>
-                </div>
+    {{-- <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
             </div>
-        </div> -->
+        </div>
+    </div> --}}
     <!-- Loader -->

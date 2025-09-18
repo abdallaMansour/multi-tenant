@@ -2,10 +2,10 @@
     <div class="sidebar-content" data-simplebar style="height: calc(100% - 60px);">
         <div class="sidebar-brand">
             <a href="index.html">
-                <img src="assets/images/logo-dark.png" height="24" class="logo-light-mode" alt="">
-                <img src="assets/images/logo-light.png" height="24" class="logo-dark-mode" alt="">
+                <img src="{{ asset('assets/images/logo-dark.png') }}" height="24" class="logo-light-mode" alt="">
+                <img src="{{ asset('assets/images/logo-light.png') }}" height="24" class="logo-dark-mode" alt="">
                 <span class="sidebar-colored">
-                    <img src="assets/images/logo-light.png" height="24" alt="">
+                    <img src="{{ asset('assets/images/logo-light.png') }}" height="24" alt="">
                 </span>
             </a>
         </div>
@@ -15,8 +15,16 @@
                 <a href="javascript:void(0)"><i class="ti ti-home me-2"></i>Dashboard</a>
                 <div class="sidebar-submenu">
                     <ul>
-                        <li><a href="index.html">Analytics</a></li>
+                        <li><a href="{{ route('admin.dashboard') }}">Analytics</a></li>
                         <li><a href="index-crypto.html">Cryptocurrency</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="sidebar-dropdown">
+                <a href="javascript:void(0)"><i class="ti ti-building me-2"></i>Tenants</a>
+                <div class="sidebar-submenu">
+                    <ul>
+                        <li><a href="{{ route('tenants') }}">Tenants</a></li>
                     </ul>
                 </div>
             </li>
