@@ -1,15 +1,15 @@
-@include("Dashboard.dist.layouts.style")
+@include("Dashboard.layouts.style")
 
 
         <div class="page-wrapper toggled">
             <!-- sidebar-wrapper -->
-            @include("Dashboard.dist.layouts.sidebar")
+            @include("Dashboard.layouts.sidebar")
             <!-- sidebar-wrapper  -->
 
             <!-- Start Page Content -->
             <main class="page-content bg-light">
                 <!-- Top Header -->
-                @include("Dashboard.dist.layouts.header")
+                @include("Dashboard.layouts.header")
                 <!-- Top Header -->
 
                 <div class="container-fluid">

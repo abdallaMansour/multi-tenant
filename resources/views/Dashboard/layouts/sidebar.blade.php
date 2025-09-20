@@ -10,33 +10,34 @@
             </a>
         </div>
 
-        <ul class="sidebar-menu">
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="ti ti-home me-2"></i>Dashboard</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="{{ route('admin.dashboard') }}">Analytics</a></li>
-                        <li><a href="index-crypto.html">Cryptocurrency</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="ti ti-building me-2"></i>Tenants</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="{{ route('tenants') }}">Tenants</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="ti ti-building me-2"></i>Database credentials</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="{{ route('database-credentials') }}">Database credentials</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="sidebar-dropdown">
+        @if (auth()->check())
+            <ul class="sidebar-menu">
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="ti ti-home me-2"></i>Dashboard</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{ route('admin.dashboard') }}">Analytics</a></li>
+                            {{-- <li><a href="index-crypto.html">Cryptocurrency</a></li> --}}
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="ti ti-building me-2"></i>Tenants</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{ route('tenants') }}">Tenants</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="ti ti-building me-2"></i>Database credentials</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{ route('database-credentials') }}">Database credentials</a></li>
+                        </ul>
+                    </div>
+                </li>
+                {{-- <li class="sidebar-dropdown">
                 <a href="javascript:void(0)"><i class="ti ti-browser me-2"></i>Layouts</a>
                 <div class="sidebar-submenu">
                     <ul>
@@ -176,9 +177,29 @@
                         <li><a href="thankyou.html">Thank You</a></li>
                     </ul>
                 </div>
-            </li>
-        </ul>
-        <!-- sidebar-menu  -->
+            </li> --}}
+            </ul>
+        @elseif (auth()->guard('tenant')->check())
+            <ul class="sidebar-menu">
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="ti ti-home me-2"></i>Dashboard</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{ route('tenant.dashboard') }}">Analytics</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="ti ti-building me-2"></i>Settings</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{ route('tenant.dashboard') }}">Settings</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <!-- sidebar-menu  -->
+        @endif
     </div>
     <!-- Sidebar Footer -->
     <ul class="sidebar-footer list-unstyled mb-0">

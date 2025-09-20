@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsTenantMiddleware
+class IsTenantPathMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class IsTenantMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $tenant = isTenant();
+        $tenant = isTenantPath();
         if (!$tenant) {
             abort(403);
         }

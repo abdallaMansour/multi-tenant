@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Foundation\Application;
-use App\Http\Middleware\IsTenantMiddleware;
+use App\Http\Middleware\IsTenantUserMiddleware;
+use App\Http\Middleware\IsTenantPathMiddleware;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
@@ -13,7 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'is_tenant' => IsTenantMiddleware::class,
+            'is_tenant_path' => IsTenantPathMiddleware::class,
+            'is_tenant_user' => IsTenantUserMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

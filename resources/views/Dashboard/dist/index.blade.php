@@ -1,14 +1,14 @@
-@include("Dashboard.dist.layouts.style")
+@include("Dashboard.layouts.style")
 
         <div class="page-wrapper toggled">
             <!-- sidebar-wrapper -->
-            @include("Dashboard.dist.layouts.sidebar")
+            @include("Dashboard.layouts.sidebar")
             <!-- sidebar-wrapper  -->
 
             <!-- Start Page Content -->
             <main class="page-content bg-light">
                 <!-- Top Header -->
-                @include("Dashboard.dist.layouts.header")
+                @include("Dashboard.layouts.header")
                 <!-- Top Header -->
 
                 <div class="container-fluid">
@@ -537,7 +537,7 @@
                 </div><!--end container-->
 
                 <!-- Footer Start -->
-                @include("Dashboard.dist.layouts.footer")
+                @include("Dashboard.layouts.footer")
                 <!-- End -->
             </main>
             <!--End page-content" -->
@@ -545,12 +545,12 @@
         <!-- page-wrapper -->
 
         <!-- Offcanvas Start -->
-        @include("Dashboard.dist.layouts.themes")
+        @include("Dashboard.layouts.themes")
         <!-- Offcanvas End -->
         
         <!-- javascript -->
         <!-- JAVASCRIPT -->
-        @include("Dashboard.dist.layouts.js")
+        @include("Dashboard.layouts.js")
     </body>
 
 </html>
