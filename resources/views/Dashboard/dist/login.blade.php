@@ -13,17 +13,17 @@
     <meta name="Version" content="v5.0.0" />
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="{{ asset('assets_dashboard/images/favicon.ico') }}" />
     <!-- Css -->
-    <link href="assets/libs/simplebar/simplebar.min.css" rel="stylesheet">
+    <link href="{{ asset('assets_dashboard/libs/simplebar/simplebar.min.css') }}" rel="stylesheet">
     <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" class="theme-opt" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets_dashboard/css/bootstrap.min.css') }}" class="theme-opt" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/libs/@iconscout/unicons/css/line.css" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('assets_dashboard/libs/@mdi/font/css/materialdesignicons.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets_dashboard/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets_dashboard/libs/@iconscout/unicons/css/line.css') }}" type="text/css" rel="stylesheet" />
     <!-- Style Css-->
-    <link href="assets/css/style.min.css" class="theme-opt" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets_dashboard/css/style.min.css') }}" class="theme-opt" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -48,7 +48,7 @@
                     <div class="card form-signin p-4 rounded shadow">
                         <form action="{{ route('login') }}" method="post">
                             @csrf
-                            <a href="index.html"><img src="assets/images/logo-icon.png" class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
+                            <a href="index.html"><img src="{{ asset('assets_dashboard/images/logo-icon.png') }}" class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
                             <h5 class="mb-3 text-center">Please sign in</h5>
 
                             @if (session('error'))
@@ -104,12 +104,12 @@
 
     <!-- javascript -->
     <!-- JAVASCRIPT -->
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/feather-icons/feather.min.js"></script>
-    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="{{ asset('assets_dashboard/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets_dashboard/libs/feather-icons/feather.min.js') }}"></script>
+    <script src="{{ asset('assets_dashboard/libs/simplebar/simplebar.min.js') }}"></script>
     <!-- Main Js -->
-    <script src="assets/js/plugins.init.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="{{ asset('assets_dashboard/js/plugins.init.js') }}"></script>
+    <script src="{{ asset('assets_dashboard/js/app.js') }}"></script>
 
 </body>
 

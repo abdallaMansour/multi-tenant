@@ -2,10 +2,10 @@
     <div class="sidebar-content" data-simplebar style="height: calc(100% - 60px);">
         <div class="sidebar-brand">
             <a href="index.html">
-                <img src="{{ asset('assets/images/logo-dark.png') }}" height="24" class="logo-light-mode" alt="">
-                <img src="{{ asset('assets/images/logo-light.png') }}" height="24" class="logo-dark-mode" alt="">
+                <img src="{{ asset('assets_dashboard/images/logo-dark.png') }}" height="24" class="logo-light-mode" alt="">
+                <img src="{{ asset('assets_dashboard/images/logo-light.png') }}" height="24" class="logo-dark-mode" alt="">
                 <span class="sidebar-colored">
-                    <img src="{{ asset('assets/images/logo-light.png') }}" height="24" alt="">
+                    <img src="{{ asset('assets_dashboard/images/logo-light.png') }}" height="24" alt="">
                 </span>
             </a>
         </div>

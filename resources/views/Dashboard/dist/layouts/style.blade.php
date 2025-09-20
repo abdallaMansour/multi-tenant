@@ -13,17 +13,17 @@
     <meta name="Version" content="v5.0.0" />
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets_dashboard/images/favicon.ico') }}" />
     <!-- Css -->
-    <link href="{{ asset('assets/libs/simplebar/simplebar.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets_dashboard/libs/simplebar/simplebar.min.css') }}" rel="stylesheet">
     <!-- Bootstrap Css -->
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" class="theme-opt" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets_dashboard/css/bootstrap.min.css') }}" class="theme-opt" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="{{ asset('assets/libs/@mdi/font/css/materialdesignicons.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/libs/@iconscout/unicons/css/line.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('assets_dashboard/libs/@mdi/font/css/materialdesignicons.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets_dashboard/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets_dashboard/libs/@iconscout/unicons/css/line.css') }}" type="text/css" rel="stylesheet" />
     <!-- Style Css-->
-    <link href="{{ asset('assets/css/style.min.css') }}" class="theme-opt" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets_dashboard/css/style.min.css') }}" class="theme-opt" rel="stylesheet" type="text/css" />
 
 </head>
 
