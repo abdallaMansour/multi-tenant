@@ -193,7 +193,7 @@
                     <a href="javascript:void(0)"><i class="ti ti-building me-2"></i>Settings</a>
                     <div class="sidebar-submenu">
                         <ul>
-                            <li><a href="{{ route('tenant.dashboard') }}">Settings</a></li>
+                            <li><a href="{{ route('tenant.settings') }}">Settings</a></li>
                         </ul>
                     </div>
                 </li>

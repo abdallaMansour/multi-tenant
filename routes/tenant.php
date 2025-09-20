@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Tenant\AuthController;
+use App\Http\Controllers\Tenant\SettingsController;
+use App\Http\Controllers\Tenant\ShopController;
 
 $prefix = Request::segment(1);
 
@@ -10,9 +12,7 @@ $prefix = Request::segment(1);
 Route::group(['prefix' => $prefix, 'middleware' => 'is_tenant_path'], function () use ($prefix) {
 
     // website
-    Route::get('/', function () use ($prefix) {
-        return view('tenants.' . $prefix . '.index-shop');
-    });
+    Route::get('/', [ShopController::class, 'home'])->name('home');
 
     // dashboard
     Route::prefix('dashboard')->as('tenant.')->group(function () use ($prefix) {
@@ -26,8 +26,9 @@ Route::group(['prefix' => $prefix, 'middleware' => 'is_tenant_path'], function (
             Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
             // settings
-            Route::get('settings', [AuthController::class, 'settings'])->name('settings');
-            Route::post('settings', [AuthController::class, 'settingsPost'])->name('settings');
+            Route::get('settings', [SettingsController::class, 'settings'])->name('settings');
+            Route::post('settings', [SettingsController::class, 'settingsPost'])->name('settings.post');
+            Route::post('settings/add', [SettingsController::class, 'addSetting'])->name('settings.add');
 
         });
     });

@@ -2,8 +2,17 @@
     <div class="container">
         {{-- Logo container --}}
         <a class="logo" href="index.html">
-            <img src="{{ asset('assets/images/logo-dark.png') }}" height="24" class="logo-light-mode" alt="">
-            <img src="{{ asset('assets/images/logo-light.png') }}" height="24" class="logo-dark-mode" alt="">
+            @if (getSettingProperty('logo'))
+                <img src="{{ asset('storage/' . getSettingProperty('logo')) }}" height="24" class="logo-light-mode" alt="">
+            @else
+                <img src="{{ asset('assets/images/logo-dark.png') }}" height="24" class="logo-light-mode" alt="">
+            @endif
+
+            @if (getSettingProperty('logo_light'))
+                <img src="{{ asset('storage/' . getSettingProperty('logo_light')) }}" height="24" class="logo-dark-mode" alt="">
+            @else
+                <img src="{{ asset('assets/images/logo-light.png') }}" height="24" class="logo-dark-mode" alt="">
+            @endif
         </a>
         {{-- End Logo container --}}
 

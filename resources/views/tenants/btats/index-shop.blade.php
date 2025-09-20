@@ -10,8 +10,8 @@
     <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleInterval" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleInterval" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleInterval" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            {{-- <button type="button" data-bs-target="#carouselExampleInterval" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleInterval" data-bs-slide-to="2" aria-label="Slide 3"></button> --}}
         </div>
 
         <div class="carousel-inner">
@@ -22,7 +22,13 @@
                         <div class="row align-items-center mt-5">
                             <div class="col-lg-7 col-md-7">
                                 <div class="title-heading mt-4">                                    
-                                    <h1 class="display-4 fw-bold mb-3 text-black">New Accessories <br> Collections</h1>
+                                    <h1 class="display-4 fw-bold mb-3 text-black">
+                                        @if (getSettingProperty('title'))
+                                            {{ getSettingProperty('title') }}
+                                        @else
+                                            New Accessories Collections
+                                        @endif
+                                    </h1>
                                     <p class="para-desc text-black">Launch your campaign and benefit from our expertise on designing and managing conversion centered bootstrap v5 html page.</p>
                                     <div class="mt-4">
                                         <a href="javascript:void(0)" class="btn btn-soft-primary">Shop Now</a>
@@ -34,43 +40,7 @@
                 </div>
             </div>
 
-            <div class="carousel-item" data-bs-interval="3000">
-                <div class="bg-home slider-rtl-1 d-flex align-items-center" style="background:url('assets/images/shop/bg1.jpg') center center;">
-                    <div class="bg-overlay bg-overlay-white opacity-5"></div>
-                    <div class="container">
-                        <div class="row align-items-center mt-5">
-                            <div class="col-lg-7 col-md-7">
-                                <div class="title-heading mt-4">
-                                    <h1 class="display-4 fw-bold mb-3 text-black">Headphones <br> Speaker</h1>
-                                    <p class="para-desc text-black">Launch your campaign and benefit from our expertise on designing and managing conversion centered bootstrap v5 html page.</p>
-                                    <div class="mt-4">
-                                        <a href="javascript:void(0)" class="btn btn-soft-primary">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>{{-- end col --}}
-                        </div>{{-- end row --}}
-                    </div>{{-- end container --}}
-                </div>
-            </div>
-
-            <div class="carousel-item" data-bs-interval="3000">
-                <div class="bg-home slider-rtl-3 d-flex align-items-center" style="background:url('assets/images/shop/bg3.jpg') center center;">
-                    <div class="bg-overlay bg-overlay-white opacity-5"></div>
-                    <div class="container">
-                        <div class="row align-items-center mt-5">
-                            <div class="col-lg-7 col-md-7">
-                                <div class="title-heading mt-4">
-                                    <h1 class="display-4 fw-bold mb-3 text-black">Modern Furniture, <br> Armchair</h1>
-                                    <p class="para-desc text-black">Launch your campaign and benefit from our expertise on designing and managing conversion centered bootstrap v5 html page.</p>
-                                    <div class="mt-4">
-                                        <a href="javascript:void(0)" class="btn btn-soft-primary">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>{{-- end col --}}
-                        </div>{{-- end row --}}
-                    </div>{{-- end container --}}
-                </div>
-            </div>
+          
         </div>
     </div>
 </section>{{-- end section --}}
@@ -81,7 +51,7 @@
     <div class="row">
         <div class="col-md-4 mt-4 pt-2">
             <div class="card shop-features border-0 rounded overflow-hidden">
-                <img src="assets/images/shop/fea1.jpg" class="img-fluid" alt="">
+                <img src="{{ asset('assets/images/shop/fea1.jpg') }}" class="img-fluid" alt="">
                 <div class="category-title ms-md-4 ms-2">
                     <h4>Summer <br> Collection</h4>
                     <a href="javascript:void(0)" class="btn btn-sm btn-soft-primary mt-2">Shop Now</a>
@@ -91,7 +61,7 @@
 
         <div class="col-md-4 mt-4 pt-2">
             <div class="card shop-features border-0 rounded overflow-hidden">
-                <img src="assets/images/shop/fea2.jpg" class="img-fluid" alt="">
+                <img src="{{ asset('assets/images/shop/fea2.jpg') }}" class="img-fluid" alt="">
                 <div class="category-title ms-md-4 ms-2">
                     <h4>Summer <br> Collection</h4>
                     <a href="javascript:void(0)" class="btn btn-sm btn-soft-primary mt-2">Shop Now</a>
@@ -101,7 +71,7 @@
 
         <div class="col-md-4 mt-4 pt-2">
             <div class="card shop-features border-0 rounded overflow-hidden">
-                <img src="assets/images/shop/fea3.jpg" class="img-fluid" alt="">
+                <img src="{{ asset('assets/images/shop/fea3.jpg') }}" class="img-fluid" alt="">
                 <div class="category-title ms-md-4 ms-2">
                     <h4>Summer <br> Collection</h4>
                     <a href="javascript:void(0)" class="btn btn-sm btn-soft-primary mt-2">Shop Now</a>
@@ -131,9 +101,9 @@
                         <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-warning">Sale</a></li>
                     </ul>
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s1.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s1.jpg') }}" class="img-fluid" alt=""></a>
                         <a href="shop-product-detail.html" class="overlay-work">
-                            <img src="assets/images/shop/product/s-1.jpg" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/images/shop/product/s-1.jpg') }}" class="img-fluid" alt="">
                         </a>
                         <ul class="list-unstyled shop-icons">
                             <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" class="icons"></i></a></li>
@@ -160,9 +130,9 @@
             <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2">
                 <div class="card shop-list border-0 position-relative">
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s2.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s2.jpg') }}" class="img-fluid" alt=""></a>
                         <a href="shop-product-detail.html" class="overlay-work">
-                            <img src="assets/images/shop/product/s-2.jpg" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/images/shop/product/s-2.jpg') }}" class="img-fluid" alt="">
                         </a>
                         <ul class="list-unstyled shop-icons">
                             <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" class="icons"></i></a></li>
@@ -192,9 +162,9 @@
                         <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-warning">Sale</a></li>
                     </ul>
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s3.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s3.jpg') }}" class="img-fluid" alt=""></a>
                         <a href="shop-product-detail.html" class="overlay-work">
-                            <img src="assets/images/shop/product/s-3.jpg" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/images/shop/product/s-3.jpg') }}" class="img-fluid" alt="">
                         </a>
                         <ul class="list-unstyled shop-icons">
                             <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" class="icons"></i></a></li>
@@ -221,9 +191,9 @@
             <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2">
                 <div class="card shop-list border-0 position-relative">
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s4.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s4.jpg') }}" class="img-fluid" alt=""></a>
                         <a href="shop-product-detail.html" class="overlay-work">
-                            <img src="assets/images/shop/product/s-4.jpg" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/images/shop/product/s-4.jpg') }}" class="img-fluid" alt="">
                         </a>
                         <ul class="list-unstyled shop-icons">
                             <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" class="icons"></i></a></li>
@@ -253,9 +223,9 @@
                         <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-warning">Sale</a></li>
                     </ul>
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s5.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s5.jpg') }}" class="img-fluid" alt=""></a>
                         <a href="shop-product-detail.html" class="overlay-work">
-                            <img src="assets/images/shop/product/s-5.jpg" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/images/shop/product/s-5.jpg') }}" class="img-fluid" alt="">
                         </a>
                         <ul class="list-unstyled shop-icons">
                             <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" class="icons"></i></a></li>
@@ -282,7 +252,7 @@
             <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2">
                 <div class="card shop-list border-0 position-relative">
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s6.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s6.jpg') }}" class="img-fluid" alt=""></a>
                         <div class="overlay-work">
                             <div class="py-2 bg-soft-dark rounded-bottom out-stock">
                                 <h6 class="mb-0 text-center">Out of stock</h6>
@@ -311,9 +281,9 @@
             <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2">
                 <div class="card shop-list border-0 position-relative">
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s7.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s7.jpg') }}" class="img-fluid" alt=""></a>
                         <a href="shop-product-detail.html" class="overlay-work">
-                            <img src="assets/images/shop/product/s-7.jpg" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/images/shop/product/s-7.jpg') }}" class="img-fluid" alt="">
                         </a>
                         <ul class="list-unstyled shop-icons">
                             <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" class="icons"></i></a></li>
@@ -343,9 +313,9 @@
                         <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-success">Featured</a></li>
                     </ul>
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s8.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s8.jpg') }}" class="img-fluid" alt=""></a>
                         <a href="shop-product-detail.html" class="overlay-work">
-                            <img src="assets/images/shop/product/s-8.jpg" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/images/shop/product/s-8.jpg') }}" class="img-fluid" alt="">
                         </a>
                         <ul class="list-unstyled shop-icons">
                             <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" class="icons"></i></a></li>
@@ -383,7 +353,7 @@
             <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2">
                 <div class="card features feature-primary explore-feature border-0 rounded text-center">
                     <div class="card-body">
-                        <img src="assets/images/shop/categories/fashion.jpg" class="avatar avatar-small rounded-circle shadow-md" alt="">
+                        <img src="{{ asset('assets/images/shop/categories/fashion.jpg') }}" class="avatar avatar-small rounded-circle shadow-md" alt="">
                         <div class="content mt-3">
                             <h6 class="mb-0"><a href="javascript:void(0)" class="title text-dark">Fashion</a></h6>
                         </div>
@@ -393,7 +363,7 @@
             <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2">
                 <div class="card features feature-primary explore-feature border-0 rounded text-center">
                     <div class="card-body">
-                        <img src="assets/images/shop/categories/sports.jpg" class="avatar avatar-small rounded-circle shadow-md" alt="">
+                        <img src="{{ asset('assets/images/shop/categories/sports.jpg') }}" class="avatar avatar-small rounded-circle shadow-md" alt="">
                         <div class="content mt-3">
                             <h6 class="mb-0"><a href="javascript:void(0)" class="title text-dark">Sports</a></h6>
                         </div>
@@ -403,7 +373,7 @@
             <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2">
                 <div class="card features feature-primary explore-feature border-0 rounded text-center">
                     <div class="card-body">
-                        <img src="assets/images/shop/categories/music.jpg" class="avatar avatar-small rounded-circle shadow-md" alt="">
+                        <img src="{{ asset('assets/images/shop/categories/music.jpg') }}" class="avatar avatar-small rounded-circle shadow-md" alt="">
                         <div class="content mt-3">
                             <h6 class="mb-0"><a href="javascript:void(0)" class="title text-dark">Music</a></h6>
                         </div>
@@ -413,7 +383,7 @@
             <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2">
                 <div class="card features feature-primary explore-feature border-0 rounded text-center">
                     <div class="card-body">
-                        <img src="assets/images/shop/categories/furniture.jpg" class="avatar avatar-small rounded-circle shadow-md" alt="">
+                        <img src="{{ asset('assets/images/shop/categories/furniture.jpg') }}" class="avatar avatar-small rounded-circle shadow-md" alt="">
                         <div class="content mt-3">
                             <h6 class="mb-0"><a href="javascript:void(0)" class="title text-dark">Furniture</a></h6>
                         </div>
@@ -423,7 +393,7 @@
             <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2">
                 <div class="card features feature-primary explore-feature border-0 rounded text-center">
                     <div class="card-body">
-                        <img src="assets/images/shop/categories/electronics.jpg" class="avatar avatar-small rounded-circle shadow-md" alt="">
+                        <img src="{{ asset('assets/images/shop/categories/electronics.jpg') }}" class="avatar avatar-small rounded-circle shadow-md" alt="">
                         <div class="content mt-3">
                             <h6 class="mb-0"><a href="javascript:void(0)" class="title text-dark">Electronics</a></h6>
                         </div>
@@ -433,7 +403,7 @@
             <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2">
                 <div class="card features feature-primary explore-feature border-0 rounded text-center">
                     <div class="card-body">
-                        <img src="assets/images/shop/categories/mobile.jpg" class="avatar avatar-small rounded-circle shadow-md" alt="">
+                        <img src="{{ asset('assets/images/shop/categories/mobile.jpg') }}" class="avatar avatar-small rounded-circle shadow-md" alt="">
                         <div class="content mt-3">
                             <h6 class="mb-0"><a href="javascript:void(0)" class="title text-dark">Mobiles</a></h6>
                         </div>
@@ -459,9 +429,9 @@
                         <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-info">Popular</a></li>
                     </ul>
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s9.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s9.jpg') }}" class="img-fluid" alt=""></a>
                         <a href="shop-product-detail.html" class="overlay-work">
-                            <img src="assets/images/shop/product/s-9.jpg" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/images/shop/product/s-9.jpg') }}" class="img-fluid" alt="">
                         </a>
                         <ul class="list-unstyled shop-icons">
                             <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" class="icons"></i></a></li>
@@ -491,9 +461,9 @@
                         <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-info">Popular</a></li>
                     </ul>
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s10.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s10.jpg') }}" class="img-fluid" alt=""></a>
                         <a href="shop-product-detail.html" class="overlay-work">
-                            <img src="assets/images/shop/product/s-10.jpg" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/images/shop/product/s-10.jpg') }}" class="img-fluid" alt="">
                         </a>
                         <ul class="list-unstyled shop-icons">
                             <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" class="icons"></i></a></li>
@@ -523,9 +493,9 @@
                         <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-info">Popular</a></li>
                     </ul>
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s11.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s11.jpg') }}" class="img-fluid" alt=""></a>
                         <a href="shop-product-detail.html" class="overlay-work">
-                            <img src="assets/images/shop/product/s-11.jpg" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/images/shop/product/s-11.jpg') }}" class="img-fluid" alt="">
                         </a>
                         <ul class="list-unstyled shop-icons">
                             <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" class="icons"></i></a></li>
@@ -555,9 +525,9 @@
                         <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-info">Popular</a></li>
                     </ul>
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s12.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s12.jpg') }}" class="img-fluid" alt=""></a>
                         <a href="shop-product-detail.html" class="overlay-work">
-                            <img src="assets/images/shop/product/s-12.jpg" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/images/shop/product/s-12.jpg') }}" class="img-fluid" alt="">
                         </a>
                         <ul class="list-unstyled shop-icons">
                             <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" class="icons"></i></a></li>
@@ -619,9 +589,9 @@
                         <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-primary">New</a></li>
                     </ul>
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s13.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s13.jpg') }}" class="img-fluid" alt=""></a>
                         <a href="shop-product-detail.html" class="overlay-work">
-                            <img src="assets/images/shop/product/s-13.jpg" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/images/shop/product/s-13.jpg') }}" class="img-fluid" alt="">
                         </a>
                         <ul class="list-unstyled shop-icons">
                             <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" class="icons"></i></a></li>
@@ -651,7 +621,7 @@
                         <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-primary">New</a></li>
                     </ul>
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s14.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s14.jpg') }}" class="img-fluid" alt=""></a>
                         <div class="overlay-work">
                             <div class="py-2 bg-soft-dark rounded-bottom out-stock">
                                 <h6 class="mb-0 text-center">Out of stock</h6>
@@ -683,9 +653,9 @@
                         <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-primary">New</a></li>
                     </ul>
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s15.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s15.jpg') }}" class="img-fluid" alt=""></a>
                         <a href="shop-product-detail.html" class="overlay-work">
-                            <img src="assets/images/shop/product/s-15.jpg" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/images/shop/product/s-15.jpg') }}" class="img-fluid" alt="">
                         </a>
                         <ul class="list-unstyled shop-icons">
                             <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" class="icons"></i></a></li>
@@ -717,9 +687,9 @@
                         <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-warning">Sale</a></li>
                     </ul>
                     <div class="shop-image position-relative overflow-hidden rounded shadow">
-                        <a href="shop-product-detail.html"><img src="assets/images/shop/product/s16.jpg" class="img-fluid" alt=""></a>
+                        <a href="shop-product-detail.html"><img src="{{ asset('assets/images/shop/product/s16.jpg') }}" class="img-fluid" alt=""></a>
                         <a href="shop-product-detail.html" class="overlay-work">
-                            <img src="assets/images/shop/product/s-16.jpg" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/images/shop/product/s-16.jpg') }}" class="img-fluid" alt="">
                         </a>
                         <ul class="list-unstyled shop-icons">
                             <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" class="icons"></i></a></li>
