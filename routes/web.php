@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\TenantController;
+use App\Http\Controllers\Admin\DatabaseCredentialController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -22,6 +23,12 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/tenants', [TenantController::class, 'store'])->name('tenants.store');
         Route::put('/tenants/{tenant}', [TenantController::class, 'update'])->name('tenants.update');
         Route::delete('/tenants/{tenant}', [TenantController::class, 'destroy'])->name('tenants.destroy');
+
+        // database routes
+        Route::get('/database-credentials', [DatabaseCredentialController::class, 'index'])->name('database-credentials');
+        Route::post('/database-credentials', [DatabaseCredentialController::class, 'store'])->name('database-credentials.store');
+        Route::put('/database-credentials/{databaseCredential}', [DatabaseCredentialController::class, 'update'])->name('database-credentials.update');
+        Route::delete('/database-credentials/{databaseCredential}', [DatabaseCredentialController::class, 'destroy'])->name('database-credentials.destroy');
     });
 });
 

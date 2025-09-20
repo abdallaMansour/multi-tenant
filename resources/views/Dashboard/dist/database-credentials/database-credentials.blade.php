@@ -15,12 +15,12 @@
                 <div class="container-fluid">
                     <div class="layout-specing">
                         <div class="d-md-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">Tenants</h5>
+                            <h5 class="mb-0">Database Credentials</h5>
 
                             <nav aria-label="breadcrumb" class="d-inline-block mt-2 mt-sm-0">
                                 <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
                                     <li class="breadcrumb-item text-capitalize"><a href="{{ route('admin.dashboard') }}">Landrick</a></li>
-                                    <li class="breadcrumb-item text-capitalize active" aria-current="page">Tenants</li>
+                                    <li class="breadcrumb-item text-capitalize active" aria-current="page">Database Credentials</li>
                                 </ul>
                             </nav>
                         </div>
@@ -30,9 +30,9 @@
                                 <div class="card border-0 rounded shadow">
                                     <div class="card-header bg-transparent border-bottom p-3">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <h5 class="mb-0">Tenants Management</h5>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createTenantModal">
-                                                <i class="ti ti-plus me-1"></i> Add New Tenant
+                                            <h5 class="mb-0">Database Credentials Management</h5>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCredentialModal">
+                                                <i class="ti ti-plus me-1"></i> Add New Database Credential
                                             </button>
                                         </div>
                                     </div>
@@ -42,46 +42,54 @@
                                                 <thead class="table-light">
                                                     <tr>
                                                         <th class="border-0">ID</th>
-                                                        <th class="border-0">Name</th>
-                                                        <th class="border-0">Username</th>
-                                                        <th class="border-0">Email</th>
-                                                        <th class="border-0">Phone</th>
+                                                        <th class="border-0">Database Name</th>
+                                                        <th class="border-0">Database User</th>
+                                                        <th class="border-0">Password</th>
+                                                        <th class="border-0">Is Active</th>
                                                         <th class="border-0">Created At</th>
                                                         <th class="border-0 text-center">Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @forelse($tenants as $tenant)
+                                                    @forelse($credentials as $credential)
                                                     <tr>
-                                                        <td class="border-0">{{ $tenant->id }}</td>
+                                                        <td class="border-0">{{ $credential->id }}</td>
                                                         <td class="border-0">
                                                             <div class="d-flex align-items-center">
-                                                                <span class="fw-medium">{{ $tenant->name }}</span>
+                                                                <span class="fw-medium">{{ $credential->db_name }}</span>
                                                             </div>
                                                         </td>
                                                         <td class="border-0">
-                                                            <span class="badge bg-soft-info text-info">{{ $tenant->username }}</span>
+                                                            <span class="badge bg-soft-info text-info">{{ $credential->db_user }}</span>
                                                         </td>
-                                                        <td class="border-0">{{ $tenant->email }}</td>
-                                                        <td class="border-0">{{ $tenant->phone }}</td>
-                                                        <td class="border-0">{{ $tenant->created_at->format('M d, Y') }}</td>
+                                                        <td class="border-0">
+                                                            <span class="text-muted">{{ $credential->db_password }}</span>
+                                                        </td>
+                                                        <td class="border-0">
+                                                            @if($credential->is_active)
+                                                                <span class="badge bg-soft-success text-success">Active</span>
+                                                            @else
+                                                                <span class="badge bg-soft-secondary text-secondary">Inactive</span>
+                                                            @endif
+                                                        </td>
+                                                        <td class="border-0">{{ $credential->created_at->format('M d, Y') }}</td>
                                                         <td class="border-0 text-center">
                                                             <div class="btn-group" role="group">
                                                                 <button type="button" class="btn btn-sm btn-soft-primary" 
                                                                         data-bs-toggle="modal" 
-                                                                        data-bs-target="#editTenantModal"
-                                                                        data-tenant-id="{{ $tenant->id }}"
-                                                                        data-tenant-name="{{ $tenant->name }}"
-                                                                        data-tenant-username="{{ $tenant->username }}"
-                                                                        data-tenant-email="{{ $tenant->email }}"
-                                                                        data-tenant-phone="{{ $tenant->phone }}">
+                                                                        data-bs-target="#editCredentialModal"
+                                                                        data-credential-id="{{ $credential->id }}"
+                                                                        data-credential-db-name="{{ $credential->db_name }}"
+                                                                        data-credential-db-user="{{ $credential->db_user }}"
+                                                                        data-credential-db-password="{{ $credential->db_password }}"
+                                                                        data-credential-is-active="{{ $credential->is_active }}">
                                                                     <i class="ti ti-edit"></i>
                                                                 </button>
                                                                 <button type="button" class="btn btn-sm btn-soft-danger" 
                                                                         data-bs-toggle="modal" 
-                                                                        data-bs-target="#deleteTenantModal"
-                                                                        data-tenant-id="{{ $tenant->id }}"
-                                                                        data-tenant-name="{{ $tenant->name }}">
+                                                                        data-bs-target="#deleteCredentialModal"
+                                                                        data-credential-id="{{ $credential->id }}"
+                                                                        data-credential-db-name="{{ $credential->db_name }}">
                                                                     <i class="ti ti-trash"></i>
                                                                 </button>
                                                             </div>
@@ -92,7 +100,7 @@
                                                         <td colspan="7" class="text-center py-4">
                                                             <div class="text-muted">
                                                                 <i class="ti ti-database-off fs-1 d-block mb-2"></i>
-                                                                No tenants found. Create your first tenant!
+                                                                No database credentials found. Create your first credential!
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -119,50 +127,36 @@
         @include("Dashboard.layouts.themes")
         <!-- Offcanvas End -->
         
-        <!-- Create Tenant Modal -->
-        <div class="modal fade" id="createTenantModal" tabindex="-1" aria-labelledby="createTenantModalLabel" aria-hidden="true">
+        <!-- Create Database Credential Modal -->
+        <div class="modal fade" id="createCredentialModal" tabindex="-1" aria-labelledby="createCredentialModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="createTenantModalLabel">Create New Tenant</h5>
+                        <h5 class="modal-title" id="createCredentialModalLabel">Create New Database Credential</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('tenants.store') }}" method="POST">
+                    <form action="{{ route('database-credentials.store') }}" method="POST">
                         @csrf
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="name" class="form-label">Tenant Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
-                                    @error('name')
+                                    <label for="db_name" class="form-label">Database Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('db_name') is-invalid @enderror" id="db_name" name="db_name" value="{{ old('db_name') }}" required>
+                                    @error('db_name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username') }}" required>
-                                    @error('username')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required>
-                                    @error('email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="phone" class="form-label">Phone <span class="text-danger">*</span></label>
-                                    <input type="tel" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}" required>
-                                    @error('phone')
+                                    <label for="db_user" class="form-label">Database User <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('db_user') is-invalid @enderror" id="db_user" name="db_user" value="{{ old('db_user') }}" required>
+                                    @error('db_user')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required>
-                                    @error('password')
+                                    <label for="db_password" class="form-label">Database Password</label>
+                                    <input type="text" class="form-control @error('db_password') is-invalid @enderror" id="db_password" name="db_password" value="{{ old('db_password') }}">
+                                    @error('db_password')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -170,80 +164,71 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Create Tenant</button>
+                            <button type="submit" class="btn btn-primary">Create Credential</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
 
-        <!-- Edit Tenant Modal -->
-        <div class="modal fade" id="editTenantModal" tabindex="-1" aria-labelledby="editTenantModalLabel" aria-hidden="true">
+        <!-- Edit Database Credential Modal -->
+        <div class="modal fade" id="editCredentialModal" tabindex="-1" aria-labelledby="editCredentialModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editTenantModalLabel">Edit Tenant</h5>
+                        <h5 class="modal-title" id="editCredentialModalLabel">Edit Database Credential</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form id="editTenantForm" method="POST">
+                    <form id="editCredentialForm" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="edit_name" class="form-label">Tenant Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="edit_name" name="name" required>
+                                    <label for="edit_db_name" class="form-label">Database Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="edit_db_name" name="db_name" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="edit_username" class="form-label">Username <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="edit_username" name="username" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="edit_email" class="form-label">Email <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="edit_email" name="email" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="edit_phone" class="form-label">Phone <span class="text-danger">*</span></label>
-                                    <input type="tel" class="form-control" id="edit_phone" name="phone" required>
+                                    <label for="edit_db_user" class="form-label">Database User <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="edit_db_user" name="db_user" required>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="edit_password" class="form-label">New Password (leave blank to keep current)</label>
-                                    <input type="password" class="form-control" id="edit_password" name="password">
-                                    <small class="text-muted">Leave blank if you don't want to change the password</small>
+                                    <label for="edit_db_password" class="form-label">Database Password</label>
+                                    <input type="text" class="form-control" id="edit_db_password" name="db_password" value="{{ old('db_password') }}">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Update Tenant</button>
+                            <button type="submit" class="btn btn-primary">Update Credential</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
 
-        <!-- Delete Tenant Modal -->
-        <div class="modal fade" id="deleteTenantModal" tabindex="-1" aria-labelledby="deleteTenantModalLabel" aria-hidden="true">
+        <!-- Delete Database Credential Modal -->
+        <div class="modal fade" id="deleteCredentialModal" tabindex="-1" aria-labelledby="deleteCredentialModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteTenantModalLabel">Delete Tenant</h5>
+                        <h5 class="modal-title" id="deleteCredentialModalLabel">Delete Database Credential</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="text-center">
                             <i class="ti ti-alert-triangle text-danger fs-1 mb-3"></i>
                             <h5>Are you sure?</h5>
-                            <p class="text-muted">You are about to delete tenant: <strong id="deleteTenantName"></strong></p>
+                            <p class="text-muted">You are about to delete database credential: <strong id="deleteCredentialName"></strong></p>
                             <p class="text-danger small">This action cannot be undone!</p>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <form id="deleteTenantForm" method="POST" style="display: inline;">
+                        <form id="deleteCredentialForm" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete Tenant</button>
+                            <button type="submit" class="btn btn-danger">Delete Credential</button>
                         </form>
                     </div>
                 </div>
@@ -325,67 +310,67 @@
 
         <!-- Custom JavaScript for Modals -->
         <script>
-            // Edit Tenant Modal
+            // Edit Database Credential Modal
             document.addEventListener('DOMContentLoaded', function() {
-                const editModal = document.getElementById('editTenantModal');
-                const editForm = document.getElementById('editTenantForm');
+                const editModal = document.getElementById('editCredentialModal');
+                const editForm = document.getElementById('editCredentialForm');
                 
                 editModal.addEventListener('show.bs.modal', function(event) {
                     const button = event.relatedTarget;
-                    const tenantId = button.getAttribute('data-tenant-id');
-                    const tenantName = button.getAttribute('data-tenant-name');
-                    const tenantUsername = button.getAttribute('data-tenant-username');
-                    const tenantEmail = button.getAttribute('data-tenant-email');
-                    const tenantPhone = button.getAttribute('data-tenant-phone');
+                    const credentialId = button.getAttribute('data-credential-id');
+                    const credentialDbName = button.getAttribute('data-credential-db-name');
+                    const credentialDbUser = button.getAttribute('data-credential-db-user');
+                    const credentialDbPassword = button.getAttribute('data-credential-db-password');
+                    const credentialIsActive = button.getAttribute('data-credential-is-active');
                     
                     // Update form action URL
-                    editForm.action = `/admin/tenants/${tenantId}`;
+                    editForm.action = `/admin/database-credentials/${credentialId}`;
                     
                     // Populate form fields
-                    document.getElementById('edit_name').value = tenantName;
-                    document.getElementById('edit_username').value = tenantUsername;
-                    document.getElementById('edit_email').value = tenantEmail;
-                    document.getElementById('edit_phone').value = tenantPhone;
+                    document.getElementById('edit_db_name').value = credentialDbName;
+                    document.getElementById('edit_db_user').value = credentialDbUser;
+                    document.getElementById('edit_db_password').value = credentialDbPassword;
+                    document.getElementById('edit_is_active').checked = credentialIsActive === '1';
                 });
                 
-                // Delete Tenant Modal
-                const deleteModal = document.getElementById('deleteTenantModal');
-                const deleteForm = document.getElementById('deleteTenantForm');
+                // Delete Database Credential Modal
+                const deleteModal = document.getElementById('deleteCredentialModal');
+                const deleteForm = document.getElementById('deleteCredentialForm');
                 
                 deleteModal.addEventListener('show.bs.modal', function(event) {
                     const button = event.relatedTarget;
-                    const tenantId = button.getAttribute('data-tenant-id');
-                    const tenantName = button.getAttribute('data-tenant-name');
+                    const credentialId = button.getAttribute('data-credential-id');
+                    const credentialDbName = button.getAttribute('data-credential-db-name');
                     
                     // Update form action URL
-                    deleteForm.action = `/admin/tenants/${tenantId}`;
+                    deleteForm.action = `/admin/database-credentials/${credentialId}`;
                     
-                // Update tenant name in modal
-                document.getElementById('deleteTenantName').textContent = tenantName;
+                    // Update credential name in modal
+                    document.getElementById('deleteCredentialName').textContent = credentialDbName;
+                });
+            
+                // Auto-hide toast messages after 5 seconds
+                setTimeout(function() {
+                    const toasts = document.querySelectorAll('.toast');
+                    toasts.forEach(function(toast) {
+                        const bsToast = new bootstrap.Toast(toast);
+                        bsToast.hide();
+                    });
+                }, 5000);
+                
+                // Form validation for create modal
+                const createForm = document.querySelector('form[action="{{ route('database-credentials.store') }}"]');
+                if (createForm) {
+                    createForm.addEventListener('submit', function(e) {
+                        const password = document.getElementById('db_password').value;
+                        if (password && password.length < 6) {
+                            e.preventDefault();
+                            alert('Password must be at least 6 characters long.');
+                            return false;
+                        }
+                    });
+                }
             });
-            
-            // Auto-hide toast messages after 5 seconds
-            setTimeout(function() {
-                const toasts = document.querySelectorAll('.toast');
-                toasts.forEach(function(toast) {
-                    const bsToast = new bootstrap.Toast(toast);
-                    bsToast.hide();
-                });
-            }, 5000);
-            
-            // Form validation for create modal
-            const createForm = document.querySelector('form[action="{{ route('tenants.store') }}"]');
-            if (createForm) {
-                createForm.addEventListener('submit', function(e) {
-                    const password = document.getElementById('password').value;
-                    if (password.length < 6) {
-                        e.preventDefault();
-                        alert('Password must be at least 6 characters long.');
-                        return false;
-                    }
-                });
-            }
-        });
         </script>
     </body>
 

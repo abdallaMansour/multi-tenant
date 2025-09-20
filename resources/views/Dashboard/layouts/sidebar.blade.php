@@ -29,6 +29,14 @@
                 </div>
             </li>
             <li class="sidebar-dropdown">
+                <a href="javascript:void(0)"><i class="ti ti-building me-2"></i>Database credentials</a>
+                <div class="sidebar-submenu">
+                    <ul>
+                        <li><a href="{{ route('database-credentials') }}">Database credentials</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="sidebar-dropdown">
                 <a href="javascript:void(0)"><i class="ti ti-browser me-2"></i>Layouts</a>
                 <div class="sidebar-submenu">
                     <ul>
