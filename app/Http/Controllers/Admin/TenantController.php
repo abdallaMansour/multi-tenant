@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Tenant;
 use Illuminate\Support\Str;
+use App\Models\DatabaseCredential;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
@@ -43,11 +44,43 @@ class TenantController extends Controller
 
             $source = resource_path('views/Landing/dist/layouts');
             $destination = resource_path('views/tenants/' . $tenant->username . '/layouts');
-            
+
             File::copyDirectory($source, $destination);
 
 
             DB::commit();
+
+            // create tenant database credential
+            $databaseCredential = DatabaseCredential::where('is_active', false)->first();
+
+            if (!$databaseCredential) {
+                throw new \Exception('There is no active database credential found');
+            }
+
+            $tenantConfig = config('database.connections.tenant');
+            $tenantConfig['database'] = $databaseCredential->db_name;
+            $tenantConfig['username'] = $databaseCredential->db_user;
+            $tenantConfig['password'] = $databaseCredential->db_password;
+            $tenantConfig['log'] = true;
+            $tenantConnectionName = 'tenant_' . $databaseCredential->db_name;
+            config(["database.connections.$tenantConnectionName" => $tenantConfig]);
+            session()->put('tenant_connection_name', $tenantConnectionName);
+
+            $query = DB::connection($tenantConnectionName);
+
+                $sql = 'CREATE DATABASE IF NOT EXISTS ' . $databaseCredential->db_name . ';';
+                DB::unprepared($sql);
+
+
+            $this->refreshTenantDatabase($query, $databaseCredential->db_name);
+            $sqlFilePath = storage_path('app/tenant.sql');
+            $sqlContent = file_get_contents($sqlFilePath);
+            $query->unprepared($sqlContent);
+
+            $databaseCredential->update([
+                'is_active' => true
+            ]);
+
             return redirect()->route('tenants')->with('success', 'Tenant created successfully');
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -91,5 +124,27 @@ class TenantController extends Controller
             DB::rollBack();
             return redirect()->route('tenants')->with('error', $th->getMessage());
         }
+    }
+
+        /**
+     * Drop table if exists
+     */
+    public function refreshTenantDatabase($query, $database)
+    {
+        // Disable foreign key checks temporarily
+        $query->statement('SET FOREIGN_KEY_CHECKS=0');
+
+        // Get the list of tables in the database
+        $tables = $query->select("SHOW TABLES FROM {$database}");
+
+        foreach ($tables as $table) {
+            $table = reset($table); // Extract the table name from the result
+
+            // Drop each table
+            $query->statement("DROP TABLE IF EXISTS `{$table}`");
+        }
+
+        // Enable foreign key checks again
+        $query->statement('SET FOREIGN_KEY_CHECKS=1');
     }
 }

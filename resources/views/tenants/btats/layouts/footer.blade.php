@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-lg-3 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
                             <a href="#" class="logo-footer">
-                                <img src="assets/images/logo-light.png" height="24" alt="">
+                                <img src="{{ asset('assets/images/logo-light.png') }}" height="24" alt="">
                             </a>
                             <p class="mt-4">Start working with Landrick that can provide everything you.</p>
                             <ul class="list-unstyled social-icon foot-social-icon mb-0 mt-4">
