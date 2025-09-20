@@ -26,6 +26,11 @@ class TenantController extends Controller
             DB::beginTransaction();
             $data = $request->validated();
 
+            $databaseCredential = DatabaseCredential::where('tenant_id', null)->first();
+            if (!$databaseCredential) {
+                throw new \Exception('There is no active database credential found');
+            }
+
             $data['username'] = Str::slug($data['username']);
 
             $tenant = Tenant::create($data);
@@ -51,11 +56,6 @@ class TenantController extends Controller
             DB::commit();
 
             // create tenant database credential
-            $databaseCredential = DatabaseCredential::where('is_active', false)->first();
-
-            if (!$databaseCredential) {
-                throw new \Exception('There is no active database credential found');
-            }
 
             $tenantConfig = config('database.connections.tenant');
             $tenantConfig['database'] = $databaseCredential->db_name;
@@ -78,7 +78,7 @@ class TenantController extends Controller
             $query->unprepared($sqlContent);
 
             $databaseCredential->update([
-                'is_active' => true
+                'tenant_id' => $tenant->id
             ]);
 
             return redirect()->route('tenants')->with('success', 'Tenant created successfully');
@@ -110,13 +110,18 @@ class TenantController extends Controller
     {
         try {
             DB::beginTransaction();
-            $tenant->delete();
 
             // delete tenant directory
             $tenantDirectory = resource_path('views/tenants/' . $tenant->username);
             if (file_exists($tenantDirectory)) {
                 File::deleteDirectory($tenantDirectory);
             }
+
+            $tenant->databaseCredential()->update([
+                'tenant_id' => null
+            ]);
+
+            $tenant->delete();
 
             DB::commit();
             return redirect()->route('tenants')->with('success', 'Tenant deleted successfully');

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('db_name');
             $table->string('db_user');
             $table->string('db_password')->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->foreignId('tenant_id')->nullable()->constrained('tenants')->onDelete('cascade');
             $table->timestamps();
         });
     }

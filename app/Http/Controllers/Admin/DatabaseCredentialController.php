@@ -49,7 +49,7 @@ class DatabaseCredentialController extends Controller
                 'db_name' => $db_name,
                 'db_user' => $db_user,
                 'db_password' => $request->db_password,
-                'is_active' => false
+                'tenant_id' => null
             ]);
 
             DB::commit();
@@ -87,7 +87,7 @@ class DatabaseCredentialController extends Controller
                 'db_name' => $request->db_name,
                 'db_user' => $request->db_user,
                 'db_password' => $request->db_password,
-                'is_active' => false
+                // 'tenant_id' => null
             ]);
 
             DB::commit();

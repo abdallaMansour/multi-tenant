@@ -12,11 +12,7 @@ class DatabaseCredential extends Model
         'db_name',
         'db_user', 
         'db_password',
-        'is_active'
-    ];
-
-    protected $casts = [
-        'is_active' => 'boolean',
+        'tenant_id'
     ];
 
     /**
@@ -24,7 +20,7 @@ class DatabaseCredential extends Model
      */
     public function scopeActive($query)
     {
-        return $query->where('is_active', true);
+        return $query->whereNotNull('tenant_id');
     }
 
     /**
@@ -32,6 +28,12 @@ class DatabaseCredential extends Model
      */
     public function scopeInactive($query)
     {
-        return $query->where('is_active', false);
+        return $query->whereNull('tenant_id');
+    }
+
+    // Relationships
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class);
     }
 }

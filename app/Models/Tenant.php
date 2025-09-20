@@ -24,4 +24,10 @@ class Tenant extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    // Relationships
+    public function databaseCredential()
+    {
+        return $this->hasOne(DatabaseCredential::class);
+    }
 }

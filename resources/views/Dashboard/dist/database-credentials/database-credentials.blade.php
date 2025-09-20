@@ -66,7 +66,7 @@
                                                             <span class="text-muted">{{ $credential->db_password }}</span>
                                                         </td>
                                                         <td class="border-0">
-                                                            @if($credential->is_active)
+                                                            @if($credential->tenant_id)
                                                                 <span class="badge bg-soft-success text-success">Active</span>
                                                             @else
                                                                 <span class="badge bg-soft-secondary text-secondary">Inactive</span>
@@ -82,7 +82,7 @@
                                                                         data-credential-db-name="{{ $credential->db_name }}"
                                                                         data-credential-db-user="{{ $credential->db_user }}"
                                                                         data-credential-db-password="{{ $credential->db_password }}"
-                                                                        data-credential-is-active="{{ $credential->is_active }}">
+                                                                        data-credential-tenant-id="{{ $credential->tenant_id }}">
                                                                     <i class="ti ti-edit"></i>
                                                                 </button>
                                                                 <button type="button" class="btn btn-sm btn-soft-danger" 
@@ -321,7 +321,7 @@
                     const credentialDbName = button.getAttribute('data-credential-db-name');
                     const credentialDbUser = button.getAttribute('data-credential-db-user');
                     const credentialDbPassword = button.getAttribute('data-credential-db-password');
-                    const credentialIsActive = button.getAttribute('data-credential-is-active');
+                    const credentialIsActive = button.getAttribute('data-credential-tenant-id');
                     
                     // Update form action URL
                     editForm.action = `/admin/database-credentials/${credentialId}`;
@@ -330,7 +330,6 @@
                     document.getElementById('edit_db_name').value = credentialDbName;
                     document.getElementById('edit_db_user').value = credentialDbUser;
                     document.getElementById('edit_db_password').value = credentialDbPassword;
-                    document.getElementById('edit_is_active').checked = credentialIsActive === '1';
                 });
                 
                 // Delete Database Credential Modal

@@ -25,6 +25,10 @@ Route::group(['prefix' => $prefix, 'middleware' => 'is_tenant_path'], function (
             Route::get('home', [AuthController::class, 'dashboard'])->name('dashboard');
             Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
+            // settings
+            Route::get('settings', [AuthController::class, 'settings'])->name('settings');
+            Route::post('settings', [AuthController::class, 'settingsPost'])->name('settings');
+
         });
     });
 });
