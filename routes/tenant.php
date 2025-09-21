@@ -35,6 +35,6 @@ Route::group(['prefix' => $prefix, 'middleware' => 'is_tenant_path'], function (
 });
 
 
-Route::get('view_tenant', function () {
-    return view('Landing.dist.index-shop');
-});
+// Route::get('view_tenant', function () {
+//     return view('Themes.eCommerce.landrick.index-shop');
+// });

@@ -1,11 +1,12 @@
-<nav id="sidebar" class="sidebar-wrapper sidebar-dark">
+<!-- sidebar-wrapper -->
+<nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content" data-simplebar style="height: calc(100% - 60px);">
-        <div class="sidebar-brand">
+        <div class="sidebar-brand" style="text-align: center;">
             <a href="index.html">
-                <img src="{{ asset('assets_dashboard/images/logo-dark.png') }}" height="24" class="logo-light-mode" alt="">
-                <img src="{{ asset('assets_dashboard/images/logo-light.png') }}" height="24" class="logo-dark-mode" alt="">
+                <img src="{{ asset('assets/images/logo-dark.png') }}" height="24" class="custom-logo logo-light-mode" alt="">
+                <img src="{{ asset('assets/images/logo-light.png') }}" height="24" class="custom-logo logo-dark-mode" alt="">
                 <span class="sidebar-colored">
-                    <img src="{{ asset('assets_dashboard/images/logo-light.png') }}" height="24" alt="">
+                    <!-- <img src="assets/images/logo-light.png" height="24" alt=""> -->
                 </span>
             </a>
         </div>
@@ -201,12 +202,5 @@
             <!-- sidebar-menu  -->
         @endif
     </div>
-    <!-- Sidebar Footer -->
-    <ul class="sidebar-footer list-unstyled mb-0">
-        <li class="list-inline-item mb-0">
-            <a href="https://1.envato.market/landrick" target="_blank" class="btn btn-icon btn-soft-light"><i class="ti ti-shopping-cart"></i></a> <small class="text-muted fw-medium ms-1">Buy
-                Now</small>
-        </li>
-    </ul>
-    <!-- Sidebar Footer -->
 </nav>
+<!-- sidebar-wrapper  -->

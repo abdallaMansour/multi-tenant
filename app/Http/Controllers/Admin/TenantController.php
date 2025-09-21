@@ -36,22 +36,21 @@ class TenantController extends Controller
             $tenant = Tenant::create($data);
 
             // create tenant directory
-            $tenantDirectory = resource_path('views/tenants/' . $tenant->username);
-            if (!file_exists($tenantDirectory)) {
-                mkdir($tenantDirectory, 0777, true);
-            }
+            // $tenantDirectory = resource_path('views/tenants/' . $tenant->username);
+            // if (!file_exists($tenantDirectory)) {
+            //     mkdir($tenantDirectory, 0777, true);
+            // }
 
             // create tenant index-shop.blade.php
-            $tenantIndexShop = resource_path('views/tenants/' . $tenant->username . '/index-shop.blade.php');
-            if (!file_exists($tenantIndexShop)) {
-                file_put_contents($tenantIndexShop, file_get_contents(base_path('resources/views/Landing/dist/index-shop.blade.php')));
-            }
+            // $tenantIndexShop = resource_path('views/tenants/' . $tenant->username . '/index-shop.blade.php');
+            // if (!file_exists($tenantIndexShop)) {
+            //     file_put_contents($tenantIndexShop, file_get_contents(base_path('resources/views/Landing/dist/index-shop.blade.php')));
+            // }
 
-            $source = resource_path('views/Landing/dist/layouts');
-            $destination = resource_path('views/tenants/' . $tenant->username . '/layouts');
+            // $source = resource_path('views/Landing/dist/layouts');
+            // $destination = resource_path('views/tenants/' . $tenant->username . '/layouts');
 
-            File::copyDirectory($source, $destination);
-
+            // File::copyDirectory($source, $destination);
 
             DB::commit();
 
@@ -111,11 +110,11 @@ class TenantController extends Controller
         try {
             DB::beginTransaction();
 
-            // delete tenant directory
-            $tenantDirectory = resource_path('views/tenants/' . $tenant->username);
-            if (file_exists($tenantDirectory)) {
-                File::deleteDirectory($tenantDirectory);
-            }
+            // // delete tenant directory
+            // $tenantDirectory = resource_path('views/tenants/' . $tenant->username);
+            // if (file_exists($tenantDirectory)) {
+            //     File::deleteDirectory($tenantDirectory);
+            // }
 
             $tenant->databaseCredential()->update([
                 'tenant_id' => null

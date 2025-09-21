@@ -24,7 +24,16 @@
     <link href="{{ asset('assets_dashboard/libs/@iconscout/unicons/css/line.css') }}" type="text/css" rel="stylesheet" />
     <!-- Style Css-->
     <link href="{{ asset('assets_dashboard/css/style.min.css') }}" class="theme-opt" rel="stylesheet" type="text/css" />
-
+    <style>
+        .custom-logo {
+            text-align: center;
+            margin: auto !important;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            display: flex;
+        }
+    </style>
 </head>
 
 <body>

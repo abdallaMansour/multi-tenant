@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Tenant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tenant_Setting;
-use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class ShopController extends Controller
 {
@@ -12,10 +11,8 @@ class ShopController extends Controller
     {
         $query = tenantConnectionDatabase();
 
-        $prefix = FacadesRequest::segment(1);
-
         $settings = Tenant_Setting::on($query)->get();
 
-        return view('tenants.' . $prefix . '.index-shop', compact('settings'));
+        return view('Themes.eCommerce.landrick.index-shop', compact('settings'));
     }
 }
