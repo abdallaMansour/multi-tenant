@@ -46,6 +46,7 @@
                                                         <th class="border-0">Username</th>
                                                         <th class="border-0">Email</th>
                                                         <th class="border-0">Phone</th>
+                                                        <th class="border-0">Is Active</th>
                                                         <th class="border-0">Created At</th>
                                                         <th class="border-0 text-center">Actions</th>
                                                     </tr>
@@ -64,6 +65,11 @@
                                                         </td>
                                                         <td class="border-0">{{ $tenant->email }}</td>
                                                         <td class="border-0">{{ $tenant->phone }}</td>
+                                                        <td class="border-0 text-center">
+                                                            <div class="form-check form-switch">
+                                                                <input type="checkbox" class="form-check-input" id="toggleActive" onchange="toggleActive(this)" name="is_active" value="1" {{ $tenant->is_active ? 'checked' : '' }} data-tenant-id="{{ $tenant->id }}">
+                                                            </div>
+                                                        </td>
                                                         <td class="border-0">{{ $tenant->created_at->format('M d, Y') }}</td>
                                                         <td class="border-0 text-center">
                                                             <div class="btn-group" role="group">
@@ -77,13 +83,13 @@
                                                                         data-tenant-phone="{{ $tenant->phone }}">
                                                                     <i class="ti ti-edit"></i>
                                                                 </button>
-                                                                <button type="button" class="btn btn-sm btn-soft-danger" 
+                                                                {{-- <button type="button" class="btn btn-sm btn-soft-danger" 
                                                                         data-bs-toggle="modal" 
                                                                         data-bs-target="#deleteTenantModal"
                                                                         data-tenant-id="{{ $tenant->id }}"
                                                                         data-tenant-name="{{ $tenant->name }}">
                                                                     <i class="ti ti-trash"></i>
-                                                                </button>
+                                                                </button> --}}
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -325,6 +331,90 @@
 
         <!-- Custom JavaScript for Modals -->
         <script>
+            // Toggle Active Tenant with AJAX
+            function toggleActive(checkbox) {
+                const tenantId = checkbox.getAttribute('data-tenant-id');
+                const originalState = checkbox.checked;
+                
+                // Disable checkbox during request
+                checkbox.disabled = true;
+                
+                // Get CSRF token
+                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                
+                // Make AJAX request
+                fetch(`/admin/tenants/${tenantId}/toggle`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken,
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({
+                        _method: 'POST'
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Show success message
+                        showToast('success', data.message);
+                        
+                        // Update checkbox state based on server response
+                        checkbox.checked = data.is_active;
+                    } else {
+                        // Revert checkbox state on error
+                        checkbox.checked = !originalState;
+                        showToast('error', data.message || 'An error occurred');
+                    }
+                })
+                .catch(error => {
+                    // Revert checkbox state on error
+                    checkbox.checked = !originalState;
+                    showToast('error', 'Network error occurred');
+                    console.error('Error:', error);
+                })
+                .finally(() => {
+                    // Re-enable checkbox
+                    checkbox.disabled = false;
+                });
+            }
+            
+            // Toast notification function
+            function showToast(type, message) {
+                const toastContainer = document.querySelector('.toast-container') || createToastContainer();
+                const toast = document.createElement('div');
+                toast.className = `toast show`;
+                toast.setAttribute('role', 'alert');
+                toast.innerHTML = `
+                    <div class="toast-header bg-${type === 'success' ? 'success' : 'danger'} text-white">
+                        <i class="ti ti-${type === 'success' ? 'check' : 'alert-circle'} me-2"></i>
+                        <strong class="me-auto">${type === 'success' ? 'Success' : 'Error'}</strong>
+                        <button type="button" class="btn-close btn-close-white" onclick="this.closest('.toast').remove()"></button>
+                    </div>
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                `;
+                toastContainer.appendChild(toast);
+                
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.remove();
+                    }
+                }, 5000);
+            }
+            
+            // Create toast container if it doesn't exist
+            function createToastContainer() {
+                const container = document.createElement('div');
+                container.className = 'toast-container position-fixed top-0 end-0 p-3';
+                container.style.zIndex = '9999';
+                document.body.appendChild(container);
+                return container;
+            }
+
             // Edit Tenant Modal
             document.addEventListener('DOMContentLoaded', function() {
                 const editModal = document.getElementById('editTenantModal');

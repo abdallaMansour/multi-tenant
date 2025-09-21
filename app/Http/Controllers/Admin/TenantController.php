@@ -35,23 +35,6 @@ class TenantController extends Controller
 
             $tenant = Tenant::create($data);
 
-            // create tenant directory
-            // $tenantDirectory = resource_path('views/tenants/' . $tenant->username);
-            // if (!file_exists($tenantDirectory)) {
-            //     mkdir($tenantDirectory, 0777, true);
-            // }
-
-            // create tenant index-shop.blade.php
-            // $tenantIndexShop = resource_path('views/tenants/' . $tenant->username . '/index-shop.blade.php');
-            // if (!file_exists($tenantIndexShop)) {
-            //     file_put_contents($tenantIndexShop, file_get_contents(base_path('resources/views/Landing/dist/index-shop.blade.php')));
-            // }
-
-            // $source = resource_path('views/Landing/dist/layouts');
-            // $destination = resource_path('views/tenants/' . $tenant->username . '/layouts');
-
-            // File::copyDirectory($source, $destination);
-
             DB::commit();
 
             // create tenant database credential
@@ -67,8 +50,8 @@ class TenantController extends Controller
 
             $query = DB::connection($tenantConnectionName);
 
-                $sql = 'CREATE DATABASE IF NOT EXISTS ' . $databaseCredential->db_name . ';';
-                DB::unprepared($sql);
+            $sql = 'CREATE DATABASE IF NOT EXISTS ' . $databaseCredential->db_name . ';';
+            DB::unprepared($sql);
 
 
             $this->refreshTenantDatabase($query, $databaseCredential->db_name);
@@ -105,34 +88,67 @@ class TenantController extends Controller
         }
     }
 
-    public function destroy(Tenant $tenant)
+    // public function destroy(Tenant $tenant)
+    // {
+    //     try {
+    //         DB::beginTransaction();
+
+    //         // // delete tenant directory
+    //         // $tenantDirectory = resource_path('views/tenants/' . $tenant->username);
+    //         // if (file_exists($tenantDirectory)) {
+    //         //     File::deleteDirectory($tenantDirectory);
+    //         // }
+
+    //         $tenant->databaseCredential()->update([
+    //             'tenant_id' => null
+    //         ]);
+
+    //         $tenant->delete();
+
+    //         DB::commit();
+    //         return redirect()->route('tenants')->with('success', 'Tenant deleted successfully');
+    //     } catch (\Throwable $th) {
+    //         DB::rollBack();
+    //         return redirect()->route('tenants')->with('error', $th->getMessage());
+    //     }
+    // }
+
+    /**
+     * Drop table if exists
+     */
+
+    public function toggleActive(Tenant $tenant)
     {
         try {
             DB::beginTransaction();
-
-            // // delete tenant directory
-            // $tenantDirectory = resource_path('views/tenants/' . $tenant->username);
-            // if (file_exists($tenantDirectory)) {
-            //     File::deleteDirectory($tenantDirectory);
-            // }
-
-            $tenant->databaseCredential()->update([
-                'tenant_id' => null
+            $tenant->update([
+                'is_active' => !$tenant->is_active
             ]);
-
-            $tenant->delete();
-
             DB::commit();
-            return redirect()->route('tenants')->with('success', 'Tenant deleted successfully');
+            
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Tenant status updated successfully',
+                    'is_active' => $tenant->is_active
+                ]);
+            }
+            
+            return redirect()->route('tenants')->with('success', 'Tenant activated successfully');
         } catch (\Throwable $th) {
             DB::rollBack();
+            
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => $th->getMessage()
+                ], 500);
+            }
+            
             return redirect()->route('tenants')->with('error', $th->getMessage());
         }
     }
 
-        /**
-     * Drop table if exists
-     */
     public function refreshTenantDatabase($query, $database)
     {
         // Disable foreign key checks temporarily

@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/tenants', [TenantController::class, 'store'])->name('tenants.store');
         Route::put('/tenants/{tenant}', [TenantController::class, 'update'])->name('tenants.update');
         Route::delete('/tenants/{tenant}', [TenantController::class, 'destroy'])->name('tenants.destroy');
+        Route::post('/tenants/{tenant}/toggle', [TenantController::class, 'toggleActive'])->name('tenants.toggle');
 
         // database routes
         Route::get('/database-credentials', [DatabaseCredentialController::class, 'index'])->name('database-credentials');

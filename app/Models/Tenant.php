@@ -15,6 +15,7 @@ class Tenant extends Authenticatable
         'email',
         'password',
         'phone',
+        'is_active',
     ];
 
     protected $hidden = [
@@ -23,6 +24,7 @@ class Tenant extends Authenticatable
 
     protected $casts = [
         'password' => 'hashed',
+        'is_active' => 'boolean',
     ];
 
     // Relationships

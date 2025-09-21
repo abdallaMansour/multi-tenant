@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone')->nullable();
+            $table->boolean('is_active')->default(false);
+            // $table->timestamp('expiration_date')->default(false);
 
             $table->timestamps();
         });
