@@ -198,7 +198,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="edit_icon" class="form-label">Icon <span class="text-danger">*</span></label>
-                            <input type="file" class="form-control" id="edit_icon" name="icon" accept="image/*" required>
+                            <input type="file" class="form-control" id="edit_icon" name="icon" accept="image/*">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="edit_is_active" class="form-label">Is Active</label>

@@ -43,6 +43,7 @@
                     <div class="sidebar-submenu">
                         <ul>
                             <li><a href="{{ route('business-activities') }}">Business Activities</a></li>
+                            <li><a href="{{ route('business-activity-requirements') }}">Business Activity Requirements</a></li>
                         </ul>
                     </div>
                 </li>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\Admin\DatabaseCredentialController;
 use App\Http\Controllers\Admin\BusinessActivityController;
+use App\Http\Controllers\Admin\BusinessActivityRequirementController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -36,6 +37,12 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/business-activities', [BusinessActivityController::class, 'store'])->name('business-activities.store');
         Route::put('/business-activities/{businessActivity}', [BusinessActivityController::class, 'update'])->name('business-activities.update');
         Route::delete('/business-activities/{businessActivity}', [BusinessActivityController::class, 'destroy'])->name('business-activities.destroy');
+
+        // business activity requirements routes
+        Route::get('/business-activity-requirements', [BusinessActivityRequirementController::class, 'index'])->name('business-activity-requirements');
+        Route::post('/business-activity-requirements', [BusinessActivityRequirementController::class, 'store'])->name('business-activity-requirements.store');
+        Route::put('/business-activity-requirements/{businessActivityRequirement}', [BusinessActivityRequirementController::class, 'update'])->name('business-activity-requirements.update');
+        Route::delete('/business-activity-requirements/{businessActivityRequirement}', [BusinessActivityRequirementController::class, 'destroy'])->name('business-activity-requirements.destroy');
     });
 });
 
