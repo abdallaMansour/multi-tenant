@@ -31,10 +31,18 @@
                     </div>
                 </li>
                 <li class="sidebar-dropdown">
-                    <a href="javascript:void(0)"><i class="ti ti-building me-2"></i>Database credentials</a>
+                    <a href="javascript:void(0)"><i class="ti ti-database me-2"></i>Database credentials</a>
                     <div class="sidebar-submenu">
                         <ul>
                             <li><a href="{{ route('database-credentials') }}">Database credentials</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="ti ti-briefcase me-2"></i>Business Activities</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{ route('business-activities') }}">Business Activities</a></li>
                         </ul>
                     </div>
                 </li>
