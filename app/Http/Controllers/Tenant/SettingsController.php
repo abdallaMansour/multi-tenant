@@ -16,7 +16,7 @@ class SettingsController extends Controller
         // Get all settings from the database
         $settings = Tenant_Setting::on($query)->get();
 
-        return view('Dashboard.dist.dashboard_tenants.settings.settings', compact('settings'));
+        return view('Dashboard.tenants.settings.settings', compact('settings'));
     }
 
     public function settingsPost(Request $request)

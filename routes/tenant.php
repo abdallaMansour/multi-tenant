@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Tenant\AuthController;
 use App\Http\Controllers\Tenant\SettingsController;
-use App\Http\Controllers\Tenant\ShopController;
+use App\Http\Controllers\Tenant\Theme\ECommerce\Landrick\WebsiteController;
 
 $prefix = Request::segment(1);
 
@@ -12,7 +12,7 @@ $prefix = Request::segment(1);
 Route::group(['prefix' => $prefix, 'middleware' => 'is_tenant_path'], function () use ($prefix) {
 
     // website
-    Route::get('/', [ShopController::class, 'home'])->name('home');
+    Route::get('/', [WebsiteController::class, 'home'])->name('home');
 
     // dashboard
     Route::prefix('dashboard')->as('tenant.')->group(function () use ($prefix) {

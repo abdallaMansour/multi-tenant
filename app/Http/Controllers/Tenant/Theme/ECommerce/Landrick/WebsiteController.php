@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Tenant;
+namespace App\Http\Controllers\Tenant\Theme\ECommerce\Landrick;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tenant_Setting;
 
-class ShopController extends Controller
+class WebsiteController extends Controller
 {
     public function home()
     {

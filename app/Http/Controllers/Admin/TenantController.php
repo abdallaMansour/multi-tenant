@@ -17,7 +17,7 @@ class TenantController extends Controller
     {
         $tenants = Tenant::all();
 
-        return view('Dashboard.dist.tenants.tenants', compact('tenants'));
+        return view('Dashboard.admin.tenants.tenants', compact('tenants'));
     }
 
     public function store(StoreTenantRequest $request)

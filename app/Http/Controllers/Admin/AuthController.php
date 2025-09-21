@@ -9,12 +9,12 @@ class AuthController extends Controller
 {
     public function dashboard()
     {
-        return view('Dashboard.dist.index');
+        return view('Dashboard.admin.index');
     }
 
     public function login()
     {
-        return view('Dashboard.dist.login');
+        return view('Dashboard.admin.login');
     }
 
     public function loginPost(Request $request)

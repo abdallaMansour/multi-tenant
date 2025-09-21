@@ -20,7 +20,7 @@ class DatabaseCredentialController extends Controller
     {
         $credentials = DatabaseCredential::orderBy('created_at', 'desc')->paginate(10);
 
-        return view('Dashboard.dist.database-credentials.database-credentials', compact('credentials'));
+        return view('Dashboard.admin.database-credentials.database-credentials', compact('credentials'));
     }
 
     /**
