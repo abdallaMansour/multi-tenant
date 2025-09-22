@@ -222,7 +222,7 @@
                             <select class="form-control" id="edit_business_activity_id" name="business_activity_id" required>
                                 <option value="">Select Business Activity</option>
                                 @foreach($businessActivities as $businessActivity)
-                                    <option value="{{ $businessActivity->id }}" @selected($businessActivityRequirement->business_activity_id == $businessActivity->id)>{{ $businessActivity->name }}</option>
+                                    <option value="{{ $businessActivity->id }}" @selected(isset($businessActivityRequirement) && $businessActivityRequirement->business_activity_id == $businessActivity->id)>{{ $businessActivity->name }}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -18,7 +18,7 @@ class BusinessActivityRequirementController extends Controller
      */
     public function index(Request $request): View
     {
-        $businessActivityRequirements = BusinessActivityRequirement::with('businessActivity')->paginate(10);
+        $businessActivityRequirements = BusinessActivityRequirement::with('businessActivity')->orderBy('business_activity_id')->paginate(10);
         $businessActivities = BusinessActivity::get();
 
         return view('Dashboard.admin.business-activities.business-activity-requirements', compact('businessActivityRequirements', 'businessActivities'));
