@@ -6,7 +6,7 @@ use App\Http\Controllers\Tenant\AuthController;
 use App\Http\Controllers\Tenant\SettingsController;
 use App\Http\Controllers\Tenant\Theme\ECommerce\Landrick\WebsiteController;
 
-$prefix = Request::segment(1);
+$prefix = getTenantPrefix();;
 
 // admin routes
 if ($prefix) {

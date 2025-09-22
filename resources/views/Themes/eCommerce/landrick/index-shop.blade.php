@@ -16,7 +16,7 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="3000">
-                <div class="bg-home slider-rtl-2 d-flex align-items-center" style="background:url('assets/images/shop/bg2.jpg') center center;">
+                <div class="bg-home slider-rtl-2 d-flex align-items-center" style="background:url('{{ asset('assets/images/shop/bg2.jpg') }}') center center;">
                     <div class="bg-overlay bg-overlay-white opacity-5"></div>
                     <div class="container">
                         <div class="row align-items-center mt-5">
@@ -51,7 +51,7 @@
     <div class="row">
         <div class="col-md-4 mt-4 pt-2">
             <div class="card shop-features border-0 rounded overflow-hidden">
-                <img src="{{ asset('assets/images/shop/fea1.jpg') }}" class="img-fluid" alt="">
+                <img src="{{ asset('assets/images/shop/fea1.jpg') }}" class="img-fluid" alt="Summer Collection">
                 <div class="category-title ms-md-4 ms-2">
                     <h4>Summer <br> Collection</h4>
                     <a href="javascript:void(0)" class="btn btn-sm btn-soft-primary mt-2">Shop Now</a>

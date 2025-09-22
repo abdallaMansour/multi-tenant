@@ -14,196 +14,55 @@
         @if (auth()->check())
             <ul class="sidebar-menu">
                 <li class="sidebar-dropdown">
-                    <a href="javascript:void(0)"><i class="ti ti-home me-2"></i>Dashboard</a>
+                    <a href="javascript:void(0)"><i class="ti ti-home me-2"></i>{{ __('sidebar.dashboard') }}</a>
                     <div class="sidebar-submenu">
                         <ul>
-                            <li><a href="{{ route('admin.dashboard') }}">Analytics</a></li>
+                            <li><a href="{{ route('admin.dashboard') }}">{{ __('sidebar.analytics') }}</a></li>
                             {{-- <li><a href="index-crypto.html">Cryptocurrency</a></li> --}}
                         </ul>
                     </div>
                 </li>
                 <li class="sidebar-dropdown">
-                    <a href="javascript:void(0)"><i class="ti ti-building me-2"></i>Tenants</a>
+                    <a href="javascript:void(0)"><i class="ti ti-building me-2"></i>{{ __('sidebar.tenants') }}</a>
                     <div class="sidebar-submenu">
                         <ul>
-                            <li><a href="{{ route('tenants') }}">Tenants</a></li>
+                            <li><a href="{{ route('tenants') }}">{{ __('sidebar.all_tenants') }}</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="sidebar-dropdown">
-                    <a href="javascript:void(0)"><i class="ti ti-database me-2"></i>Database credentials</a>
+                    <a href="javascript:void(0)"><i class="ti ti-database me-2"></i>{{ __('sidebar.database_credentials') }}</a>
                     <div class="sidebar-submenu">
                         <ul>
-                            <li><a href="{{ route('database-credentials') }}">Database credentials</a></li>
+                            <li><a href="{{ route('database-credentials') }}">{{ __('sidebar.database_credentials') }}</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="sidebar-dropdown">
-                    <a href="javascript:void(0)"><i class="ti ti-briefcase me-2"></i>Business Activities</a>
+                    <a href="javascript:void(0)"><i class="ti ti-briefcase me-2"></i>{{ __('sidebar.business_activities') }}</a>
                     <div class="sidebar-submenu">
                         <ul>
-                            <li><a href="{{ route('business-activities') }}">Business Activities</a></li>
-                            <li><a href="{{ route('business-activity-requirements') }}">Business Activity Requirements</a></li>
+                            <li><a href="{{ route('business-activities') }}">{{ __('sidebar.business_activities') }}</a></li>
+                            <li><a href="{{ route('business-activity-requirements') }}">{{ __('sidebar.business_activity_requirements') }}</a></li>
                         </ul>
                     </div>
                 </li>
-                {{-- <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="ti ti-browser me-2"></i>Layouts</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="index-dark.html">Dark Dashboard</a></li>
-                        <li><a href="index-rtl.html">RTL Dashboard</a></li>
-                        <li><a href="index-rtl-dark.html">Dark RTL Dashboard</a></li>
-                        <li><a href="index-sidebar-light.html">Light Sidebar</a></li>
-                        <li><a href="index-sidebar-colored.html">Colored Sidebar</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="ti ti-apps me-2"></i>Apps</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="chat.html">Chat</a></li>
-                        <li><a href="email.html">Email</a></li>
-                        <li><a href="calendar.html">Calendar</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="ti ti-user me-2"></i>User Profile</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="profile.html">Profile</a></li>
-                        <li><a href="profile-setting.html">Profile Setting</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="ti ti-brand-gravatar me-2"></i>Blog</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="blog.html">Blogs</a></li>
-                        <li><a href="blog-detail.html">Blog Detail</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="ti ti-shopping-cart me-2"></i>E-Commerce</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="product-detail.html">Shop Detail</a></li>
-                        <li><a href="shop-cart.html">Shopcart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="ti ti-camera me-2"></i>Gallery</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="gallery-one.html">Gallary One</a></li>
-                        <li><a href="gallery-two.html">Gallery Two</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="ti ti-file-info me-2"></i>Pages</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="faqs.html">FAQs</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="timeline.html">Timeline</a></li>
-                        <li><a href="team.html">Team</a></li>
-                        <li><a href="blank-page.html">Blank Page</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Term & Condition</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="ti ti-file-info me-2"></i>UI Components</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="ui-button.html">Buttons</a></li>
-                        <li><a href="ui-badges.html">Badges</a></li>
-                        <li><a href="ui-alert.html">Alert</a></li>
-                        <li><a href="ui-dropdown.html">Dropdowns</a></li>
-                        <li><a href="ui-typography.html">Typography</a></li>
-                        <li><a href="ui-background.html">Background</a></li>
-                        <li><a href="ui-text.html">Text Color</a></li>
-                        <li><a href="ui-tooltip-popover.html">Tooltips & Popovers</a></li>
-                        <li><a href="ui-shadow.html">Shadows</a></li>
-                        <li><a href="ui-border.html">Border</a></li>
-                        <li><a href="ui-form.html">Form Elements</a></li>
-                        <li><a href="ui-pagination.html">Pagination</a></li>
-                        <li><a href="ui-avatar.html">Avatars</a></li>
-                        <li><a href="ui-modals.html">Modals</a></li>
-                        <li><a href="ui-icons.html">Icons</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="ti ti-mail-opened me-2"></i>Email Template</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="email-confirmation.html">Confirmation</a></li>
-                        <li><a href="email-password-reset.html">Reset Password</a></li>
-                        <li><a href="email-alert.html">Alert</a></li>
-                        <li><a href="email-invoice.html">Invoice</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="ti ti-file-invoice me-2"></i>Invoice</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="invoice-list.html">Invoice List</a></li>
-                        <li><a href="invoice.html">Invoice Preview</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="ti ti-login me-2"></i>Authentication</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="login-cover.html">Login Two</a></li>
-                        <li><a href="signup.html">Signup</a></li>
-                        <li><a href="signup-cover.html">Signup Two</a></li>
-                        <li><a href="reset-password.html">Reset Password</a></li>
-                        <li><a href="reset-password-cover.html">Reset Password Two</a></li>
-                        <li><a href="lock-screen.html">Lockscreen</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="ti ti-license me-2"></i>Miscellaneous</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="comingsoon.html">Comingsoon</a></li>
-                        <li><a href="maintenance.html">Maintenance</a></li>
-                        <li><a href="error.html">Error</a></li>
-                        <li><a href="thankyou.html">Thank You</a></li>
-                    </ul>
-                </div>
-            </li> --}}
             </ul>
         @elseif (auth()->guard('tenant')->check())
             <ul class="sidebar-menu">
                 <li class="sidebar-dropdown">
-                    <a href="javascript:void(0)"><i class="ti ti-home me-2"></i>Dashboard</a>
+                    <a href="javascript:void(0)"><i class="ti ti-home me-2"></i>{{ __('sidebar.tenant_dashboard') }}</a>
                     <div class="sidebar-submenu">
                         <ul>
-                            <li><a href="{{ route('tenant.dashboard') }}">Analytics</a></li>
+                            <li><a href="{{ route('tenant.dashboard') }}">{{ __('sidebar.tenant_analytics') }}</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="sidebar-dropdown">
-                    <a href="javascript:void(0)"><i class="ti ti-building me-2"></i>Settings</a>
+                    <a href="javascript:void(0)"><i class="ti ti-building me-2"></i>{{ __('sidebar.settings') }}</a>
                     <div class="sidebar-submenu">
                         <ul>
-                            <li><a href="{{ route('tenant.settings') }}">Settings</a></li>
+                            <li><a href="{{ route('tenant.settings') }}">{{ __('sidebar.tenant_settings') }}</a></li>
                         </ul>
                     </div>
                 </li>

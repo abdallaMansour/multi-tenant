@@ -29,14 +29,14 @@ class TenantController extends Controller
 
             $databaseCredential = DatabaseCredential::where('tenant_id', null)->first();
             if (!$databaseCredential) {
-                throw new \Exception('There is no active database credential found');
+                throw new \Exception(__('tenants.error_no_database_credential'));
             }
 
             $data['username'] = Str::slug($data['username']);
 
             if ($data['username'] == 'admin' || Tenant::where('username', $data['username'])->exists()) {
                 DB::rollBack();
-                throw new \Exception('Username already exists');
+                throw new \Exception(__('tenants.error_username_exists'));
             }
 
             $tenant = Tenant::create($data);
@@ -45,7 +45,7 @@ class TenantController extends Controller
 
             DatabaseService::createTenantDatabase($tenant, $databaseCredential);
 
-            return redirect()->route('tenants')->with('success', 'Tenant created successfully');
+            return redirect()->route('tenants')->with('success', __('tenants.success_created'));
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->route('tenants')->with('error', $th->getMessage());
@@ -62,13 +62,13 @@ class TenantController extends Controller
 
             if ($data['username'] == 'admin' || Tenant::where('username', $data['username'])->exists()) {
                 DB::rollBack();
-                throw new \Exception('Username already exists');
+                throw new \Exception(__('tenants.error_username_exists'));
             }
 
             $tenant->update($data);
 
             DB::commit();
-            return redirect()->route('tenants')->with('success', 'Tenant updated successfully');
+            return redirect()->route('tenants')->with('success', __('tenants.success_updated'));
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->route('tenants')->with('error', $th->getMessage());
@@ -116,12 +116,12 @@ class TenantController extends Controller
             if (request()->ajax()) {
                 return response()->json([
                     'success' => true,
-                    'message' => 'Tenant status updated successfully',
+                    'message' => __('tenants.success_toggled'),
                     'is_active' => $tenant->is_active
                 ]);
             }
 
-            return redirect()->route('tenants')->with('success', 'Tenant activated successfully');
+            return redirect()->route('tenants')->with('success', __('tenants.success_activated'));
         } catch (\Throwable $th) {
             DB::rollBack();
 

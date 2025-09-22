@@ -6,10 +6,30 @@ use App\Models\Tenant;
 use Illuminate\Support\Facades\DB;
 use App\Models\Tenant_Setting;
 
+if (!function_exists('getAllKeyLangs')) {
+    function getAllKeyLangs() {
+        return array_keys(config('laravellocalization.supportedLocales'));
+    }
+}
+
+// check if function getTenantPrefix
+if (!function_exists('getTenantPrefix')) {
+    function getTenantPrefix() {
+        $prefix = Request::segment(1);
+        $allKeyLangs = getAllKeyLangs();
+        // some times path starting with ar/ or en/ or etc.
+        // so we need to skip first prefix if it is in $allKeyLangs
+        if (in_array($prefix, $allKeyLangs)) {
+            $prefix = Request::segment(2);
+        }
+        return $prefix;
+    }
+}
+
 // check if function isTenantPath
 if (!function_exists('isTenantPath')) {
     function isTenantPath() {
-        $prefix = Request::segment(1);
+        $prefix = getTenantPrefix();
 
         if ($prefix !== 'admin') {
             $tenant = Tenant::where('username', $prefix)->first();
@@ -32,7 +52,7 @@ if (!function_exists('isTenantUser')) {
 if (!function_exists('tenantConnectionDatabase')) {
     function tenantConnectionDatabase() {
 
-        $prefix = Request::segment(1);
+        $prefix = getTenantPrefix();
         $tenant = Tenant::where('username', $prefix)->first();
         if (!$tenant) {
             return false;

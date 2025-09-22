@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        // dashboard settings
+        'dashboard_theme',
+        'dashboard_language',
+        'dashboard_direction',
     ];
 
     /**

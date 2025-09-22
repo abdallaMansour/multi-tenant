@@ -371,7 +371,7 @@
                     <p class="text-muted mb-4">Please provide your information to complete the registration.</p>
 
                     <form id="user-info-form">
-                        @csrf
+        @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -455,7 +455,7 @@
                                 <span id="user-info-text">Complete Registration</span>
                             </button>
                         </div>
-                    </form>
+    </form>
                 </div>
 
                 <!-- Success Step -->

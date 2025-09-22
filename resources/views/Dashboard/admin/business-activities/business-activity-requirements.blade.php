@@ -15,12 +15,12 @@
         <div class="container-fluid">
             <div class="layout-specing">
                 <div class="d-md-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Business Activity Requirements</h5>
+                    <h5 class="mb-0">{{ __('business_activity_requirements.page_title') }}</h5>
 
                     <nav aria-label="breadcrumb" class="d-inline-block mt-2 mt-sm-0">
                         <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
-                            <li class="breadcrumb-item text-capitalize"><a href="{{ route('admin.dashboard') }}">Landrick</a></li>
-                            <li class="breadcrumb-item text-capitalize active" aria-current="page">Business Activity Requirements</li>
+                            <li class="breadcrumb-item text-capitalize"><a href="{{ route('admin.dashboard') }}">{{ __('business_activity_requirements.breadcrumb_home') }}</a></li>
+                            <li class="breadcrumb-item text-capitalize active" aria-current="page">{{ __('business_activity_requirements.breadcrumb_current') }}</li>
                         </ul>
                     </nav>
                 </div>
@@ -30,9 +30,9 @@
                         <div class="card border-0 rounded shadow">
                             <div class="card-header bg-transparent border-bottom p-3">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="mb-0">Business Activity Requirements Management</h5>
+                                    <h5 class="mb-0">{{ __('business_activity_requirements.management_title') }}</h5>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBusinessActivityRequirementModal">
-                                        <i class="ti ti-plus me-1"></i> Add New Requirement
+                                        <i class="ti ti-plus me-1"></i> {{ __('business_activity_requirements.add_new_requirement') }}
                                     </button>
                                 </div>
                             </div>
@@ -41,12 +41,12 @@
                                     <table class="table table-hover mb-0">
                                         <thead class="table-light">
                                             <tr>
-                                                <th class="border-0">ID</th>
-                                                <th class="border-0">Business Activity</th>
-                                                <th class="border-0">Label</th>
-                                                <th class="border-0">Type</th>
-                                                <th class="border-0">Is Required</th>
-                                                <th class="border-0 text-center">Actions</th>
+                                                <th class="border-0">{{ __('business_activity_requirements.table_id') }}</th>
+                                                <th class="border-0">{{ __('business_activity_requirements.table_business_activity') }}</th>
+                                                <th class="border-0">{{ __('business_activity_requirements.table_label') }}</th>
+                                                <th class="border-0">{{ __('business_activity_requirements.table_type') }}</th>
+                                                <th class="border-0">{{ __('business_activity_requirements.table_is_required') }}</th>
+                                                <th class="border-0 text-center">{{ __('business_activity_requirements.table_actions') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -66,9 +66,9 @@
                                                     </td>
                                                     <td class="border-0">
                                                         @if ($businessActivityRequirement->is_required)
-                                                            <span class="badge bg-soft-success text-success">Required</span>
+                                                            <span class="badge bg-soft-success text-success">{{ __('business_activity_requirements.status_required') }}</span>
                                                         @else
-                                                            <span class="badge bg-soft-secondary text-secondary">Optional</span>
+                                                            <span class="badge bg-soft-secondary text-secondary">{{ __('business_activity_requirements.status_optional') }}</span>
                                                         @endif
                                                     </td>
                                                     <td class="border-0 text-center">
@@ -98,7 +98,7 @@
                                                     <td colspan="7" class="text-center py-4">
                                                         <div class="text-muted">
                                                             <i class="ti ti-database-off fs-1 d-block mb-2"></i>
-                                                            No business activity requirements found. Create your first business activity requirement!
+                                                            {{ __('business_activity_requirements.empty_title') }} {{ __('business_activity_requirements.empty_message') }}
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -130,7 +130,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createBusinessActivityRequirementModalLabel">Create New Business Activity Requirement</h5>
+                <h5 class="modal-title" id="createBusinessActivityRequirementModalLabel">{{ __('business_activity_requirements.modal_create_title') }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('business-activity-requirements.store') }}" method="POST">
@@ -138,9 +138,9 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12 mb-3">
-                            <label for="business_activity_id" class="form-label">Business Activity <span class="text-danger">*</span></label>
+                            <label for="business_activity_id" class="form-label">{{ __('business_activity_requirements.form_business_activity') }} <span class="text-danger">*</span></label>
                             <select class="form-control @error('business_activity_id') is-invalid @enderror" id="business_activity_id" name="business_activity_id" required>
-                                <option value="">Select Business Activity</option>
+                                <option value="">{{ __('business_activity_requirements.form_select_business_activity') }}</option>
                                 @foreach($businessActivities as $businessActivity)
                                     <option value="{{ $businessActivity->id }}" {{ old('business_activity_id') == $businessActivity->id ? 'selected' : '' }}>
                                         {{ $businessActivity->name }}
@@ -164,11 +164,11 @@
                         <div class="requirement-item" data-index="0">
                             <div class="row">
                                 <div class="col-md-4 mb-3">
-                                    <label class="form-label">Label <span class="text-danger">*</span></label>
+                                    <label class="form-label">{{ __('business_activity_requirements.form_label') }} <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="requirements[0][label]" required>
                                 </div>
                                 <div class="col-md-3 mb-3">
-                                    <label class="form-label">Type <span class="text-danger">*</span></label>
+                                    <label class="form-label">{{ __('business_activity_requirements.form_type') }} <span class="text-danger">*</span></label>
                                     <select class="form-control" name="requirements[0][type]" required>
                                         <option value="">Select Type</option>
                                         <option value="text">Text</option>
@@ -180,7 +180,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-3 mb-3">
-                                    <label class="form-label">Is Required</label>
+                                    <label class="form-label">{{ __('business_activity_requirements.form_is_required') }}</label>
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" name="requirements[0][is_required]" value="1" checked>
                                         <label class="form-check-label">Required</label>
@@ -196,8 +196,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Create Requirement</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('business_activity_requirements.cancel') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('business_activity_requirements.save') }}</button>
                 </div>
             </form>
         </div>
@@ -209,7 +209,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editBusinessActivityRequirementModalLabel">Edit Business Activity Requirement</h5>
+                <h5 class="modal-title" id="editBusinessActivityRequirementModalLabel">{{ __('business_activity_requirements.modal_edit_title') }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="editBusinessActivityRequirementForm" method="POST">
@@ -218,44 +218,44 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="edit_business_activity_id" class="form-label">Business Activity <span class="text-danger">*</span></label>
+                            <label for="edit_business_activity_id" class="form-label">{{ __('business_activity_requirements.form_business_activity') }} <span class="text-danger">*</span></label>
                             <select class="form-control" id="edit_business_activity_id" name="business_activity_id" required>
-                                <option value="">Select Business Activity</option>
+                                <option value="">{{ __('business_activity_requirements.form_select_business_activity') }}</option>
                                 @foreach($businessActivities as $businessActivity)
                                     <option value="{{ $businessActivity->id }}" @selected(isset($businessActivityRequirement) && $businessActivityRequirement->business_activity_id == $businessActivity->id)>{{ $businessActivity->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="edit_label" class="form-label">Label <span class="text-danger">*</span></label>
+                            <label for="edit_label" class="form-label">{{ __('business_activity_requirements.form_label') }} <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="edit_label" name="label" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="edit_type" class="form-label">Type <span class="text-danger">*</span></label>
+                            <label for="edit_type" class="form-label">{{ __('business_activity_requirements.form_type') }} <span class="text-danger">*</span></label>
                             <select class="form-control" id="edit_type" name="type" required>
-                                <option value="">Select Type</option>
-                                <option value="text">Text</option>
-                                <option value="number">Number</option>
-                                <option value="email">Email</option>
-                                <option value="file">File</option>
-                                <option value="date">Date</option>
-                                <option value="textarea">Textarea</option>
+                                <option value="">{{ __('business_activity_requirements.form_select_type') }}</option>
+                                <option value="text">{{ __('business_activity_requirements.type_text') }}</option>
+                                <option value="number">{{ __('business_activity_requirements.type_number') }}</option>
+                                <option value="email">{{ __('business_activity_requirements.type_email') }}</option>
+                                <option value="file">{{ __('business_activity_requirements.type_file') }}</option>
+                                <option value="date">{{ __('business_activity_requirements.type_date') }}</option>
+                                <option value="textarea">{{ __('business_activity_requirements.type_textarea') }}</option>
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="edit_is_required" class="form-label">Is Required</label>
+                            <label for="edit_is_required" class="form-label">{{ __('business_activity_requirements.form_is_required') }}</label>
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" id="edit_is_required" name="is_required" value="1">
                                 <label class="form-check-label" for="edit_is_required">
-                                    Required
+                                    {{ __('business_activity_requirements.status_required') }}
                                 </label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Update Requirement</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('business_activity_requirements.cancel') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('business_activity_requirements.save') }}</button>
                 </div>
             </form>
         </div>
@@ -267,23 +267,23 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteBusinessActivityRequirementModalLabel">Delete Business Activity Requirement</h5>
+                <h5 class="modal-title" id="deleteBusinessActivityRequirementModalLabel">{{ __('business_activity_requirements.modal_delete_title') }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="text-center">
                     <i class="ti ti-alert-triangle text-danger fs-1 mb-3"></i>
-                    <h5>Are you sure?</h5>
-                    <p class="text-muted">You are about to delete requirement: <strong id="deleteRequirementLabel"></strong></p>
-                    <p class="text-danger small">This action cannot be undone!</p>
+                    <h5>{{ __('business_activity_requirements.confirm_delete') }}</h5>
+                    <p class="text-muted">{{ __('business_activity_requirements.modal_delete_message') }} <strong id="deleteRequirementLabel"></strong></p>
+                    <p class="text-danger small">{{ __('business_activity_requirements.modal_delete_warning') }}</p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('business_activity_requirements.cancel') }}</button>
                 <form id="deleteBusinessActivityRequirementForm" method="POST" style="display: inline;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete Requirement</button>
+                    <button type="submit" class="btn btn-danger">{{ __('business_activity_requirements.delete') }}</button>
                 </form>
             </div>
         </div>
