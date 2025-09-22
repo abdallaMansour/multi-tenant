@@ -13,18 +13,25 @@ class Tenant extends Authenticatable
         'name',
         'username',
         'email',
-        'password',
         'phone',
         'is_active',
+        'email_verified_at',
+        'business_activity_id',
+        'main_language',
+        'sub_language',
+        'admin_main_language',
+        'admin_sub_language',
     ];
 
-    protected $hidden = [
-        'password',
-    ];
+    // protected $hidden = [
+    //     // 'password',
+    // ];
 
     protected $casts = [
         'password' => 'hashed',
         'is_active' => 'boolean',
+        'sub_language' => 'array',
+        'admin_sub_language' => 'array',
     ];
 
     // Relationships

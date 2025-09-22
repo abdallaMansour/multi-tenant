@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Tenant;
+namespace App\Http\Requests\Tenant;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTenantRequest extends FormRequest
+class TenantRegisterCheckOtpRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +22,8 @@ class UpdateTenantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'username' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            // 'password' => 'nullable|min:6',
+            'email' => 'required|email|exists:otp_codes,email',
+            'otp_code' => 'required|string|exists:otp_codes,otp_code',
         ];
     }
 }

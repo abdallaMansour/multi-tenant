@@ -16,10 +16,17 @@ class BusinessActivityController extends Controller
     /**
      * Display a listing of database credentials
      */
-    public function index(Request $request): View
+    public function index(Request $request)
     {
-        $businessActivities = BusinessActivity::paginate(10);
+        $businessActivities = BusinessActivity::where('is_active', 1)->get();
 
+        // If it's an API request, return JSON
+        if ($request->expectsJson() || $request->is('api/*')) {
+            return response()->json($businessActivities);
+        }
+
+        // Otherwise return view for admin panel
+        $businessActivities = BusinessActivity::paginate(10);
         return view('Dashboard.admin.business-activities.business-activities', compact('businessActivities'));
     }
 

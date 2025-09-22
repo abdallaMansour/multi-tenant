@@ -165,13 +165,6 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-md-12 mb-3">
-                                    <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required>
-                                    @error('password')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -212,11 +205,11 @@
                                     <label for="edit_phone" class="form-label">Phone <span class="text-danger">*</span></label>
                                     <input type="tel" class="form-control" id="edit_phone" name="phone" required>
                                 </div>
-                                <div class="col-md-12 mb-3">
+                                {{-- <div class="col-md-12 mb-3">
                                     <label for="edit_password" class="form-label">New Password (leave blank to keep current)</label>
                                     <input type="password" class="form-control" id="edit_password" name="password">
                                     <small class="text-muted">Leave blank if you don't want to change the password</small>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -467,12 +460,12 @@
             const createForm = document.querySelector('form[action="{{ route('tenants.store') }}"]');
             if (createForm) {
                 createForm.addEventListener('submit', function(e) {
-                    const password = document.getElementById('password').value;
-                    if (password.length < 6) {
-                        e.preventDefault();
-                        alert('Password must be at least 6 characters long.');
-                        return false;
-                    }
+                    // const password = document.getElementById('password').value;
+                    // if (password.length < 6) {
+                    //     e.preventDefault();
+                    //     alert('Password must be at least 6 characters long.');
+                    //     return false;
+                    // }
                 });
             }
         });

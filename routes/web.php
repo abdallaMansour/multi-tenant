@@ -3,13 +3,25 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\TenantController;
-use App\Http\Controllers\Admin\DatabaseCredentialController;
+use App\Http\Controllers\TenantRegisterController;
 use App\Http\Controllers\Admin\BusinessActivityController;
+use App\Http\Controllers\Admin\DatabaseCredentialController;
 use App\Http\Controllers\Admin\BusinessActivityRequirementController;
+use App\Models\BusinessActivity;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('admin/show-mail', function () {
+    return view('emails.check-mail', ['email' => 'test@test.com', 'otpCode' => '1234']);
+});
+
+Route::view('tenant/register', 'register', ['businessActivities' => BusinessActivity::where('is_active', true)->get()])->name('tenant.register');
+Route::post('tenant/register/check-mail', [TenantRegisterController::class, 'checkMail'])->name('tenant.register.check-mail');
+Route::post('tenant/register/check-otp', [TenantRegisterController::class, 'checkOtp'])->name('tenant.register.check-otp');
+Route::post('tenant/register/get-user-info', [TenantRegisterController::class, 'getUserInfo'])->name('tenant.register.get-user-info');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');

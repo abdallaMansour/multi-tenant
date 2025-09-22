@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\Admin\Tenant\StoreTenantRequest;
 use App\Http\Requests\Admin\Tenant\UpdateTenantRequest;
+use App\Service\DatabaseService;
 
 class TenantController extends Controller
 {
@@ -33,35 +34,16 @@ class TenantController extends Controller
 
             $data['username'] = Str::slug($data['username']);
 
+            if ($data['username'] == 'admin' || Tenant::where('username', $data['username'])->exists()) {
+                DB::rollBack();
+                throw new \Exception('Username already exists');
+            }
+
             $tenant = Tenant::create($data);
 
             DB::commit();
 
-            // create tenant database credential
-
-            $tenantConfig = config('database.connections.tenant');
-            $tenantConfig['database'] = $databaseCredential->db_name;
-            $tenantConfig['username'] = $databaseCredential->db_user;
-            $tenantConfig['password'] = $databaseCredential->db_password;
-            $tenantConfig['log'] = true;
-            $tenantConnectionName = 'tenant_' . $databaseCredential->db_name;
-            config(["database.connections.$tenantConnectionName" => $tenantConfig]);
-            session()->put('tenant_connection_name', $tenantConnectionName);
-
-            $query = DB::connection($tenantConnectionName);
-
-            $sql = 'CREATE DATABASE IF NOT EXISTS ' . $databaseCredential->db_name . ';';
-            DB::unprepared($sql);
-
-
-            $this->refreshTenantDatabase($query, $databaseCredential->db_name);
-            $sqlFilePath = storage_path('app/tenant.sql');
-            $sqlContent = file_get_contents($sqlFilePath);
-            $query->unprepared($sqlContent);
-
-            $databaseCredential->update([
-                'tenant_id' => $tenant->id
-            ]);
+            DatabaseService::createTenantDatabase($tenant, $databaseCredential);
 
             return redirect()->route('tenants')->with('success', 'Tenant created successfully');
         } catch (\Throwable $th) {
@@ -77,6 +59,11 @@ class TenantController extends Controller
             $data = $request->validated();
 
             $data['username'] = Str::slug($data['username']);
+
+            if ($data['username'] == 'admin' || Tenant::where('username', $data['username'])->exists()) {
+                DB::rollBack();
+                throw new \Exception('Username already exists');
+            }
 
             $tenant->update($data);
 
@@ -125,7 +112,7 @@ class TenantController extends Controller
                 'is_active' => !$tenant->is_active
             ]);
             DB::commit();
-            
+
             if (request()->ajax()) {
                 return response()->json([
                     'success' => true,
@@ -133,38 +120,19 @@ class TenantController extends Controller
                     'is_active' => $tenant->is_active
                 ]);
             }
-            
+
             return redirect()->route('tenants')->with('success', 'Tenant activated successfully');
         } catch (\Throwable $th) {
             DB::rollBack();
-            
+
             if (request()->ajax()) {
                 return response()->json([
                     'success' => false,
                     'message' => $th->getMessage()
                 ], 500);
             }
-            
+
             return redirect()->route('tenants')->with('error', $th->getMessage());
         }
-    }
-
-    public function refreshTenantDatabase($query, $database)
-    {
-        // Disable foreign key checks temporarily
-        $query->statement('SET FOREIGN_KEY_CHECKS=0');
-
-        // Get the list of tables in the database
-        $tables = $query->select("SHOW TABLES FROM {$database}");
-
-        foreach ($tables as $table) {
-            $table = reset($table); // Extract the table name from the result
-
-            // Drop each table
-            $query->statement("DROP TABLE IF EXISTS `{$table}`");
-        }
-
-        // Enable foreign key checks again
-        $query->statement('SET FOREIGN_KEY_CHECKS=1');
     }
 }

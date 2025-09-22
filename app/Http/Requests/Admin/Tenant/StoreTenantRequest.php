@@ -26,7 +26,7 @@ class StoreTenantRequest extends FormRequest
             'username' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'password' => 'required',
+            // 'password' => 'required',
         ];
     }
 }

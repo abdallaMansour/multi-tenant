@@ -24,7 +24,7 @@ class TenantFactory extends Factory
             'name' => $name,
             'username' => $username,
             'email' => $username . '@' . $username . '.com',
-            'password' => 'password',
+            // 'password' => 'password',
             'phone' => fake()->phoneNumber(),
         ];
     }
