@@ -60,7 +60,7 @@ class TenantController extends Controller
 
             $data['username'] = Str::slug($data['username']);
 
-            if ($data['username'] == 'admin' || Tenant::where('username', $data['username'])->exists()) {
+            if ($data['username'] == 'admin' || Tenant::where('id', '!=', $tenant->id)->where('username', $data['username'])->exists()) {
                 DB::rollBack();
                 throw new \Exception(__('tenants.error_username_exists'));
             }

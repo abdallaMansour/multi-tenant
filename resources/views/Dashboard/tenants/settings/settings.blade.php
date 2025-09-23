@@ -15,12 +15,12 @@
                 <div class="container-fluid">
                     <div class="layout-specing">
                         <div class="d-md-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">Settings</h5>
+                            <h5 class="mb-0">{{ __('tenant_settings.page_title') }}</h5>
 
                             <nav aria-label="breadcrumb" class="d-inline-block mt-2 mt-sm-0">
                                 <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
-                                    <li class="breadcrumb-item text-capitalize"><a href="{{ route('admin.dashboard') }}">Landrick</a></li>
-                                    <li class="breadcrumb-item text-capitalize active" aria-current="page">Settings</li>
+                                    <li class="breadcrumb-item text-capitalize"><a href="{{ route('admin.dashboard') }}">{{ __('tenant_settings.breadcrumb_home') }}</a></li>
+                                    <li class="breadcrumb-item text-capitalize active" aria-current="page">{{ __('tenant_settings.breadcrumb_current') }}</li>
                                 </ul>
                             </nav>
                         </div>
@@ -30,9 +30,9 @@
                                 <div class="card border-0 rounded shadow">
                                     <div class="card-header bg-transparent border-bottom p-3">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <h5 class="mb-0">Settings Management</h5>
+                                            <h5 class="mb-0">{{ __('tenant_settings.management_title') }}</h5>
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSettingModal">
-                                                <i class="ti ti-plus me-1"></i> Add New Setting
+                                                <i class="ti ti-plus me-1"></i> {{ __('tenant_settings.add_new_setting') }}
                                             </button>
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@
                                                                         {{ old('settings.'.$loop->index.'.value', $setting->value) == '1' ? 'checked' : '' }}
                                                                     >
                                                                     <label class="form-check-label" for="setting_{{ $setting->id }}">
-                                                                        Enable {{ $setting->label }}
+                                                                        {{ __('tenant_settings.enable_setting') }} {{ $setting->label }}
                                                                     </label>
                                                                 </div>
                                                             @elseif($setting->type === 'file')
@@ -92,13 +92,13 @@
                                                                         class="form-control @error('settings.'.$loop->index.'.value') is-invalid @enderror" 
                                                                         id="setting_{{ $setting->id }}" 
                                                                         name="settings[{{ $loop->index }}][value]"
-                                                                        accept="image/*,.pdf,.doc,.docx,.txt"
+                                                                        accept="{{ __('tenant_settings.file_types') }}"
                                                                     >
                                                                     @if($setting->value)
                                                                         <div class="mt-2">
                                                                             <small class="text-muted">
                                                                                 <i class="ti ti-file me-1"></i>
-                                                                                Current file: {{ $setting->value }}
+                                                                                {{ __('tenant_settings.current_file') }} {{ $setting->value }}
                                                                             </small>
                                                                             @if(
                                                                                 str_contains($setting->value, '.jpg') ||
@@ -116,7 +116,7 @@
                                                                     @endif
                                                                     <small class="text-muted d-block mt-1">
                                                                         <i class="ti ti-info-circle me-1"></i>
-                                                                        Leave empty to keep current file
+                                                                        {{ __('tenant_settings.file_help_text') }}
                                                                     </small>
                                                                 </div>
                                                             @else
@@ -141,7 +141,7 @@
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <button type="submit" class="btn btn-primary">
-                                                            <i class="ti ti-device-floppy me-1"></i> Save Settings
+                                                            <i class="ti ti-device-floppy me-1"></i> {{ __('tenant_settings.save_settings') }}
                                                         </button>
                                                     </div>
                                                 </div>
@@ -149,10 +149,10 @@
                                         @else
                                             <div class="text-center py-5">
                                                 <i class="ti ti-settings text-muted" style="font-size: 3rem;"></i>
-                                                <h5 class="mt-3 text-muted">No Settings Found</h5>
-                                                <p class="text-muted">Start by adding your first setting.</p>
+                                                <h5 class="mt-3 text-muted">{{ __('tenant_settings.no_settings_found') }}</h5>
+                                                <p class="text-muted">{{ __('tenant_settings.start_adding_settings') }}</p>
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSettingModal">
-                                                    <i class="ti ti-plus me-1"></i> Add First Setting
+                                                    <i class="ti ti-plus me-1"></i> {{ __('tenant_settings.add_first_setting') }}
                                                 </button>
                                             </div>
                                         @endif
@@ -180,40 +180,40 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addSettingModalLabel">Add New Setting</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="addSettingModalLabel">{{ __('tenant_settings.modal_add_title') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('tenant_settings.close') }}"></button>
                     </div>
                     <form action="{{ route('tenant.settings.add') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="label" class="form-label">Setting Label <span class="text-danger">*</span></label>
+                                    <label for="label" class="form-label">{{ __('tenant_settings.setting_label') }} <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('label') is-invalid @enderror" id="label" name="label" value="{{ old('label') }}" required>
                                     @error('label')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="type" class="form-label">Input Type <span class="text-danger">*</span></label>
+                                    <label for="type" class="form-label">{{ __('tenant_settings.input_type') }} <span class="text-danger">*</span></label>
                                     <select class="form-control @error('type') is-invalid @enderror" id="type" name="type" required>
-                                        <option value="">Select Type</option>
-                                        <option value="text" {{ old('type') == 'text' ? 'selected' : '' }}>Text</option>
-                                        <option value="email" {{ old('type') == 'email' ? 'selected' : '' }}>Email</option>
-                                        <option value="number" {{ old('type') == 'number' ? 'selected' : '' }}>Number</option>
-                                        <option value="textarea" {{ old('type') == 'textarea' ? 'selected' : '' }}>Textarea</option>
-                                        <option value="select" {{ old('type') == 'select' ? 'selected' : '' }}>Select</option>
-                                        <option value="checkbox" {{ old('type') == 'checkbox' ? 'selected' : '' }}>Checkbox</option>
-                                        <option value="file" {{ old('type') == 'file' ? 'selected' : '' }}>File</option>
+                                        <option value="">{{ __('tenant_settings.select_type_placeholder') }}</option>
+                                        <option value="text" {{ old('type') == 'text' ? 'selected' : '' }}>{{ __('tenant_settings.type_text') }}</option>
+                                        <option value="email" {{ old('type') == 'email' ? 'selected' : '' }}>{{ __('tenant_settings.type_email') }}</option>
+                                        <option value="number" {{ old('type') == 'number' ? 'selected' : '' }}>{{ __('tenant_settings.type_number') }}</option>
+                                        <option value="textarea" {{ old('type') == 'textarea' ? 'selected' : '' }}>{{ __('tenant_settings.type_textarea') }}</option>
+                                        <option value="select" {{ old('type') == 'select' ? 'selected' : '' }}>{{ __('tenant_settings.type_select') }}</option>
+                                        <option value="checkbox" {{ old('type') == 'checkbox' ? 'selected' : '' }}>{{ __('tenant_settings.type_checkbox') }}</option>
+                                        <option value="file" {{ old('type') == 'file' ? 'selected' : '' }}>{{ __('tenant_settings.type_file') }}</option>
                                     </select>
                                     @error('type')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="value" class="form-label">Default Value <span class="text-danger">*</span></label>
+                                    <label for="value" class="form-label">{{ __('tenant_settings.default_value') }} <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('value') is-invalid @enderror" id="value" name="value" value="{{ old('value') }}" required>
-                                    <small class="text-muted">For select type, separate options with commas (e.g., option1,option2,option3)</small>
+                                    <small class="text-muted">{{ __('tenant_settings.select_help_text') }}</small>
                                     @error('value')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -221,8 +221,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Add Setting</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('tenant_settings.cancel') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('tenant_settings.add_setting') }}</button>
                         </div>
                     </form>
                 </div>
@@ -235,7 +235,7 @@
             <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header bg-success text-white">
                     <i class="ti ti-check me-2"></i>
-                    <strong class="me-auto">Success</strong>
+                    <strong class="me-auto">{{ __('tenant_settings.toast_success') }}</strong>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
                 </div>
                 <div class="toast-body">
@@ -250,7 +250,7 @@
             <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header bg-danger text-white">
                     <i class="ti ti-alert-circle me-2"></i>
-                    <strong class="me-auto">Error</strong>
+                    <strong class="me-auto">{{ __('tenant_settings.toast_error') }}</strong>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
                 </div>
                 <div class="toast-body">
@@ -348,7 +348,7 @@
                         
                         if (!hasValue) {
                             e.preventDefault();
-                            alert('Please fill in at least one setting before saving.');
+                            alert('{{ __('tenant_settings.validation_error') }}');
                             return false;
                         }
                     });
@@ -364,10 +364,10 @@
                         const helpText = valueInput.nextElementSibling;
                         
                         if (type === 'select') {
-                            helpText.textContent = 'For select type, separate options with commas (e.g., option1,option2,option3)';
+                            helpText.textContent = '{{ __('tenant_settings.select_help_text') }}';
                             helpText.style.display = 'block';
                         } else if (type === 'checkbox') {
-                            helpText.textContent = 'For checkbox type, use 1 for checked, 0 for unchecked';
+                            helpText.textContent = '{{ __('tenant_settings.checkbox_help_text') }}';
                             helpText.style.display = 'block';
                         } else {
                             helpText.style.display = 'none';

@@ -56,9 +56,9 @@ class SettingsController extends Controller
                 }
             }
 
-            return redirect()->back()->with('success', 'Settings updated successfully!');
+            return redirect()->back()->with('success', __('tenant_settings.success_updated'));
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to update settings: ' . $e->getMessage());
+            return redirect()->back()->with('error', __('tenant_settings.error_updated') . ' ' . $e->getMessage());
         }
     }
 
@@ -78,9 +78,9 @@ class SettingsController extends Controller
                 'value' => $request->value,
             ]);
 
-            return redirect()->back()->with('success', 'Setting added successfully!');
+            return redirect()->back()->with('success', __('tenant_settings.success_added'));
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to add setting: ' . $e->getMessage());
+            return redirect()->back()->with('error', __('tenant_settings.error_added') . ' ' . $e->getMessage());
         }
     }
 }

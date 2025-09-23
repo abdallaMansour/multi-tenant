@@ -34,7 +34,7 @@ class TenantRegisterController extends Controller
 
         Mail::to($validated['email'])->send(new CheckMail($validated['email'], $otpCode));
 
-        return response()->json(['message' => 'Mail sent', 'status' => true]);
+        return response()->json(['message' => __('tenant_registration.mail_sent'), 'status' => true]);
     }
 
     public function checkOtp(TenantRegisterCheckOtpRequest $request)
@@ -44,14 +44,14 @@ class TenantRegisterController extends Controller
         $otpCode = OtpCode::where('email', $validated['email'])->where('otp_code', $validated['otp_code'])->first();
 
         if (!$otpCode) {
-            return response()->json(['message' => 'Invalid OTP code', 'status' => false]);
+            return response()->json(['message' => __('tenant_registration.invalid_otp'), 'status' => false]);
         }
 
         if ($otpCode->expires_at < now()) {
-            return response()->json(['message' => 'OTP code expired', 'status' => false]);
+            return response()->json(['message' => __('tenant_registration.otp_expired'), 'status' => false]);
         }
 
-        return response()->json(['message' => 'Email verified successfully', 'status' => true]);
+        return response()->json(['message' => __('tenant_registration.email_verified'), 'status' => true]);
     }
 
     public function getUserInfo(TenantRegisterGetUserInfoRequest $request)
@@ -61,7 +61,7 @@ class TenantRegisterController extends Controller
         $databaseCredential = DatabaseCredential::where('tenant_id', null)->first();
 
         if (!$databaseCredential)
-            return response()->json(['message' => 'There is no active database credential found', 'status' => false]);
+            return response()->json(['message' => __('tenant_registration.no_database_credential'), 'status' => false]);
 
         try {
             DB::beginTransaction();
@@ -69,7 +69,7 @@ class TenantRegisterController extends Controller
             $otpCode = OtpCode::where('email', $validated['email'])->where('otp_code', $validated['otp_code'])->first();
 
             if (!$otpCode || $otpCode->expires_at < now())
-                return response()->json(['message' => 'Invalid OTP code or expired', 'status' => false]);
+                return response()->json(['message' => __('tenant_registration.invalid_otp_expired'), 'status' => false]);
 
 
             $otpCode->delete();
@@ -77,7 +77,7 @@ class TenantRegisterController extends Controller
             $username = Str::slug($validated['name']);
 
             if ($username == 'admin' || Tenant::where('username', $username)->exists())
-                return response()->json(['message' => 'Username already exists', 'status' => false]);
+                return response()->json(['message' => __('tenant_registration.username_exists'), 'status' => false]);
 
             $tenant = Tenant::create([
                 'name' => $validated['name'],
@@ -96,7 +96,7 @@ class TenantRegisterController extends Controller
             DB::commit();
             DatabaseService::createTenantDatabase($tenant, $databaseCredential);
 
-            return response()->json(['message' => 'Registration completed successfully', 'status' => true, 'username' => $username]);
+            return response()->json(['message' => __('tenant_registration.registration_completed'), 'status' => true, 'username' => $username]);
         } catch (\Throwable $th) {
             DB::rollBack();
             return response()->json(['message' => $th->getMessage(), 'status' => false]);

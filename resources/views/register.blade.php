@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Tenant Registration</title>
+    <title>{{ __('tenant_registration.page_title') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -294,15 +294,15 @@
                 <div class="step-progress">
                     <div class="step-item active" data-step="1">
                         <div class="step-circle">1</div>
-                        <div class="step-title">Email</div>
+                        <div class="step-title">{{ __('tenant_registration.step_email') }}</div>
                     </div>
                     <div class="step-item" data-step="2">
                         <div class="step-circle">2</div>
-                        <div class="step-title">Verify OTP</div>
+                        <div class="step-title">{{ __('tenant_registration.step_verify_otp') }}</div>
                     </div>
                     <div class="step-item" data-step="3">
                         <div class="step-circle">3</div>
-                        <div class="step-title">User Info</div>
+                        <div class="step-title">{{ __('tenant_registration.step_user_info') }}</div>
                     </div>
                 </div>
             </div>
@@ -311,14 +311,14 @@
             <div class="step-content">
                 <!-- Step 1: Email -->
                 <div class="step active" id="step-1">
-                    <h3 class="mb-4">Enter Your Email Address</h3>
-                    <p class="text-muted mb-4">We'll send you a verification code to confirm your email.</p>
+                    <h3 class="mb-4">{{ __('tenant_registration.email_title') }}</h3>
+                    <p class="text-muted mb-4">{{ __('tenant_registration.email_description') }}</p>
 
                     <form id="email-form">
                         @csrf
                         <div class="form-group">
-                            <label for="email" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address" required>
+                            <label for="email" class="form-label">{{ __('tenant_registration.email_label') }}</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="{{ __('tenant_registration.email_placeholder') }}" required>
                         </div>
 
                         <div class="alert alert-danger" id="email-error" style="display: none;"></div>
@@ -326,9 +326,9 @@
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">
                                 <span class="loading" id="email-loading">
-                                    <i class="fas fa-spinner fa-spin"></i> Sending...
+                                    <i class="fas fa-spinner fa-spin"></i> {{ __('tenant_registration.email_sending') }}
                                 </span>
-                                <span id="email-text">Send Verification Code</span>
+                                <span id="email-text">{{ __('tenant_registration.email_button') }}</span>
                             </button>
                         </div>
                     </form>
@@ -336,8 +336,8 @@
 
                 <!-- Step 2: OTP Verification -->
                 <div class="step" id="step-2">
-                    <h3 class="mb-4">Verify Your Email</h3>
-                    <p class="text-muted mb-4">Enter the 4-digit code sent to your email address.</p>
+                    <h3 class="mb-4">{{ __('tenant_registration.otp_title') }}</h3>
+                    <p class="text-muted mb-4">{{ __('tenant_registration.otp_description') }}</p>
 
                     <form id="otp-form">
                         @csrf
@@ -353,42 +353,42 @@
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">
                                 <span class="loading" id="otp-loading">
-                                    <i class="fas fa-spinner fa-spin"></i> Verifying...
+                                    <i class="fas fa-spinner fa-spin"></i> {{ __('tenant_registration.otp_verifying') }}
                                 </span>
-                                <span id="otp-text">Verify Code</span>
+                                <span id="otp-text">{{ __('tenant_registration.otp_button') }}</span>
                             </button>
                         </div>
 
                         <div class="text-center mt-3">
-                            <button type="button" class="btn btn-link" id="resend-otp">Resend Code</button>
+                            <button type="button" class="btn btn-link" id="resend-otp">{{ __('tenant_registration.otp_resend') }}</button>
                         </div>
                     </form>
                 </div>
 
                 <!-- Step 3: User Information -->
                 <div class="step" id="step-3">
-                    <h3 class="mb-4">Complete Your Profile</h3>
-                    <p class="text-muted mb-4">Please provide your information to complete the registration.</p>
+                    <h3 class="mb-4">{{ __('tenant_registration.user_info_title') }}</h3>
+                    <p class="text-muted mb-4">{{ __('tenant_registration.user_info_description') }}</p>
 
                     <form id="user-info-form">
         @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name" class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" required>
+                                    <label for="name" class="form-label">{{ __('tenant_registration.name_label') }}</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('tenant_registration.name_placeholder') }}" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+                                    <label for="phone" class="form-label">{{ __('tenant_registration.phone_label') }}</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="{{ __('tenant_registration.phone_placeholder') }}" required>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label">Business Activity</label>
+                            <label class="form-label">{{ __('tenant_registration.business_activity_label') }}</label>
                             <div class="business-activity-grid" id="business-activities">
                                 <!-- Business activities will be loaded here -->
                             </div>
@@ -397,23 +397,23 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Website Main Language</label>
+                                    <label class="form-label">{{ __('tenant_registration.main_language_label') }}</label>
                                     <div class="language-grid" id="main-languages">
-                                        <div class="language-option" data-value="en">English</div>
-                                        <div class="language-option" data-value="ar">Arabic</div>
-                                        <div class="language-option" data-value="fr">French</div>
-                                        <div class="language-option" data-value="es">Spanish</div>
+                                        <div class="language-option" data-value="en">{{ __('tenant_registration.language_english') }}</div>
+                                        <div class="language-option" data-value="ar">{{ __('tenant_registration.language_arabic') }}</div>
+                                        <div class="language-option" data-value="fr">{{ __('tenant_registration.language_french') }}</div>
+                                        <div class="language-option" data-value="es">{{ __('tenant_registration.language_spanish') }}</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Website Sub Language</label>
+                                    <label class="form-label">{{ __('tenant_registration.sub_language_label') }}</label>
                                     <div class="language-grid" id="sub-languages">
-                                        <div class="language-option" data-value="en">English</div>
-                                        <div class="language-option" data-value="ar">Arabic</div>
-                                        <div class="language-option" data-value="fr">French</div>
-                                        <div class="language-option" data-value="es">Spanish</div>
+                                        <div class="language-option" data-value="en">{{ __('tenant_registration.language_english') }}</div>
+                                        <div class="language-option" data-value="ar">{{ __('tenant_registration.language_arabic') }}</div>
+                                        <div class="language-option" data-value="fr">{{ __('tenant_registration.language_french') }}</div>
+                                        <div class="language-option" data-value="es">{{ __('tenant_registration.language_spanish') }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -422,23 +422,23 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Admin Panel Main Language</label>
+                                    <label class="form-label">{{ __('tenant_registration.admin_main_language_label') }}</label>
                                     <div class="language-grid" id="admin-main-languages">
-                                        <div class="language-option" data-value="en">English</div>
-                                        <div class="language-option" data-value="ar">Arabic</div>
-                                        <div class="language-option" data-value="fr">French</div>
-                                        <div class="language-option" data-value="es">Spanish</div>
+                                        <div class="language-option" data-value="en">{{ __('tenant_registration.language_english') }}</div>
+                                        <div class="language-option" data-value="ar">{{ __('tenant_registration.language_arabic') }}</div>
+                                        <div class="language-option" data-value="fr">{{ __('tenant_registration.language_french') }}</div>
+                                        <div class="language-option" data-value="es">{{ __('tenant_registration.language_spanish') }}</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Admin Panel Sub Language</label>
+                                    <label class="form-label">{{ __('tenant_registration.admin_sub_language_label') }}</label>
                                     <div class="language-grid" id="admin-sub-languages">
-                                        <div class="language-option" data-value="en">English</div>
-                                        <div class="language-option" data-value="ar">Arabic</div>
-                                        <div class="language-option" data-value="fr">French</div>
-                                        <div class="language-option" data-value="es">Spanish</div>
+                                        <div class="language-option" data-value="en">{{ __('tenant_registration.language_english') }}</div>
+                                        <div class="language-option" data-value="ar">{{ __('tenant_registration.language_arabic') }}</div>
+                                        <div class="language-option" data-value="fr">{{ __('tenant_registration.language_french') }}</div>
+                                        <div class="language-option" data-value="es">{{ __('tenant_registration.language_spanish') }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -447,12 +447,12 @@
                         <div class="alert alert-danger" id="user-info-error" style="display: none;"></div>
 
                         <div class="step-navigation">
-                            <button type="button" class="btn btn-secondary" id="prev-step-3">Previous</button>
+                            <button type="button" class="btn btn-secondary" id="prev-step-3">{{ __('tenant_registration.previous') }}</button>
                             <button type="submit" class="btn btn-primary">
                                 <span class="loading" id="user-info-loading">
-                                    <i class="fas fa-spinner fa-spin"></i> Completing...
+                                    <i class="fas fa-spinner fa-spin"></i> {{ __('tenant_registration.completing') }}
                                 </span>
-                                <span id="user-info-text">Complete Registration</span>
+                                <span id="user-info-text">{{ __('tenant_registration.complete_registration') }}</span>
                             </button>
                         </div>
     </form>
@@ -464,9 +464,9 @@
                         <div class="success-icon">
                             <i class="fas fa-check-circle"></i>
                         </div>
-                        <h3 class="mb-3">Registration Successful!</h3>
-                        <p class="text-muted mb-4">Your tenant account has been created successfully. You can now access your dashboard.</p>
-                        <a href="#" id="login-link" class="btn btn-primary">Go to Login</a>
+                        <h3 class="mb-3">{{ __('tenant_registration.success_title') }}</h3>
+                        <p class="text-muted mb-4">{{ __('tenant_registration.success_description') }}</p>
+                        <a href="#" id="login-link" class="btn btn-primary">{{ __('tenant_registration.go_to_login') }}</a>
                     </div>
                 </div>
             </div>
@@ -616,7 +616,7 @@
                 const errorDiv = document.getElementById('otp-error');
 
                 if (otpCode.length !== 4) {
-                    this.showError(errorDiv, 'Please enter a valid 4-digit code.');
+                    this.showError(errorDiv, '{{ __('tenant_registration.otp_invalid') }}');
                     return;
                 }
 
@@ -673,7 +673,7 @@
                 // Validate required fields
                 if (!formData.business_activity_id || !formData.main_language || !formData.sub_language ||
                     !formData.admin_main_language || !formData.admin_sub_language) {
-                    this.showError(errorDiv, 'Please select all required options.');
+                    this.showError(errorDiv, '{{ __('tenant_registration.select_all_required') }}');
                     return;
                 }
 
@@ -708,7 +708,7 @@
 
             async resendOTP() {
                 const resendBtn = document.getElementById('resend-otp');
-                resendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Resending...';
+                resendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> {{ __('tenant_registration.otp_resending') }}';
                 resendBtn.disabled = true;
 
                 try {
@@ -734,7 +734,7 @@
                 } catch (error) {
                     console.error('Error resending OTP:', error);
                 } finally {
-                    resendBtn.innerHTML = 'Resend Code';
+                    resendBtn.innerHTML = '{{ __('tenant_registration.otp_resend') }}';
                     resendBtn.disabled = false;
                 }
             }
