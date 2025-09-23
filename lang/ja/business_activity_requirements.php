@@ -17,17 +17,16 @@ return [
 
     // Status Labels
     'status_required' => '必須',
-    'status_optional' => 'オプション',
+    'status_optional' => '任意',
 
     // Buttons
     'add_new_requirement' => '新しい要件を追加',
+    'add_requirement' => '要件を追加',
     'edit' => '編集',
     'delete' => '削除',
     'save' => '保存',
     'cancel' => 'キャンセル',
     'close' => '閉じる',
-    'add_requirement' => '要件を追加',
-    'remove_requirement' => '要件を削除',
 
     // Form Labels
     'form_business_activity' => 'ビジネス活動',
@@ -36,8 +35,9 @@ return [
     'form_is_required' => '必須',
     'form_select_business_activity' => 'ビジネス活動を選択',
     'form_select_type' => 'タイプを選択',
+    'form_required' => '必須',
 
-    // Form Types
+    // Type Options
     'type_text' => 'テキスト',
     'type_number' => '数値',
     'type_email' => 'メール',
@@ -51,13 +51,13 @@ return [
     'modal_delete_title' => 'ビジネス活動要件を削除',
 
     // Modal Messages
-    'modal_delete_message' => 'この要件を削除してもよろしいですか？',
-    'modal_delete_warning' => 'この操作は元に戻せません。',
+    'modal_delete_message' => '要件を削除しようとしています：',
+    'modal_delete_warning' => 'この操作は元に戻せません！',
+    'confirm_delete' => '本当によろしいですか？',
 
     // Empty State
-    'empty_title' => '要件なし',
-    'empty_message' => 'まだビジネス活動要件が作成されていません。',
-    'empty_action' => '最初の要件を作成',
+    'empty_title' => 'ビジネス活動要件が見つかりません',
+    'empty_message' => 'ビジネス活動要件が見つかりません。最初の要件を作成してください！',
 
     // Success Messages
     'success_created' => 'ビジネス活動要件が正常に作成されました！',
@@ -68,25 +68,23 @@ return [
     'error_created' => 'ビジネス活動要件の作成に失敗しました！',
     'error_updated' => 'ビジネス活動要件の更新に失敗しました！',
     'error_deleted' => 'ビジネス活動要件の削除に失敗しました！',
+    'error_network' => 'ネットワークエラーが発生しました',
 
-    // Validation Messages
-    'validation_business_activity_required' => 'ビジネス活動は必須です。',
-    'validation_label_required' => 'ラベルは必須です。',
-    'validation_type_required' => 'タイプは必須です。',
-    'validation_requirements_required' => '少なくとも1つの要件が必要です。',
+    // Toast Messages
+    'toast_success' => '成功',
+    'toast_error' => 'エラー',
 
     // Placeholders
     'placeholder_label' => '要件のラベルを入力',
-    'placeholder_select_business_activity' => 'ビジネス活動を選択',
-    'placeholder_select_type' => 'タイプを選択',
+    'placeholder_type' => '要件のタイプを選択',
 
     // Tooltips
-    'tooltip_edit' => '編集',
-    'tooltip_delete' => '削除',
-    'tooltip_add_requirement' => '新しい要件を追加',
-    'tooltip_remove_requirement' => 'この要件を削除',
+    'tooltip_edit' => '要件を編集',
+    'tooltip_delete' => '要件を削除',
 
     // Confirmation Messages
-    'confirm_delete' => 'よろしいですか？',
-    'confirm_delete_description' => 'この要件を削除した後、復元することはできません。',
+    'confirm_delete_description' => 'この操作は元に戻せません。',
+
+    // Additional Messages
+    'requirements' => '要件',
 ];

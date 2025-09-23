@@ -339,6 +339,8 @@
                 fetch(`/admin/tenants/${tenantId}/toggle`, {
                     method: 'POST',
                     headers: {
+                        'Accept': 'application/json',
+                        'Accept-Language': '{{ app()->getLocale() }}',
                         'Content-Type': 'application/json',
                         'X-CSRF-TOKEN': csrfToken,
                         'X-Requested-With': 'XMLHttpRequest'

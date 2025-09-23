@@ -131,7 +131,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="createBusinessActivityRequirementModalLabel">{{ __('business_activity_requirements.modal_create_title') }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('business_activity_requirements.close') }}"></button>
             </div>
             <form action="{{ route('business-activity-requirements.store') }}" method="POST">
                 @csrf
@@ -155,9 +155,9 @@
                     
                     <div class="requirements-container">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h6 class="mb-0">Requirements</h6>
+                            <h6 class="mb-0">{{ __('business_activity_requirements.requirements') }}</h6>
                             <button type="button" class="btn btn-sm btn-success" id="add-requirement">
-                                <i class="ti ti-plus"></i> Add Requirement
+                                <i class="ti ti-plus"></i> {{ __('business_activity_requirements.add_requirement') }}
                             </button>
                         </div>
                         
@@ -170,20 +170,20 @@
                                 <div class="col-md-3 mb-3">
                                     <label class="form-label">{{ __('business_activity_requirements.form_type') }} <span class="text-danger">*</span></label>
                                     <select class="form-control" name="requirements[0][type]" required>
-                                        <option value="">Select Type</option>
-                                        <option value="text">Text</option>
-                                        <option value="number">Number</option>
-                                        <option value="email">Email</option>
-                                        <option value="file">File</option>
-                                        <option value="date">Date</option>
-                                        <option value="textarea">Textarea</option>
+                                        <option value="">{{ __('business_activity_requirements.form_select_type') }}</option>
+                                        <option value="text">{{ __('business_activity_requirements.type_text') }}</option>
+                                        <option value="number">{{ __('business_activity_requirements.type_number') }}</option>
+                                        <option value="email">{{ __('business_activity_requirements.type_email') }}</option>
+                                        <option value="file">{{ __('business_activity_requirements.type_file') }}</option>
+                                        <option value="date">{{ __('business_activity_requirements.type_date') }}</option>
+                                        <option value="textarea">{{ __('business_activity_requirements.type_textarea') }}</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label class="form-label">{{ __('business_activity_requirements.form_is_required') }}</label>
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" name="requirements[0][is_required]" value="1" checked>
-                                        <label class="form-check-label">Required</label>
+                                        <label class="form-check-label">{{ __('business_activity_requirements.status_required') }}</label>
                                     </div>
                                 </div>
                                 <div class="col-md-2 mb-3 d-flex align-items-end">
@@ -210,7 +210,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editBusinessActivityRequirementModalLabel">{{ __('business_activity_requirements.modal_edit_title') }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('business_activity_requirements.close') }}"></button>
             </div>
             <form id="editBusinessActivityRequirementForm" method="POST">
                 @csrf
@@ -268,7 +268,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteBusinessActivityRequirementModalLabel">{{ __('business_activity_requirements.modal_delete_title') }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('business_activity_requirements.close') }}"></button>
             </div>
             <div class="modal-body">
                 <div class="text-center">
@@ -296,7 +296,7 @@
         <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header bg-success text-white">
                 <i class="ti ti-check me-2"></i>
-                <strong class="me-auto">Success</strong>
+                <strong class="me-auto">{{ __('business_activity_requirements.toast_success') }}</strong>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
             </div>
             <div class="toast-body">
@@ -311,7 +311,7 @@
         <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header bg-danger text-white">
                 <i class="ti ti-alert-circle me-2"></i>
-                <strong class="me-auto">Error</strong>
+                <strong class="me-auto">{{ __('business_activity_requirements.toast_error') }}</strong>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
             </div>
             <div class="toast-body">
@@ -385,7 +385,7 @@
             const isRequired = button.getAttribute('data-is-required');
 
             // Update form action URL
-            editForm.action = `/admin/business-activity-requirements/${requirementId}`;
+            editForm.action = `{{ route('home') }}/business-activity-requirements/${requirementId}`;
 
             // Populate form fields
             document.getElementById('edit_business_activity_id').value = businessActivityId;
@@ -396,7 +396,7 @@
             const toggleCheckbox = document.getElementById('edit_is_required');
             const toggleLabel = toggleCheckbox.nextElementSibling;
             toggleCheckbox.checked = isRequired == '1' || isRequired == 1;
-            toggleLabel.textContent = toggleCheckbox.checked ? 'Required' : 'Optional';
+            toggleLabel.textContent = toggleCheckbox.checked ? '{{ __('business_activity_requirements.status_required') }}' : '{{ __('business_activity_requirements.status_optional') }}';
         });
 
         // Dynamic form handling for requirements
@@ -422,7 +422,7 @@
         // Handle toggle button state changes for edit modal
         document.getElementById('edit_is_required').addEventListener('change', function() {
             const label = this.nextElementSibling;
-            label.textContent = this.checked ? 'Required' : 'Optional';
+            label.textContent = this.checked ? '{{ __('business_activity_requirements.status_required') }}' : '{{ __('business_activity_requirements.status_optional') }}';
         });
 
         // Handle form submission to ensure unchecked checkboxes send value 0
@@ -462,7 +462,7 @@
             const label = button.getAttribute('data-label');
 
             // Update form action URL
-            deleteForm.action = `/admin/business-activity-requirements/${requirementId}`;
+            deleteForm.action = `{{ route('home') }}/business-activity-requirements/${requirementId}`;
 
             // Update requirement label in modal
             document.getElementById('deleteRequirementLabel').textContent = label;
@@ -485,26 +485,26 @@
             div.innerHTML = `
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        <label class="form-label">Label <span class="text-danger">*</span></label>
+                        <label class="form-label">{{ __('business_activity_requirements.form_label') }} <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="requirements[${index}][label]" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label class="form-label">Type <span class="text-danger">*</span></label>
+                        <label class="form-label">{{ __('business_activity_requirements.form_type') }} <span class="text-danger">*</span></label>
                         <select class="form-control" name="requirements[${index}][type]" required>
-                            <option value="">Select Type</option>
-                            <option value="text">Text</option>
-                            <option value="number">Number</option>
-                            <option value="email">Email</option>
-                            <option value="file">File</option>
-                            <option value="date">Date</option>
-                            <option value="textarea">Textarea</option>
+                            <option value="">{{ __('business_activity_requirements.form_select_type') }}</option>
+                            <option value="text">{{ __('business_activity_requirements.type_text') }}</option>
+                            <option value="number">{{ __('business_activity_requirements.type_number') }}</option>
+                            <option value="email">{{ __('business_activity_requirements.type_email') }}</option>
+                            <option value="file">{{ __('business_activity_requirements.type_file') }}</option>
+                            <option value="date">{{ __('business_activity_requirements.type_date') }}</option>
+                            <option value="textarea">{{ __('business_activity_requirements.type_textarea') }}</option>
                         </select>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label class="form-label">Is Required</label>
+                        <label class="form-label">{{ __('business_activity_requirements.form_is_required') }}</label>
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" name="requirements[${index}][is_required]" value="1" checked>
-                            <label class="form-check-label">Required</label>
+                            <label class="form-check-label">{{ __('business_activity_requirements.status_required') }}</label>
                         </div>
                     </div>
                     <div class="col-md-2 mb-3 d-flex align-items-end">

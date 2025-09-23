@@ -3,7 +3,7 @@
 return [
     // Page Title and Headers
     'page_title' => 'Requisitos de Atividade Comercial',
-    'management_title' => 'Gestão de Requisitos de Atividade Comercial',
+    'management_title' => 'Gerenciamento de Requisitos de Atividade Comercial',
     'breadcrumb_home' => 'Landrick',
     'breadcrumb_current' => 'Requisitos de Atividade Comercial',
 
@@ -12,7 +12,7 @@ return [
     'table_business_activity' => 'Atividade Comercial',
     'table_label' => 'Rótulo',
     'table_type' => 'Tipo',
-    'table_is_required' => 'Obrigatório',
+    'table_is_required' => 'É Obrigatório',
     'table_actions' => 'Ações',
 
     // Status Labels
@@ -21,26 +21,26 @@ return [
 
     // Buttons
     'add_new_requirement' => 'Adicionar Novo Requisito',
+    'add_requirement' => 'Adicionar Requisito',
     'edit' => 'Editar',
     'delete' => 'Excluir',
     'save' => 'Salvar',
     'cancel' => 'Cancelar',
     'close' => 'Fechar',
-    'add_requirement' => 'Adicionar Requisito',
-    'remove_requirement' => 'Remover Requisito',
 
     // Form Labels
     'form_business_activity' => 'Atividade Comercial',
     'form_label' => 'Rótulo',
     'form_type' => 'Tipo',
-    'form_is_required' => 'Obrigatório',
+    'form_is_required' => 'É Obrigatório',
     'form_select_business_activity' => 'Selecionar Atividade Comercial',
     'form_select_type' => 'Selecionar Tipo',
+    'form_required' => 'Obrigatório',
 
-    // Form Types
+    // Type Options
     'type_text' => 'Texto',
     'type_number' => 'Número',
-    'type_email' => 'Email',
+    'type_email' => 'E-mail',
     'type_file' => 'Arquivo',
     'type_date' => 'Data',
     'type_textarea' => 'Área de Texto',
@@ -51,42 +51,40 @@ return [
     'modal_delete_title' => 'Excluir Requisito de Atividade Comercial',
 
     // Modal Messages
-    'modal_delete_message' => 'Tem certeza de que deseja excluir este requisito?',
-    'modal_delete_warning' => 'Esta ação não pode ser desfeita.',
+    'modal_delete_message' => 'Você está prestes a excluir o requisito:',
+    'modal_delete_warning' => 'Esta ação não pode ser desfeita!',
+    'confirm_delete' => 'Tem certeza?',
 
     // Empty State
-    'empty_title' => 'Nenhum Requisito',
-    'empty_message' => 'Nenhum requisito de atividade comercial foi criado ainda.',
-    'empty_action' => 'Criar Primeiro Requisito',
+    'empty_title' => 'Nenhum Requisito de Atividade Comercial Encontrado',
+    'empty_message' => 'Nenhum requisito de atividade comercial encontrado. Crie seu primeiro requisito!',
 
     // Success Messages
-    'success_created' => 'Requisito de atividade comercial criado com sucesso!',
+    'success_created' => 'Requisitos de atividade comercial criados com sucesso!',
     'success_updated' => 'Requisito de atividade comercial atualizado com sucesso!',
     'success_deleted' => 'Requisito de atividade comercial excluído com sucesso!',
 
     // Error Messages
-    'error_created' => 'Não foi possível criar o requisito de atividade comercial!',
-    'error_updated' => 'Não foi possível atualizar o requisito de atividade comercial!',
-    'error_deleted' => 'Não foi possível excluir o requisito de atividade comercial!',
+    'error_created' => 'Falha ao criar requisitos de atividade comercial!',
+    'error_updated' => 'Falha ao atualizar requisito de atividade comercial!',
+    'error_deleted' => 'Falha ao excluir requisito de atividade comercial!',
+    'error_network' => 'Erro de rede ocorreu',
 
-    // Validation Messages
-    'validation_business_activity_required' => 'A atividade comercial é obrigatória.',
-    'validation_label_required' => 'O rótulo é obrigatório.',
-    'validation_type_required' => 'O tipo é obrigatório.',
-    'validation_requirements_required' => 'Pelo menos um requisito é obrigatório.',
+    // Toast Messages
+    'toast_success' => 'Sucesso',
+    'toast_error' => 'Erro',
 
     // Placeholders
     'placeholder_label' => 'Digite o rótulo do requisito',
-    'placeholder_select_business_activity' => 'Selecionar atividade comercial',
-    'placeholder_select_type' => 'Selecionar tipo',
+    'placeholder_type' => 'Selecione o tipo de requisito',
 
     // Tooltips
-    'tooltip_edit' => 'Editar',
-    'tooltip_delete' => 'Excluir',
-    'tooltip_add_requirement' => 'Adicionar novo requisito',
-    'tooltip_remove_requirement' => 'Remover este requisito',
+    'tooltip_edit' => 'Editar requisito',
+    'tooltip_delete' => 'Excluir requisito',
 
     // Confirmation Messages
-    'confirm_delete' => 'Tem certeza?',
-    'confirm_delete_description' => 'Após excluir este requisito, ele não poderá ser restaurado.',
+    'confirm_delete_description' => 'Esta ação não pode ser desfeita.',
+
+    // Additional Messages
+    'requirements' => 'Requisitos',
 ];

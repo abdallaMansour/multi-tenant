@@ -50,10 +50,10 @@ class BusinessActivityRequirementController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('business-activity-requirements')->with('success', 'Business activity requirements created successfully!');
+            return back()->with('success', __('business_activity_requirements.success_created'));
         } catch (Exception $ex) {
             DB::rollBack();
-            return back()->withInput()->with('error', 'Unable to create business activity requirements!');
+            return back()->withInput()->with('error', __('business_activity_requirements.error_created'));
         }
     }
 
@@ -79,10 +79,10 @@ class BusinessActivityRequirementController extends Controller
             ]);
 
             DB::commit();
-            return redirect()->route('business-activity-requirements')->with('success', 'Business activity requirement updated successfully!');
+            return back()->with('success', __('business_activity_requirements.success_updated'));
         } catch (Exception $ex) {
             DB::rollBack();
-            return back()->withInput()->with('error', 'Unable to update business activity requirement!');
+            return back()->withInput()->with('error', __('business_activity_requirements.error_updated'));
         }
     }
 
@@ -97,10 +97,10 @@ class BusinessActivityRequirementController extends Controller
             $businessActivityRequirement->delete();
 
             DB::commit();
-            return redirect()->route('business-activity-requirements')->with('success', 'Business activity requirement deleted successfully!');
+            return back()->with('success', __('business_activity_requirements.success_deleted'));
         } catch (Exception $ex) {
             DB::rollBack();
-            return back()->withInput()->with('error', 'Unable to delete business activity requirement!');
+            return back()->withInput()->with('error', __('business_activity_requirements.error_deleted'));
         }
     }
 }

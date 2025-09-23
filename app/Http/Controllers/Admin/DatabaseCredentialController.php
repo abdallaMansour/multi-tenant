@@ -53,10 +53,10 @@ class DatabaseCredentialController extends Controller
             ]);
 
             DB::commit();
-            return redirect()->route('database-credentials')->with('success', 'Database credential created successfully!');
+            return back()->with('success', __('database_credentials.success_created'));
         } catch (Exception $ex) {
             DB::rollBack();
-            return back()->withInput()->with('error', 'Unable to create database credential!');
+            return back()->withInput()->with('error', __('database_credentials.error_created'));
         }
     }
 
@@ -91,10 +91,10 @@ class DatabaseCredentialController extends Controller
             ]);
 
             DB::commit();
-            return redirect()->route('database-credentials')->with('success', 'Database credential updated successfully!');
+            return back()->with('success', __('database_credentials.success_updated'));
         } catch (Exception $ex) {
             DB::rollBack();
-            return back()->withInput()->with('error', 'Unable to update database credential!');
+            return back()->withInput()->with('error', __('database_credentials.error_updated'));
         }
     }
 
@@ -109,10 +109,10 @@ class DatabaseCredentialController extends Controller
             $databaseCredential->delete();
 
             DB::commit();
-            return redirect()->route('database-credentials')->with('success', 'Database credential deleted successfully!');
+            return back()->with('success', __('database_credentials.success_deleted'));
         } catch (Exception $ex) {
             DB::rollBack();
-            return back()->withInput()->with('error', 'Unable to delete database credential!');
+            return back()->withInput()->with('error', __('database_credentials.error_deleted'));
         }
     }
 }

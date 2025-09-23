@@ -45,10 +45,10 @@ class TenantController extends Controller
 
             DatabaseService::createTenantDatabase($tenant, $databaseCredential);
 
-            return redirect()->route('tenants')->with('success', __('tenants.success_created'));
+            return back()->with('success', __('tenants.success_created'));
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->route('tenants')->with('error', $th->getMessage());
+            return back()->with('error', $th->getMessage());
         }
     }
 
@@ -68,10 +68,10 @@ class TenantController extends Controller
             $tenant->update($data);
 
             DB::commit();
-            return redirect()->route('tenants')->with('success', __('tenants.success_updated'));
+            return back()->with('success', __('tenants.success_updated'));
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->route('tenants')->with('error', $th->getMessage());
+            return back()->with('error', $th->getMessage());
         }
     }
 
@@ -93,10 +93,10 @@ class TenantController extends Controller
     //         $tenant->delete();
 
     //         DB::commit();
-    //         return redirect()->route('tenants')->with('success', 'Tenant deleted successfully');
+    //         return back()->with('success', 'Tenant deleted successfully');
     //     } catch (\Throwable $th) {
     //         DB::rollBack();
-    //         return redirect()->route('tenants')->with('error', $th->getMessage());
+    //         return back()->with('error', $th->getMessage());
     //     }
     // }
 
@@ -121,7 +121,7 @@ class TenantController extends Controller
                 ]);
             }
 
-            return redirect()->route('tenants')->with('success', __('tenants.success_activated'));
+            return back()->with('success', __('tenants.success_activated'));
         } catch (\Throwable $th) {
             DB::rollBack();
 
@@ -132,7 +132,7 @@ class TenantController extends Controller
                 ], 500);
             }
 
-            return redirect()->route('tenants')->with('error', $th->getMessage());
+            return back()->with('error', $th->getMessage());
         }
     }
 }

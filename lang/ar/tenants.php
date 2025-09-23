@@ -58,6 +58,7 @@ return [
     'success_created' => 'تم إنشاء المستأجر بنجاح!',
     'success_updated' => 'تم تحديث المستأجر بنجاح!',
     'success_deleted' => 'تم حذف المستأجر بنجاح!',
+    'success_toggled' => 'تم تحديث حالة المستأجر بنجاح!',
     'success_activated' => 'تم تفعيل المستأجر بنجاح!',
 
     // Error Messages
@@ -65,6 +66,7 @@ return [
     'error_updated' => 'فشل في تحديث المستأجر!',
     'error_deleted' => 'فشل في حذف المستأجر!',
     'error_toggled' => 'فشل في تحديث حالة المستأجر!',
+    'error_network' => 'حدث خطأ في الشبكة',
     'error_no_database_credential' => 'لم يتم العثور على بيانات اعتماد قاعدة بيانات نشطة',
     'error_username_exists' => 'اسم المستخدم موجود بالفعل',
 

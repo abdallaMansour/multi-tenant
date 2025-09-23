@@ -15,12 +15,12 @@
                 <div class="container-fluid">
                     <div class="layout-specing">
                         <div class="d-md-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">Database Credentials</h5>
+                            <h5 class="mb-0">{{ __('database_credentials.page_title') }}</h5>
 
                             <nav aria-label="breadcrumb" class="d-inline-block mt-2 mt-sm-0">
                                 <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
-                                    <li class="breadcrumb-item text-capitalize"><a href="{{ route('admin.dashboard') }}">Landrick</a></li>
-                                    <li class="breadcrumb-item text-capitalize active" aria-current="page">Database Credentials</li>
+                                    <li class="breadcrumb-item text-capitalize"><a href="{{ route('admin.dashboard') }}">{{ __('database_credentials.breadcrumb_home') }}</a></li>
+                                    <li class="breadcrumb-item text-capitalize active" aria-current="page">{{ __('database_credentials.breadcrumb_current') }}</li>
                                 </ul>
                             </nav>
                         </div>
@@ -30,9 +30,9 @@
                                 <div class="card border-0 rounded shadow">
                                     <div class="card-header bg-transparent border-bottom p-3">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <h5 class="mb-0">Database Credentials Management</h5>
+                                            <h5 class="mb-0">{{ __('database_credentials.management_title') }}</h5>
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCredentialModal">
-                                                <i class="ti ti-plus me-1"></i> Add New Database Credential
+                                                <i class="ti ti-plus me-1"></i> {{ __('database_credentials.add_new_credential') }}
                                             </button>
                                         </div>
                                     </div>
@@ -41,13 +41,13 @@
                                             <table class="table table-hover mb-0">
                                                 <thead class="table-light">
                                                     <tr>
-                                                        <th class="border-0">ID</th>
-                                                        <th class="border-0">Database Name</th>
-                                                        <th class="border-0">Database User</th>
-                                                        <th class="border-0">Password</th>
-                                                        <th class="border-0">Is Active</th>
-                                                        <th class="border-0">Created At</th>
-                                                        <th class="border-0 text-center">Actions</th>
+                                                        <th class="border-0">{{ __('database_credentials.table_id') }}</th>
+                                                        <th class="border-0">{{ __('database_credentials.table_database_name') }}</th>
+                                                        <th class="border-0">{{ __('database_credentials.table_database_user') }}</th>
+                                                        <th class="border-0">{{ __('database_credentials.table_password') }}</th>
+                                                        <th class="border-0">{{ __('database_credentials.table_is_active') }}</th>
+                                                        <th class="border-0">{{ __('database_credentials.table_created_at') }}</th>
+                                                        <th class="border-0 text-center">{{ __('database_credentials.table_actions') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -67,9 +67,9 @@
                                                         </td>
                                                         <td class="border-0">
                                                             @if($credential->tenant_id)
-                                                                <span class="badge bg-soft-success text-success">Active</span>
+                                                                <span class="badge bg-soft-success text-success">{{ __('database_credentials.status_active') }}</span>
                                                             @else
-                                                                <span class="badge bg-soft-secondary text-secondary">Inactive</span>
+                                                                <span class="badge bg-soft-secondary text-secondary">{{ __('database_credentials.status_inactive') }}</span>
                                                             @endif
                                                         </td>
                                                         <td class="border-0">{{ $credential->created_at->format('M d, Y') }}</td>
@@ -100,7 +100,7 @@
                                                         <td colspan="7" class="text-center py-4">
                                                             <div class="text-muted">
                                                                 <i class="ti ti-database-off fs-1 d-block mb-2"></i>
-                                                                No database credentials found. Create your first credential!
+                                                                {{ __('database_credentials.empty_message') }}
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -132,29 +132,29 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="createCredentialModalLabel">Create New Database Credential</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="createCredentialModalLabel">{{ __('database_credentials.modal_create_title') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('database_credentials.close') }}"></button>
                     </div>
                     <form action="{{ route('database-credentials.store') }}" method="POST">
                         @csrf
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="db_name" class="form-label">Database Name <span class="text-danger">*</span></label>
+                                    <label for="db_name" class="form-label">{{ __('database_credentials.form_database_name') }} <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('db_name') is-invalid @enderror" id="db_name" name="db_name" value="{{ old('db_name') }}" required>
                                     @error('db_name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="db_user" class="form-label">Database User <span class="text-danger">*</span></label>
+                                    <label for="db_user" class="form-label">{{ __('database_credentials.form_database_user') }} <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('db_user') is-invalid @enderror" id="db_user" name="db_user" value="{{ old('db_user') }}" required>
                                     @error('db_user')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="db_password" class="form-label">Database Password</label>
+                                    <label for="db_password" class="form-label">{{ __('database_credentials.form_database_password') }}</label>
                                     <input type="text" class="form-control @error('db_password') is-invalid @enderror" id="db_password" name="db_password" value="{{ old('db_password') }}">
                                     @error('db_password')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -163,8 +163,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Create Credential</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('database_credentials.cancel') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('database_credentials.create_credential') }}</button>
                         </div>
                     </form>
                 </div>
@@ -176,8 +176,8 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editCredentialModalLabel">Edit Database Credential</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="editCredentialModalLabel">{{ __('database_credentials.modal_edit_title') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('database_credentials.close') }}"></button>
                     </div>
                     <form id="editCredentialForm" method="POST">
                         @csrf
@@ -185,22 +185,22 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="edit_db_name" class="form-label">Database Name <span class="text-danger">*</span></label>
+                                    <label for="edit_db_name" class="form-label">{{ __('database_credentials.form_database_name') }} <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="edit_db_name" name="db_name" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="edit_db_user" class="form-label">Database User <span class="text-danger">*</span></label>
+                                    <label for="edit_db_user" class="form-label">{{ __('database_credentials.form_database_user') }} <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="edit_db_user" name="db_user" required>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="edit_db_password" class="form-label">Database Password</label>
+                                    <label for="edit_db_password" class="form-label">{{ __('database_credentials.form_database_password') }}</label>
                                     <input type="text" class="form-control" id="edit_db_password" name="db_password" value="{{ old('db_password') }}">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Update Credential</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('database_credentials.cancel') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('database_credentials.update_credential') }}</button>
                         </div>
                     </form>
                 </div>
@@ -212,23 +212,25 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteCredentialModalLabel">Delete Database Credential</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="deleteCredentialModalLabel">{{ __('database_credentials.modal_delete_title') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('database_credentials.close') }}"></button>
                     </div>
                     <div class="modal-body">
                         <div class="text-center">
                             <i class="ti ti-alert-triangle text-danger fs-1 mb-3"></i>
-                            <h5>Are you sure?</h5>
-                            <p class="text-muted">You are about to delete database credential: <strong id="deleteCredentialName"></strong></p>
-                            <p class="text-danger small">This action cannot be undone!</p>
+                            <h5>{{ __('database_credentials.modal_delete_message') }}</h5>
+                            <p class="text-muted">{{ __('database_credentials.modal_delete_description') }} <strong id="deleteCredentialName"></strong></p>
+                            <p class="text-danger small">{{ __('database_credentials.modal_delete_warning') }}</p>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('database_credentials.cancel') }}</button>
                         <form id="deleteCredentialForm" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete Credential</button>
+                            {{-- add Accept-Language --}}
+                            <input type="hidden" name="Accept-Language" value="{{ app()->getLocale() }}">
+                            <button type="submit" class="btn btn-danger">{{ __('database_credentials.delete_credential') }}</button>
                         </form>
                     </div>
                 </div>
@@ -241,7 +243,7 @@
             <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header bg-success text-white">
                     <i class="ti ti-check me-2"></i>
-                    <strong class="me-auto">Success</strong>
+                    <strong class="me-auto">{{ __('database_credentials.toast_success') }}</strong>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
                 </div>
                 <div class="toast-body">
@@ -256,7 +258,7 @@
             <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header bg-danger text-white">
                     <i class="ti ti-alert-circle me-2"></i>
-                    <strong class="me-auto">Error</strong>
+                    <strong class="me-auto">{{ __('database_credentials.toast_error') }}</strong>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
                 </div>
                 <div class="toast-body">
@@ -342,7 +344,7 @@
                     const credentialDbName = button.getAttribute('data-credential-db-name');
                     
                     // Update form action URL
-                    deleteForm.action = `/admin/database-credentials/${credentialId}`;
+                    deleteForm.action = `{{ route('home') }}/database-credentials/${credentialId}`;
                     
                     // Update credential name in modal
                     document.getElementById('deleteCredentialName').textContent = credentialDbName;
@@ -364,7 +366,7 @@
                         const password = document.getElementById('db_password').value;
                         if (password && password.length < 6) {
                             e.preventDefault();
-                            alert('Password must be at least 6 characters long.');
+                            alert('{{ __('database_credentials.password_min_length') }}');
                             return false;
                         }
                     });

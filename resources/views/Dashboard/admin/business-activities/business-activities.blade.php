@@ -15,12 +15,12 @@
         <div class="container-fluid">
             <div class="layout-specing">
                 <div class="d-md-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Business Activities</h5>
+                    <h5 class="mb-0">{{ __('business_activities.page_title') }}</h5>
 
                     <nav aria-label="breadcrumb" class="d-inline-block mt-2 mt-sm-0">
                         <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
-                            <li class="breadcrumb-item text-capitalize"><a href="{{ route('admin.dashboard') }}">Landrick</a></li>
-                            <li class="breadcrumb-item text-capitalize active" aria-current="page">Business Activities</li>
+                            <li class="breadcrumb-item text-capitalize"><a href="{{ route('admin.dashboard') }}">{{ __('business_activities.breadcrumb_home') }}</a></li>
+                            <li class="breadcrumb-item text-capitalize active" aria-current="page">{{ __('business_activities.breadcrumb_current') }}</li>
                         </ul>
                     </nav>
                 </div>
@@ -30,9 +30,9 @@
                         <div class="card border-0 rounded shadow">
                             <div class="card-header bg-transparent border-bottom p-3">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="mb-0">Business Activities Management</h5>
+                                    <h5 class="mb-0">{{ __('business_activities.management_title') }}</h5>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBusinessActivityModal">
-                                        <i class="ti ti-plus me-1"></i> Add New Business Activity
+                                        <i class="ti ti-plus me-1"></i> {{ __('business_activities.add_new_business_activity') }}
                                     </button>
                                 </div>
                             </div>
@@ -41,11 +41,11 @@
                                     <table class="table table-hover mb-0">
                                         <thead class="table-light">
                                             <tr>
-                                                <th class="border-0">ID</th>
-                                                <th class="border-0">Name</th>
-                                                <th class="border-0">Icon</th>
-                                                <th class="border-0">Is Active</th>
-                                                <th class="border-0 text-center">Actions</th>
+                                                <th class="border-0">{{ __('business_activities.table_id') }}</th>
+                                                <th class="border-0">{{ __('business_activities.table_name') }}</th>
+                                                <th class="border-0">{{ __('business_activities.table_icon') }}</th>
+                                                <th class="border-0">{{ __('business_activities.table_is_active') }}</th>
+                                                <th class="border-0 text-center">{{ __('business_activities.table_actions') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -65,9 +65,9 @@
                                                     </td>
                                                     <td class="border-0">
                                                         @if ($businessActivity->is_active)
-                                                            <span class="badge bg-soft-success text-success">Active</span>
+                                                            <span class="badge bg-soft-success text-success">{{ __('business_activities.status_active') }}</span>
                                                         @else
-                                                            <span class="badge bg-soft-secondary text-secondary">Inactive</span>
+                                                            <span class="badge bg-soft-secondary text-secondary">{{ __('business_activities.status_inactive') }}</span>
                                                         @endif
                                                     </td>
                                                     <td class="border-0 text-center">
@@ -96,7 +96,7 @@
                                                     <td colspan="7" class="text-center py-4">
                                                         <div class="text-muted">
                                                             <i class="ti ti-database-off fs-1 d-block mb-2"></i>
-                                                            No business activities found. Create your first business activity!
+                                                            {{ __('business_activities.empty_message') }}
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -128,22 +128,23 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createBusinessActivityModalLabel">Create New Business Activity</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="createBusinessActivityModalLabel">{{ __('business_activities.modal_create_title') }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('business_activities.close') }}"></button>
             </div>
             <form action="{{ route('business-activities.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="accept-language" value="{{ app()->getLocale() }}">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+                            <label for="name" class="form-label">{{ __('business_activities.form_name') }} <span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="icon" class="form-label">Icon <span class="text-danger">*</span></label>
+                            <label for="icon" class="form-label">{{ __('business_activities.form_icon') }} <span class="text-danger">*</span></label>
                             <input type="file" class="form-control @error('icon') is-invalid @enderror" id="icon" name="icon" value="{{ old('icon') }}" accept="image/*" required>
 
                             @error('icon')
@@ -151,12 +152,12 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="is_active" class="form-label">Is Active</label>
+                            <label for="is_active" class="form-label">{{ __('business_activities.form_is_active') }}</label>
                             <div class="form-check form-switch">
                                 <input class="form-check-input @error('is_active') is-invalid @enderror" type="checkbox" id="is_active" name="is_active" value="1"
                                     {{ old('is_active', '1') ? 'checked' : '' }}>
                                 <label class="form-check-label" for="is_active">
-                                    {{ old('is_active', '1') ? 'Active' : 'Inactive' }}
+                                    {{ old('is_active', '1') ? __('business_activities.status_active') : __('business_activities.status_inactive') }}
                                 </label>
                             </div>
                             @error('is_active')
@@ -165,14 +166,14 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="mt-2" id="icon_preview" style="display: none;">
-                                <img id="icon_preview_img" src="" alt="Icon Preview" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                <img id="icon_preview_img" src="" alt="{{ __('business_activities.icon_preview') }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Create Business Activity</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('business_activities.cancel') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('business_activities.create_business_activity') }}</button>
                 </div>
             </form>
         </div>
@@ -184,41 +185,43 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editBusinessActivityModalLabel">Edit Business Activity</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="editBusinessActivityModalLabel">{{ __('business_activities.modal_edit_title') }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('business_activities.close') }}"></button>
             </div>
             <form id="editBusinessActivityForm" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+                <input type="hidden" name="accept-language" value="{{ app()->getLocale() }}">
+                <input type="hidden" name="businessActivityId" id="businessActivityId">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="edit_name" class="form-label">Name <span class="text-danger">*</span></label>
+                            <label for="edit_name" class="form-label">{{ __('business_activities.form_name') }} <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="edit_name" name="name" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="edit_icon" class="form-label">Icon <span class="text-danger">*</span></label>
+                            <label for="edit_icon" class="form-label">{{ __('business_activities.form_icon') }} <span class="text-danger">*</span></label>
                             <input type="file" class="form-control" id="edit_icon" name="icon" accept="image/*">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="edit_is_active" class="form-label">Is Active</label>
+                            <label for="edit_is_active" class="form-label">{{ __('business_activities.form_is_active') }}</label>
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" id="edit_is_active" name="is_active" value="1">
                                 <label class="form-check-label" for="edit_is_active">
-                                    Active
+                                    {{ __('business_activities.status_active') }}
                                 </label>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="mt-2" id="edit_icon_preview">
-                                <img id="edit_icon_preview_img" src="" alt="Icon Preview" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                                <img id="edit_icon_preview_img" src="" alt="{{ __('business_activities.icon_preview') }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Update Business Activity</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('business_activities.cancel') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('business_activities.update_business_activity') }}</button>
                 </div>
             </form>
         </div>
@@ -230,23 +233,24 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteBusinessActivityModalLabel">Delete Business Activity</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="deleteBusinessActivityModalLabel">{{ __('business_activities.modal_delete_title') }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('business_activities.close') }}"></button>
             </div>
             <div class="modal-body">
                 <div class="text-center">
                     <i class="ti ti-alert-triangle text-danger fs-1 mb-3"></i>
-                    <h5>Are you sure?</h5>
-                    <p class="text-muted">You are about to delete business activity: <strong id="deleteBusinessActivityName"></strong></p>
-                    <p class="text-danger small">This action cannot be undone!</p>
+                    <h5>{{ __('business_activities.modal_delete_message') }}</h5>
+                    <p class="text-muted">{{ __('business_activities.modal_delete_description') }} <strong id="deleteBusinessActivityName"></strong></p>
+                    <p class="text-danger small">{{ __('business_activities.modal_delete_warning') }}</p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('business_activities.cancel') }}</button>
                 <form id="deleteBusinessActivityForm" method="POST" style="display: inline;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete Business Activity</button>
+                    <input type="hidden" name="accept-language" value="{{ app()->getLocale() }}">
+                    <button type="submit" class="btn btn-danger">{{ __('business_activities.delete_business_activity') }}</button>
                 </form>
             </div>
         </div>
@@ -259,7 +263,7 @@
         <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header bg-success text-white">
                 <i class="ti ti-check me-2"></i>
-                <strong class="me-auto">Success</strong>
+                <strong class="me-auto">{{ __('business_activities.toast_success') }}</strong>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
             </div>
             <div class="toast-body">
@@ -274,7 +278,7 @@
         <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header bg-danger text-white">
                 <i class="ti ti-alert-circle me-2"></i>
-                <strong class="me-auto">Error</strong>
+                <strong class="me-auto">{{ __('business_activities.toast_error') }}</strong>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
             </div>
             <div class="toast-body">
@@ -347,7 +351,7 @@
             const businessActivityIsActive = button.getAttribute('data-businessActivity-is-active');
 
             // Update form action URL
-            editForm.action = `/admin/business-activities/${businessActivityId}`;
+            editForm.action = `{{ route('home') }}/business-activities/${businessActivityId}`;
 
             // Populate form fields
             document.getElementById('edit_name').value = businessActivityName;
@@ -366,12 +370,12 @@
         // Handle toggle button state changes
         document.getElementById('is_active').addEventListener('change', function() {
             const label = this.nextElementSibling;
-            label.textContent = this.checked ? 'Active' : 'Inactive';
+            label.textContent = this.checked ? '{{ __('business_activities.status_active') }}' : '{{ __('business_activities.status_inactive') }}';
         });
 
         document.getElementById('edit_is_active').addEventListener('change', function() {
             const label = this.nextElementSibling;
-            label.textContent = this.checked ? 'Active' : 'Inactive';
+            label.textContent = this.checked ? '{{ __('business_activities.status_active') }}' : '{{ __('business_activities.status_inactive') }}';
         });
 
         // Handle form submission to ensure unchecked checkboxes send value 0
@@ -409,7 +413,7 @@
             const businessActivityName = button.getAttribute('data-businessActivity-name');
 
             // Update form action URL
-            deleteForm.action = `/admin/business-activities/${businessActivityId}`;
+            deleteForm.action = `{{ route('home') }}/business-activities/${businessActivityId}`;
 
             // Update business activity name in modal
             document.getElementById('deleteBusinessActivityName').textContent = businessActivityName;

@@ -12,7 +12,7 @@ return [
     'table_business_activity' => 'Actividad Comercial',
     'table_label' => 'Etiqueta',
     'table_type' => 'Tipo',
-    'table_is_required' => 'Requerido',
+    'table_is_required' => 'Es Requerido',
     'table_actions' => 'Acciones',
 
     // Status Labels
@@ -21,23 +21,23 @@ return [
 
     // Buttons
     'add_new_requirement' => 'Agregar Nuevo Requisito',
+    'add_requirement' => 'Agregar Requisito',
     'edit' => 'Editar',
     'delete' => 'Eliminar',
     'save' => 'Guardar',
     'cancel' => 'Cancelar',
     'close' => 'Cerrar',
-    'add_requirement' => 'Agregar Requisito',
-    'remove_requirement' => 'Eliminar Requisito',
 
     // Form Labels
     'form_business_activity' => 'Actividad Comercial',
     'form_label' => 'Etiqueta',
     'form_type' => 'Tipo',
-    'form_is_required' => 'Requerido',
+    'form_is_required' => 'Es Requerido',
     'form_select_business_activity' => 'Seleccionar Actividad Comercial',
     'form_select_type' => 'Seleccionar Tipo',
+    'form_required' => 'Requerido',
 
-    // Form Types
+    // Type Options
     'type_text' => 'Texto',
     'type_number' => 'Número',
     'type_email' => 'Correo Electrónico',
@@ -51,42 +51,40 @@ return [
     'modal_delete_title' => 'Eliminar Requisito de Actividad Comercial',
 
     // Modal Messages
-    'modal_delete_message' => '¿Está seguro de que desea eliminar este requisito?',
-    'modal_delete_warning' => 'Esta acción no se puede deshacer.',
+    'modal_delete_message' => 'Estás a punto de eliminar el requisito:',
+    'modal_delete_warning' => '¡Esta acción no se puede deshacer!',
+    'confirm_delete' => '¿Estás seguro?',
 
     // Empty State
-    'empty_title' => 'Sin Requisitos',
-    'empty_message' => 'Aún no se han creado requisitos de actividad comercial.',
-    'empty_action' => 'Crear Primer Requisito',
+    'empty_title' => 'No se Encontraron Requisitos de Actividad Comercial',
+    'empty_message' => 'No se encontraron requisitos de actividad comercial. ¡Crea tu primer requisito!',
 
     // Success Messages
-    'success_created' => '¡Requisito de actividad comercial creado exitosamente!',
+    'success_created' => '¡Requisitos de actividad comercial creados exitosamente!',
     'success_updated' => '¡Requisito de actividad comercial actualizado exitosamente!',
     'success_deleted' => '¡Requisito de actividad comercial eliminado exitosamente!',
 
     // Error Messages
-    'error_created' => '¡No se pudo crear el requisito de actividad comercial!',
-    'error_updated' => '¡No se pudo actualizar el requisito de actividad comercial!',
-    'error_deleted' => '¡No se pudo eliminar el requisito de actividad comercial!',
+    'error_created' => '¡Error al crear requisitos de actividad comercial!',
+    'error_updated' => '¡Error al actualizar requisito de actividad comercial!',
+    'error_deleted' => '¡Error al eliminar requisito de actividad comercial!',
+    'error_network' => 'Error de red ocurrido',
 
-    // Validation Messages
-    'validation_business_activity_required' => 'La actividad comercial es requerida.',
-    'validation_label_required' => 'La etiqueta es requerida.',
-    'validation_type_required' => 'El tipo es requerido.',
-    'validation_requirements_required' => 'Se requiere al menos un requisito.',
+    // Toast Messages
+    'toast_success' => 'Éxito',
+    'toast_error' => 'Error',
 
     // Placeholders
     'placeholder_label' => 'Ingrese la etiqueta del requisito',
-    'placeholder_select_business_activity' => 'Seleccionar actividad comercial',
-    'placeholder_select_type' => 'Seleccionar tipo',
+    'placeholder_type' => 'Seleccione el tipo de requisito',
 
     // Tooltips
-    'tooltip_edit' => 'Editar',
-    'tooltip_delete' => 'Eliminar',
-    'tooltip_add_requirement' => 'Agregar nuevo requisito',
-    'tooltip_remove_requirement' => 'Eliminar este requisito',
+    'tooltip_edit' => 'Editar requisito',
+    'tooltip_delete' => 'Eliminar requisito',
 
     // Confirmation Messages
-    'confirm_delete' => '¿Está seguro?',
-    'confirm_delete_description' => 'Después de eliminar este requisito, no se podrá deshacer.',
+    'confirm_delete_description' => 'Esta acción no se puede deshacer.',
+
+    // Additional Messages
+    'requirements' => 'Requisitos',
 ];

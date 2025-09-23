@@ -52,10 +52,10 @@ class BusinessActivityController extends Controller
             $businessActivity->addMediaFromRequest('icon')->toMediaCollection();
 
             DB::commit();
-            return redirect()->route('business-activities')->with('success', 'Business activity created successfully!');
+            return back()->with('success', __('business_activities.success_created'));
         } catch (Exception $ex) {
             DB::rollBack();
-            return back()->withInput()->with('error', 'Unable to create business activity!');
+            return back()->withInput()->with('error', __('business_activities.error_created'));
         }
     }
 
@@ -83,10 +83,10 @@ class BusinessActivityController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('business-activities')->with('success', 'Business activity updated successfully!');
+            return back()->with('success', __('business_activities.success_updated'));
         } catch (Exception $ex) {
             DB::rollBack();
-            return back()->withInput()->with('error', 'Unable to update business activity!');
+            return back()->withInput()->with('error', __('business_activities.error_updated'));
         }
     }
 
@@ -102,10 +102,10 @@ class BusinessActivityController extends Controller
             $businessActivity->delete();
 
             DB::commit();
-            return redirect()->route('business-activities')->with('success', 'Business activity deleted successfully!');
+            return back()->with('success', __('business_activities.success_deleted'));
         } catch (Exception $ex) {
             DB::rollBack();
-            return back()->withInput()->with('error', 'Unable to delete business activity!');
+            return back()->withInput()->with('error', __('business_activities.error_deleted'));
         }
     }
 }
