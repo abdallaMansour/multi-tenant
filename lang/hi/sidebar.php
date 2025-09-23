@@ -27,6 +27,7 @@ return [
     'users' => 'उपयोगकर्ता',
     'roles' => 'भूमिकाएं',
     'permissions' => 'अनुमतियां',
+    'roles_permissions' => 'भूमिकाएं और अनुमतियां',
     'reports' => 'रिपोर्ट्स',
     'notifications' => 'सूचनाएं',
     'help' => 'सहायता',

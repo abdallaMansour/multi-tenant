@@ -27,6 +27,7 @@ return [
     'users' => 'ഉപയോക്താക്കൾ',
     'roles' => 'വേഷങ്ങൾ',
     'permissions' => 'അനുമതികൾ',
+    'roles_permissions' => 'വേഷങ്ങളും അനുമതികളും',
     'reports' => 'റിപ്പോർട്ടുകൾ',
     'notifications' => 'അറിയിപ്പുകൾ',
     'help' => 'സഹായം',

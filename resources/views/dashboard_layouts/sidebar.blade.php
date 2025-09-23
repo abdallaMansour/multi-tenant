@@ -22,31 +22,50 @@
                         </ul>
                     </div>
                 </li>
-                <li class="sidebar-dropdown">
-                    <a href="javascript:void(0)"><i class="ti ti-building me-2"></i>{{ __('sidebar.tenants') }}</a>
-                    <div class="sidebar-submenu">
-                        <ul>
-                            <li><a href="{{ route('tenants') }}">{{ __('sidebar.all_tenants') }}</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="sidebar-dropdown">
-                    <a href="javascript:void(0)"><i class="ti ti-database me-2"></i>{{ __('sidebar.database_credentials') }}</a>
-                    <div class="sidebar-submenu">
-                        <ul>
-                            <li><a href="{{ route('database-credentials') }}">{{ __('sidebar.database_credentials') }}</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="sidebar-dropdown">
-                    <a href="javascript:void(0)"><i class="ti ti-briefcase me-2"></i>{{ __('sidebar.business_activities') }}</a>
-                    <div class="sidebar-submenu">
-                        <ul>
-                            <li><a href="{{ route('business-activities') }}">{{ __('sidebar.business_activities') }}</a></li>
-                            <li><a href="{{ route('business-activity-requirements') }}">{{ __('sidebar.business_activity_requirements') }}</a></li>
-                        </ul>
-                    </div>
-                </li>
+                @can('read-tenant')
+                    <li class="sidebar-dropdown">
+                        <a href="javascript:void(0)"><i class="ti ti-building me-2"></i>{{ __('sidebar.tenants') }}</a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li><a href="{{ route('tenants') }}">{{ __('sidebar.all_tenants') }}</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                @endcan
+                @can('read-database_credential')
+                    <li class="sidebar-dropdown">
+                        <a href="javascript:void(0)"><i class="ti ti-database me-2"></i>{{ __('sidebar.database_credentials') }}</a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li><a href="{{ route('database-credentials') }}">{{ __('sidebar.database_credentials') }}</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                @endcan
+                @can('read-business_activity')
+                    <li class="sidebar-dropdown">
+                        <a href="javascript:void(0)"><i class="ti ti-briefcase me-2"></i>{{ __('sidebar.business_activities') }}</a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li><a href="{{ route('business-activities') }}">{{ __('sidebar.business_activities') }}</a></li>
+                                <li><a href="{{ route('business-activity-requirements') }}">{{ __('sidebar.business_activity_requirements') }}</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                @endcan
+                @can('read-role')
+                    {{-- New section Roles & Permissions --}}
+
+                    <li class="sidebar-dropdown">
+                        <a href="javascript:void(0)"><i class="ti ti-shield-lock me-2"></i>{{ __('sidebar.roles_permissions') }}</a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li><a href="{{ route('admin.roles.index') }}">{{ __('sidebar.roles') }}</a></li>
+                                <li><a href="{{ route('admin.permissions.index') }}">{{ __('sidebar.permissions') }}</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                @endcan
             </ul>
         @elseif (auth()->guard('tenant')->check())
             <ul class="sidebar-menu">

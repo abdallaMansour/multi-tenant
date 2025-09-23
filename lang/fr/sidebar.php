@@ -27,6 +27,7 @@ return [
     'users' => 'Utilisateurs',
     'roles' => 'Rôles',
     'permissions' => 'Permissions',
+    'roles_permissions' => 'Rôles et Permissions',
     'reports' => 'Rapports',
     'notifications' => 'Notifications',
     'help' => 'Aide',

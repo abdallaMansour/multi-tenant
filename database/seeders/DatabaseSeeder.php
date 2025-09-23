@@ -16,13 +16,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->clearDirectories();
 
-        User::factory()->create([
-            'name' => 'Dev',
-            'email' => 'dev@dev.com',
-        ]);
-
         $this->call([
+            PermissionSeeder::class,
+            UserSeeder::class,
             BusinessActivitySeeder::class,
+            // PermissionDatabaseSeeder::class,
         ]);
     }
 

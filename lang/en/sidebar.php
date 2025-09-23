@@ -27,6 +27,7 @@ return [
     'users' => 'Users',
     'roles' => 'Roles',
     'permissions' => 'Permissions',
+    'roles_permissions' => 'Roles & Permissions',
     'reports' => 'Reports',
     'notifications' => 'Notifications',
     'help' => 'Help',

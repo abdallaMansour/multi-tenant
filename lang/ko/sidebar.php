@@ -27,6 +27,7 @@ return [
     'users' => '사용자',
     'roles' => '역할',
     'permissions' => '권한',
+    'roles_permissions' => '역할 및 권한',
     'reports' => '보고서',
     'notifications' => '알림',
     'help' => '도움말',

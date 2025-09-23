@@ -27,6 +27,7 @@ return [
     'users' => 'ব্যবহারকারী',
     'roles' => 'ভূমিকা',
     'permissions' => 'অনুমতি',
+    'roles_permissions' => 'ভূমিকা ও অনুমতি',
     'reports' => 'রিপোর্ট',
     'notifications' => 'বিজ্ঞপ্তি',
     'help' => 'সাহায্য',

@@ -27,6 +27,7 @@ return [
     'users' => '用户',
     'roles' => '角色',
     'permissions' => '权限',
+    'roles_permissions' => '角色和权限',
     'reports' => '报告',
     'notifications' => '通知',
     'help' => '帮助',
