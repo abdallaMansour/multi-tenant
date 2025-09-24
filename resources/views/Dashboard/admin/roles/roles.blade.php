@@ -513,7 +513,7 @@
                 html += `
                     <div class="col-md-6 col-lg-4 permission-item">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="permissions[]" value="${permission.id}" id="permission_${permission.id}" ${isChecked}>
+                            <input class="form-check-input" type="checkbox" name="permissions[]" value="${permission.name}" id="permission_${permission.id}" ${isChecked}>
                             <label class="form-check-label" for="permission_${permission.id}">
                                 ${actionName}
                             </label>

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\DatabaseCredentialController;
 use App\Http\Controllers\Admin\BusinessActivityRequirementController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\UserController;
 use App\Models\BusinessActivity;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -78,6 +79,16 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             // permissions routes
             Route::get('/permissions', [PermissionController::class, 'index'])->name('admin.permissions.index')->middleware('can:read-permission');
             Route::get('/permissions/{permission}', [PermissionController::class, 'show'])->name('admin.permissions.show')->middleware('can:read-permission');
+
+            // users routes
+            Route::get('/users', [UserController::class, 'index'])->name('admin.users.index')->middleware('can:read-admin');
+            Route::get('/users/create', [UserController::class, 'create'])->name('admin.users.create')->middleware('can:create-admin');
+            Route::post('/users', [UserController::class, 'store'])->name('admin.users.store')->middleware('can:create-admin');
+            Route::get('/users/{user}', [UserController::class, 'show'])->name('admin.users.show')->middleware('can:read-admin');
+            Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit')->middleware('can:update-admin');
+            Route::put('/users/{user}', [UserController::class, 'update'])->name('admin.users.update')->middleware('can:update-admin');
+            Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy')->middleware('can:delete-admin');
+            Route::get('/users/roles', [UserController::class, 'getRoles'])->name('admin.users.roles')->middleware('can:read-admin');
         });
     });
 

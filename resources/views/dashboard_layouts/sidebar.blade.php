@@ -53,6 +53,16 @@
                         </div>
                     </li>
                 @endcan
+                @can('read-admin')
+                    <li class="sidebar-dropdown">
+                        <a href="javascript:void(0)"><i class="ti ti-users me-2"></i>{{ __('sidebar.users') }}</a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li><a href="{{ route('admin.users.index') }}">{{ __('sidebar.users') }}</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                @endcan
                 @can('read-role')
                     {{-- New section Roles & Permissions --}}
 
