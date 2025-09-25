@@ -25,6 +25,8 @@ return [
     
     // Additional Navigation Items (for future use)
     'users' => 'المستخدمون',
+    'pages' => 'الصفحات',
+    'themes' => 'الهويات',
     'roles' => 'الأدوار',
     'permissions' => 'الأذونات',
     'roles_permissions' => 'الأدوار والصلاحيات',

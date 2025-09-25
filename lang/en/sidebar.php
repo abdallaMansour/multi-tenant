@@ -25,6 +25,8 @@ return [
     
     // Additional Navigation Items (for future use)
     'users' => 'Users',
+    'pages' => 'Pages',
+    'themes' => 'Themes',
     'roles' => 'Roles',
     'permissions' => 'Permissions',
     'roles_permissions' => 'Roles & Permissions',

@@ -76,6 +76,28 @@
                         </div>
                     </li>
                 @endcan
+
+                @can('read-page')
+                    <li class="sidebar-dropdown">
+                        <a href="javascript:void(0)"><i class="ti ti-file-text me-2"></i>{{ __('sidebar.pages') }}</a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li><a href="{{ route('admin.pages.index') }}">{{ __('sidebar.pages') }}</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                @endcan
+
+                @can('read-theme')
+                    <li class="sidebar-dropdown">
+                        <a href="javascript:void(0)"><i class="ti ti-palette me-2"></i>{{ __('sidebar.themes') }}</a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li><a href="{{ route('admin.themes.index') }}">{{ __('sidebar.themes') }}</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                @endcan
             </ul>
         @elseif (auth()->guard('tenant')->check())
             <ul class="sidebar-menu">

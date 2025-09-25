@@ -25,6 +25,8 @@ return [
     
     // Additional Navigation Items (for future use)
     'users' => 'ব্যবহারকারী',
+    'pages' => 'পৃষ্ঠা',
+    'themes' => 'থিম',
     'roles' => 'ভূমিকা',
     'permissions' => 'অনুমতি',
     'roles_permissions' => 'ভূমিকা ও অনুমতি',

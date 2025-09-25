@@ -42,6 +42,12 @@ class PermissionSeeder extends Seeder
             'update-permission',
             'delete-permission',
 
+            // Page Management
+            'create-page',
+            'read-page',
+            'update-page',
+            'delete-page',
+
             // Business Activity Management
             'create-business_activity',
             'read-business_activity',
@@ -59,6 +65,12 @@ class PermissionSeeder extends Seeder
             'read-database_credential',
             'update-database_credential',
             'delete-database_credential',
+
+            // Theme Management
+            'create-theme',
+            'read-theme',
+            'update-theme',
+            'delete-theme',
 
             // Settings Management
             // 'create-setting',
@@ -105,6 +117,7 @@ class PermissionSeeder extends Seeder
             'create-admin', 'read-admin', 'update-admin', 'delete-admin',
             'create-role', 'read-role', 'update-role', 'delete-role',
             'create-permission', 'read-permission', 'update-permission', 'delete-permission',
+            'create-page', 'read-page', 'update-page', 'delete-page',
             'create-business_activity', 'read-business_activity', 'update-business_activity', 'delete-business_activity',
             'create-business_activity_requirement', 'read-business_activity_requirement', 'update-business_activity_requirement', 'delete-business_activity_requirement',
             'create-database_credential', 'read-database_credential', 'update-database_credential', 'delete-database_credential',
@@ -119,6 +132,7 @@ class PermissionSeeder extends Seeder
             'read-tenant', 'update-tenant',
             'read-admin', 'update-admin',
             'read-role', 'read-permission',
+            'read-page', 'update-page',
             'read-business_activity', 'update-business_activity',
             'read-business_activity_requirement', 'update-business_activity_requirement',
             'read-database_credential',
@@ -132,6 +146,7 @@ class PermissionSeeder extends Seeder
         $user->givePermissionTo([
             'read-tenant',
             'read-admin',
+            'read-page',
             'read-business_activity',
             'read-business_activity_requirement',
             // 'read-setting',

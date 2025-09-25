@@ -1,17 +1,19 @@
 <?php
 
+use App\Models\BusinessActivity;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ThemeController;
 use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\TenantRegisterController;
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\BusinessActivityController;
 use App\Http\Controllers\Admin\DatabaseCredentialController;
-use App\Http\Controllers\Admin\BusinessActivityRequirementController;
-use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Admin\UserController;
-use App\Models\BusinessActivity;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Controllers\Admin\BusinessActivityRequirementController;
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
@@ -89,6 +91,28 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::put('/users/{user}', [UserController::class, 'update'])->name('admin.users.update')->middleware('can:update-admin');
             Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy')->middleware('can:delete-admin');
             Route::get('/users/roles', [UserController::class, 'getRoles'])->name('admin.users.roles')->middleware('can:read-admin');
+
+            // pages routes
+            Route::get('/pages', [PageController::class, 'index'])->name('admin.pages.index')->middleware('can:read-page');
+            Route::get('/pages/create', [PageController::class, 'create'])->name('admin.pages.create')->middleware('can:create-page');
+            Route::post('/pages', [PageController::class, 'store'])->name('admin.pages.store')->middleware('can:create-page');
+            Route::get('/pages/{page}', [PageController::class, 'show'])->name('admin.pages.show')->middleware('can:read-page');
+            Route::get('/pages/{page}/edit', [PageController::class, 'edit'])->name('admin.pages.edit')->middleware('can:update-page');
+            Route::put('/pages/{page}', [PageController::class, 'update'])->name('admin.pages.update')->middleware('can:update-page');
+            Route::delete('/pages/{page}', [PageController::class, 'destroy'])->name('admin.pages.destroy')->middleware('can:delete-page');
+            Route::post('/pages/{page}/toggle', [PageController::class, 'toggleActive'])->name('admin.pages.toggle')->middleware('can:update-page');
+
+            // themes routes
+            Route::get('/themes', [ThemeController::class, 'index'])->name('admin.themes.index')->middleware('can:read-theme');
+            Route::get('/themes/create', [ThemeController::class, 'create'])->name('admin.themes.create')->middleware('can:create-theme');
+            Route::post('/themes', [ThemeController::class, 'store'])->name('admin.themes.store')->middleware('can:create-theme');
+            Route::get('/themes/{theme}', [ThemeController::class, 'show'])->name('admin.themes.show')->middleware('can:read-theme');
+            Route::get('/themes/{theme}/edit', [ThemeController::class, 'edit'])->name('admin.themes.edit')->middleware('can:update-theme');
+            Route::put('/themes/{theme}', [ThemeController::class, 'update'])->name('admin.themes.update')->middleware('can:update-theme');
+            Route::delete('/themes/{theme}', [ThemeController::class, 'destroy'])->name('admin.themes.destroy')->middleware('can:delete-theme');
+            Route::post('/themes/{theme}/toggle', [ThemeController::class, 'toggleActive'])->name('admin.themes.toggle')->middleware('can:update-theme');
+            Route::get('/themes/business-activities', [ThemeController::class, 'getBusinessActivities'])->name('admin.themes.business-activities')->middleware('can:read-theme');
+            Route::get('/themes/pages', [ThemeController::class, 'getPages'])->name('admin.themes.pages')->middleware('can:read-theme');
         });
     });
 

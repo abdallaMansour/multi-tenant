@@ -25,6 +25,8 @@ return [
     
     // Additional Navigation Items (for future use)
     'users' => '用户',
+    'pages' => '页面',
+    'themes' => '主题',
     'roles' => '角色',
     'permissions' => '权限',
     'roles_permissions' => '角色和权限',

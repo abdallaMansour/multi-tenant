@@ -25,6 +25,8 @@ return [
     
     // Additional Navigation Items (for future use)
     'users' => 'उपयोगकर्ता',
+    'pages' => 'पृष्ठ',
+    'themes' => 'थीम',
     'roles' => 'भूमिकाएं',
     'permissions' => 'अनुमतियां',
     'roles_permissions' => 'भूमिकाएं और अनुमतियां',

@@ -25,6 +25,8 @@ return [
     
     // Additional Navigation Items (for future use)
     'users' => 'ユーザー',
+    'pages' => 'ページ',
+    'themes' => 'テーマ',
     'roles' => 'ロール',
     'permissions' => '権限',
     'roles_permissions' => 'ロールと権限',

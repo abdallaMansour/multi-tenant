@@ -25,6 +25,8 @@ return [
     
     // Additional Navigation Items (for future use)
     'users' => 'ഉപയോക്താക്കൾ',
+    'pages' => 'പേജുകൾ',
+    'themes' => 'തീം',
     'roles' => 'വേഷങ്ങൾ',
     'permissions' => 'അനുമതികൾ',
     'roles_permissions' => 'വേഷങ്ങളും അനുമതികളും',
