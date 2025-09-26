@@ -51,18 +51,22 @@
 
         <ul class="list-unstyled mb-0" style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
             <!-- Change To RTL And LTR -->
-            <li class="list-inline-item mb-0 rtl-version t-ltr-light">
-                <a href="javascript:void(0)" onclick="setTheme('style-rtl')">
-                    <div class="btn btn-icon btn-soft-light" style="margin-right: 5px; margin-left: 5px;"><i
-                            class="mdi mdi-web"></i></div>
-                </a>
-            </li>
-            <li class="list-inline-item mb-0 ltr-version t-ltr-light">
-                <a href="javascript:void(0)" onclick="setTheme('style')">
-                    <div class="btn btn-icon btn-soft-light" style="margin-right: 5px; margin-left: 5px;"><i
-                            class="mdi mdi-web"></i></div>
-                </a>
-            </li>
+
+            <div class="mb-0 position-relative" style="margin-right: 5px; margin-left: 5px;">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-soft-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="ti ti-world"></i>
+                        {{ LaravelLocalization::getCurrentLocaleNative() }}
+                    </button>
+                    <div class="dropdown-menu">
+                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            <a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                {{ $properties['native'] }}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
 
             <!-- Change Dark And Light Mode -->
             <ul class="text-center style-switcher list-unstyled">
