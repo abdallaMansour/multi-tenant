@@ -60,7 +60,7 @@
                     </button>
                     <div class="dropdown-menu">
                         @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                            <a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                            <a class="dropdown-item" href="javascript:void(0)" onclick="changeLanguage('{{ $localeCode }}')">
                                 {{ $properties['native'] }}
                             </a>
                         @endforeach
