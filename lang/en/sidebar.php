@@ -27,6 +27,7 @@ return [
     'users' => 'Users',
     'pages' => 'Pages',
     'themes' => 'Themes',
+    'packages' => 'Packages',
     'roles' => 'Roles',
     'permissions' => 'Permissions',
     'roles_permissions' => 'Roles & Permissions',

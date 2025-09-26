@@ -77,23 +77,28 @@
                     </li>
                 @endcan
 
-                @can('read-page')
+                @canany(['read-theme', 'read-page'])
                     <li class="sidebar-dropdown">
-                        <a href="javascript:void(0)"><i class="ti ti-file-text me-2"></i>{{ __('sidebar.pages') }}</a>
+                        <a href="javascript:void(0)"><i class="ti ti-palette me-2"></i>{{ __('sidebar.themes') }}</a>
                         <div class="sidebar-submenu">
                             <ul>
-                                <li><a href="{{ route('admin.pages.index') }}">{{ __('sidebar.pages') }}</a></li>
+                                @can('read-page')
+                                    <li><a href="{{ route('admin.pages.index') }}">{{ __('sidebar.pages') }}</a></li>
+                                @endcan
+                                @can('read-theme')
+                                    <li><a href="{{ route('admin.themes.index') }}">{{ __('sidebar.themes') }}</a></li>
+                                @endcan
                             </ul>
                         </div>
                     </li>
                 @endcan
 
-                @can('read-theme')
+                @can('read-package')
                     <li class="sidebar-dropdown">
-                        <a href="javascript:void(0)"><i class="ti ti-palette me-2"></i>{{ __('sidebar.themes') }}</a>
+                        <a href="javascript:void(0)"><i class="ti ti-package me-2"></i>{{ __('sidebar.packages') }}</a>
                         <div class="sidebar-submenu">
                             <ul>
-                                <li><a href="{{ route('admin.themes.index') }}">{{ __('sidebar.themes') }}</a></li>
+                                <li><a href="{{ route('admin.packages.index') }}">{{ __('sidebar.packages') }}</a></li>
                             </ul>
                         </div>
                     </li>

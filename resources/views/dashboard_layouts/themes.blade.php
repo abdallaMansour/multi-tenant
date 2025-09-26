@@ -13,22 +13,22 @@
                     <h6 class="fw-bold">Theme Options</h6>
 
                     <ul class="text-center style-switcher list-unstyled mt-4">
-                        <li class="d-grid"><a href="javascript:void(0)" class="rtl-version t-rtl-light" onclick="setTheme('style-rtl')"><img src="{{ asset('assets_dashboard/images/demos/rtl.png') }}"
+                        <li class="d-grid"><a href="javascript:void(0)" class="rtl-version t-rtl-light" onclick="setTheme('style-rtl', 'light')"><img src="{{ asset('assets_dashboard/images/demos/rtl.png') }}"
                                     class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 230px;" alt=""><span class="text-dark fw-medium mt-3 d-block">RTL Version</span></a>
                         </li>
-                        <li class="d-grid"><a href="javascript:void(0)" class="ltr-version t-ltr-light" onclick="setTheme('style')"><img src="{{ asset('assets_dashboard/images/demos/ltr.png') }}"
+                        <li class="d-grid"><a href="javascript:void(0)" class="ltr-version t-ltr-light" onclick="setTheme('style', 'light')"><img src="{{ asset('assets_dashboard/images/demos/ltr.png') }}"
                                     class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 230px;" alt=""><span class="text-dark fw-medium mt-3 d-block">LTR Version</span></a>
                         </li>
-                        <li class="d-grid"><a href="javascript:void(0)" class="dark-rtl-version t-rtl-dark" onclick="setTheme('style-dark-rtl')"><img src="{{ asset('assets_dashboard/images/demos/dark-rtl.png') }}"
+                        <li class="d-grid"><a href="javascript:void(0)" class="dark-rtl-version t-rtl-dark" onclick="setTheme('style-dark-rtl', 'dark')"><img src="{{ asset('assets_dashboard/images/demos/dark-rtl.png') }}"
                                     class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 230px;" alt=""><span class="text-dark fw-medium mt-3 d-block">RTL Version</span></a>
                         </li>
-                        <li class="d-grid"><a href="javascript:void(0)" class="dark-ltr-version t-ltr-dark" onclick="setTheme('style-dark')"><img src="{{ asset('assets_dashboard/images/demos/dark.png') }}"
+                        <li class="d-grid"><a href="javascript:void(0)" class="dark-ltr-version t-ltr-dark" onclick="setTheme('style-dark', 'dark')"><img src="{{ asset('assets_dashboard/images/demos/dark.png') }}"
                                     class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 230px;" alt=""><span class="text-dark fw-medium mt-3 d-block">LTR Version</span></a>
                         </li>
-                        <li class="d-grid"><a href="javascript:void(0)" class="dark-version t-dark mt-4" onclick="setTheme('style-dark')"><img src="{{ asset('assets_dashboard/images/demos/dark.png') }}"
+                        <li class="d-grid"><a href="javascript:void(0)" class="dark-version t-dark mt-4" onclick="setTheme('style-dark', 'dark')"><img src="{{ asset('assets_dashboard/images/demos/dark.png') }}"
                                     class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 230px;" alt=""><span class="text-dark fw-medium mt-3 d-block">Dark Version</span></a>
                         </li>
-                        <li class="d-grid"><a href="javascript:void(0)" class="light-version t-light mt-4" onclick="setTheme('style')"><img src="{{ asset('assets_dashboard/images/demos/ltr.png') }}"
+                        <li class="d-grid"><a href="javascript:void(0)" class="light-version t-light mt-4" onclick="setTheme('style', 'light')"><img src="{{ asset('assets_dashboard/images/demos/ltr.png') }}"
                                     class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 230px;" alt=""><span class="text-dark fw-medium mt-3 d-block">Light Version</span></a>
                         </li>
                         <li class="d-grid"><a href="../../landing/dist/index.html" target="_blank" class="mt-4"><img src="{{ asset('assets_dashboard/images/demos/landing.png') }}"

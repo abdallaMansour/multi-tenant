@@ -27,6 +27,7 @@ return [
     'users' => '사용자',
     'pages' => '페이지',
     'themes' => '테마',
+    'packages' => '패키지',
     'roles' => '역할',
     'permissions' => '권한',
     'roles_permissions' => '역할 및 권한',

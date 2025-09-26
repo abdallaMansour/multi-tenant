@@ -72,6 +72,12 @@ class PermissionSeeder extends Seeder
             'update-theme',
             'delete-theme',
 
+            // Package Management
+            'create-package',
+            'read-package',
+            'update-package',
+            'delete-package',
+
             // Settings Management
             // 'create-setting',
             // 'read-setting',
@@ -121,6 +127,7 @@ class PermissionSeeder extends Seeder
             'create-business_activity', 'read-business_activity', 'update-business_activity', 'delete-business_activity',
             'create-business_activity_requirement', 'read-business_activity_requirement', 'update-business_activity_requirement', 'delete-business_activity_requirement',
             'create-database_credential', 'read-database_credential', 'update-database_credential', 'delete-database_credential',
+            'create-package', 'read-package', 'update-package', 'delete-package',
             // 'create-setting', 'read-setting', 'update-setting', 'delete-setting',
             // 'access-dashboard', 'access-admin-panel',
             // 'view-reports', 'export-reports',
@@ -136,6 +143,7 @@ class PermissionSeeder extends Seeder
             'read-business_activity', 'update-business_activity',
             'read-business_activity_requirement', 'update-business_activity_requirement',
             'read-database_credential',
+            'read-package',
             // 'read-setting', 'update-setting',
             // 'access-dashboard',
             // 'view-reports',
@@ -149,6 +157,7 @@ class PermissionSeeder extends Seeder
             'read-page',
             'read-business_activity',
             'read-business_activity_requirement',
+            'read-package',
             // 'read-setting',
             // 'access-dashboard',
         ]);

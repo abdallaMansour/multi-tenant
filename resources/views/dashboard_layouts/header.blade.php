@@ -6,14 +6,14 @@
                 <ul class="text-center style-switcher list-unstyled" style="margin-bottom: 0px;">
                     <li class="d-grid ">
                         <div style="border: 0px !important;" class="theme-icon btn btn-icon btn-soft-light dark-version t-dark"
-                            onclick="setTheme('style-dark')">
+                            onclick="setTheme('style-dark', 'dark')">
                             <img src="{{ asset('assets/images/logo-icon-light.png') }}" class="icon-light" height="30" class="small" alt="">
 
                         </div>
                     </li>
                     <li class="d-grid ">
                         <div style="border: 0px !important;" class="theme-icon btn btn-icon btn-soft-light light-version t-light"
-                            onclick="setTheme('style')">
+                            onclick="setTheme('style', 'light')">
                             <img src="{{ asset('assets/images/logo-icon-dark.png') }}" class="icon-dark" height="30" class="small" alt="">
                         </div>
                     </li>
@@ -73,14 +73,14 @@
                 <li class="d-grid ">
                     <a href="javascript:void(0)"
                         class="theme-icon btn btn-icon btn-soft-light dark-version t-dark"
-                        onclick="setTheme('style-dark')">
+                        onclick="setTheme('style-dark', 'dark')">
                         <i class="mdi mdi-theme-light-dark" style="position: relative; top: 5px;"></i>
                     </a>
                 </li>
                 <li class="d-grid ">
                     <a href="javascript:void(0)"
                         class="theme-icon btn btn-icon btn-soft-light light-version t-light"
-                        onclick="setTheme('style')">
+                        onclick="setTheme('style', 'light')">
                         <i class="mdi mdi-theme-light-dark" style="position: relative; top: 5px;"></i>
                     </a>
                 </li>

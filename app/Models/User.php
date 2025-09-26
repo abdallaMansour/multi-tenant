@@ -26,6 +26,8 @@ class User extends Authenticatable
         'dashboard_theme',
         'dashboard_language',
         'dashboard_direction',
+        'default_lang',
+        'color_mode'
     ];
 
     /**

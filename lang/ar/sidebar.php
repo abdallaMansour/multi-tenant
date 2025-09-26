@@ -27,6 +27,7 @@ return [
     'users' => 'المستخدمون',
     'pages' => 'الصفحات',
     'themes' => 'الهويات',
+    'packages' => 'الباقات',
     'roles' => 'الأدوار',
     'permissions' => 'الأذونات',
     'roles_permissions' => 'الأدوار والصلاحيات',

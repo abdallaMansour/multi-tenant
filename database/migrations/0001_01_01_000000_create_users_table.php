@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('dashboard_theme')->nullable();
             $table->string('dashboard_language')->nullable();
             $table->string('dashboard_direction')->nullable();
-
+            $table->string('default_lang')->nullable();
+            $table->enum('color_mode', ['light', 'dark'])->default('light');
             $table->rememberToken();
             $table->timestamps();
         });

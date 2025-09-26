@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
-            $table->boolean('is_paid');
             $table->boolean('is_active');
             $table->integer('trial_days');
-            
+            $table->enum('plan', ['monthly', 'yearly']);
+            $table->decimal('price', 10, 2);
+            $table->text('features');
 
             $table->timestamps();
         });

@@ -27,6 +27,7 @@ return [
     'users' => 'उपयोगकर्ता',
     'pages' => 'पृष्ठ',
     'themes' => 'थीम',
+    'packages' => 'पैकेज',
     'roles' => 'भूमिकाएं',
     'permissions' => 'अनुमतियां',
     'roles_permissions' => 'भूमिकाएं और अनुमतियां',

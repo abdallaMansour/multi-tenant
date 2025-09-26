@@ -27,6 +27,7 @@ return [
     'users' => 'ユーザー',
     'pages' => 'ページ',
     'themes' => 'テーマ',
+    'packages' => 'パッケージ',
     'roles' => 'ロール',
     'permissions' => '権限',
     'roles_permissions' => 'ロールと権限',

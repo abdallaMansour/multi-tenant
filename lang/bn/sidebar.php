@@ -27,6 +27,7 @@ return [
     'users' => 'ব্যবহারকারী',
     'pages' => 'পৃষ্ঠা',
     'themes' => 'থিম',
+    'packages' => 'প্যাকেজ',
     'roles' => 'ভূমিকা',
     'permissions' => 'অনুমতি',
     'roles_permissions' => 'ভূমিকা ও অনুমতি',

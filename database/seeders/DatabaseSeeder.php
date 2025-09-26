@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             BusinessActivitySeeder::class,
             PageSeeder::class,
             ThemeSeeder::class,
-            // PermissionDatabaseSeeder::class,
+            PackageSeeder::class,
         ]);
     }
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ThemeController;
 use App\Http\Controllers\Admin\TenantController;
+use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\TenantRegisterController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\BusinessActivityController;
@@ -113,8 +114,30 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::post('/themes/{theme}/toggle', [ThemeController::class, 'toggleActive'])->name('admin.themes.toggle')->middleware('can:update-theme');
             Route::get('/themes/business-activities', [ThemeController::class, 'getBusinessActivities'])->name('admin.themes.business-activities')->middleware('can:read-theme');
             Route::get('/themes/pages', [ThemeController::class, 'getPages'])->name('admin.themes.pages')->middleware('can:read-theme');
+
+            // packages routes
+            Route::get('/packages', [PackageController::class, 'index'])->name('admin.packages.index')->middleware('can:read-package');
+            Route::get('/packages/create', [PackageController::class, 'create'])->name('admin.packages.create')->middleware('can:create-package');
+            Route::post('/packages', [PackageController::class, 'store'])->name('admin.packages.store')->middleware('can:create-package');
+            Route::get('/packages/{package}', [PackageController::class, 'show'])->name('admin.packages.show')->middleware('can:read-package');
+            Route::get('/packages/{package}/edit', [PackageController::class, 'edit'])->name('admin.packages.edit')->middleware('can:update-package');
+            Route::put('/packages/{package}', [PackageController::class, 'update'])->name('admin.packages.update')->middleware('can:update-package');
+            Route::delete('/packages/{package}', [PackageController::class, 'destroy'])->name('admin.packages.destroy')->middleware('can:delete-package');
+            Route::post('/packages/{package}/toggle', [PackageController::class, 'toggleActive'])->name('admin.packages.toggle')->middleware('can:update-package');
         });
     });
+
+    Route::get('change-lang/{lang}', function ($lang) {
+        auth()->user()->update(['default_lang' => $lang]);
+    })->name('change-lang')->middleware('auth');
+
+    Route::get('change-color-mode/{color_mode}', function ($color_mode) {
+        if (auth()->check()) {
+            auth()->user()->update(['color_mode' => $color_mode]);
+            return response()->json(['success' => true, 'message' => 'Color mode updated successfully']);
+        }
+        return response()->json(['success' => false, 'message' => 'User not authenticated'], 401);
+    })->name('change-color-mode')->middleware('auth');
 
     require_once __DIR__ . '/tenant.php';
 });

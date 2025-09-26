@@ -18,13 +18,13 @@
     <!-- Css -->
     <link href="{{ asset('assets_dashboard/libs/simplebar/simplebar.min.css') }}" rel="stylesheet">
     <!-- Bootstrap Css -->
-    <link href="{{ asset('assets_dashboard/css/bootstrap'. (app()->getLocale() === 'ar' ? '-rtl' : '') .'.min.css') }}" class="theme-opt" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets_dashboard/css/bootstrap'. (auth()->user()->color_mode == 'dark' ? '-dark' : '') . (app()->getLocale() === 'ar' ? '-rtl' : '') .'.min.css') }}" class="theme-opt" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="{{ asset('assets_dashboard/libs/@mdi/font/css/materialdesignicons.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets_dashboard/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets_dashboard/libs/@iconscout/unicons/css/line.css') }}" type="text/css" rel="stylesheet" />
     <!-- Style Css-->
-    <link href="{{ asset('assets_dashboard/css/style'. (app()->getLocale() === 'ar' ? '-rtl' : '') .'.min.css') }}" class="theme-opt" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets_dashboard/css/style'. (auth()->check() && auth()->user()->color_mode == 'dark' ? '-dark' : '') . (app()->getLocale() === 'ar' ? '-rtl' : '') .'.min.css') }}" class="theme-opt" rel="stylesheet" type="text/css" />
     <style>
         .custom-logo {
             text-align: center;
@@ -33,6 +33,22 @@
             justify-content: center;
             height: 50px;
             display: flex;
+        }
+        
+        /* Theme Switcher Active State */
+        .theme-icon.active {
+            background-color: var(--bs-primary) !important;
+            color: white !important;
+            border-color: var(--bs-primary) !important;
+        }
+        
+        .theme-icon.active i {
+            color: white !important;
+        }
+        
+        /* Smooth theme transition */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
     </style>
 </head>
