@@ -140,8 +140,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             auth()->user()->update(['color_mode' => $color_mode]);
             return response()->json(['success' => true, 'message' => 'Color mode updated successfully']);
         }
+
+        if (auth()->guard('tenant')->check()) {
+            auth()->guard('tenant')->user()->update(['color_mode' => $color_mode]);
+            return response()->json(['success' => true, 'message' => 'Color mode updated successfully']);
+        }
+
         return response()->json(['success' => false, 'message' => 'User not authenticated'], 401);
-    })->name('change-color-mode')->middleware('auth');
+    })->name('change-color-mode');
 
     require_once __DIR__ . '/tenant.php';
 });

@@ -87,3 +87,10 @@ if (!function_exists('getSettingProperty')) {
         return $setting?->value ?? null;
     }
 }
+
+// check if function authUser
+if (!function_exists('authUser')) {
+    function authUser() {
+        return Auth::user() ?? Auth::guard('tenant')->user();
+    }
+}

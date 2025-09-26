@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('sub_language')->nullable();
             $table->string('admin_main_language')->nullable();
             $table->string('admin_sub_language')->nullable();
+            $table->string('default_lang')->nullable();
+            $table->enum('color_mode', ['light', 'dark'])->default('light');
             // $table->timestamp('expiration_date')->default(false);
 
             $table->timestamps();

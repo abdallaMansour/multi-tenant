@@ -18,9 +18,11 @@ if ($prefix) {
         // dashboard
         Route::prefix('dashboard')->as('tenant.')->group(function () use ($prefix) {
 
-            Route::get('login', [AuthController::class, 'login'])->name('login');
-            Route::post('send-otp', [AuthController::class, 'sendOtp'])->name('send-otp');
-            Route::post('login-otp', [AuthController::class, 'loginOtp'])->name('login-otp');
+            Route::middleware(['guest'])->group(function () use ($prefix) {
+                Route::get('login', [AuthController::class, 'login'])->name('login');
+                Route::post('send-otp', [AuthController::class, 'sendOtp'])->name('send-otp');
+                Route::post('login-otp', [AuthController::class, 'loginOtp'])->name('login-otp');
+            });
 
             Route::middleware(['is_tenant_user'])->group(function () use ($prefix) {
 

@@ -21,6 +21,8 @@ class Tenant extends Authenticatable
         'sub_language',
         'admin_main_language',
         'admin_sub_language',
+        'default_lang',
+        'color_mode'
     ];
 
     // protected $hidden = [

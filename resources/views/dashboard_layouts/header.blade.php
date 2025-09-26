@@ -56,7 +56,7 @@
                 <div class="dropdown">
                     <button type="button" class="btn btn-soft-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="ti ti-world"></i>
-                        {{ LaravelLocalization::getCurrentLocaleNative() }}
+                        {{ LaravelLocalization::getSupportedLocales()[authUser()?->default_lang]['native'] ?? LaravelLocalization::getCurrentLocaleNative() }}
                     </button>
                     <div class="dropdown-menu">
                         @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
