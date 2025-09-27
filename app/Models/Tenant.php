@@ -19,7 +19,7 @@ class Tenant extends Authenticatable
         'business_activity_id',
         'main_language',
         'sub_language',
-        'admin_main_language',
+        // 'admin_main_language',
         'admin_sub_language',
         'default_lang',
         'color_mode'

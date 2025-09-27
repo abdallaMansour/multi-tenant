@@ -38,6 +38,8 @@ return [
     'sub_language_label' => 'വെബ്സൈറ്റിന്റെ ഉപ ഭാഷ',
     'admin_main_language_label' => 'അഡ്മിൻ പാനലിന്റെ പ്രധാന ഭാഷ',
     'admin_sub_language_label' => 'അഡ്മിൻ പാനലിന്റെ ഉപ ഭാഷ',
+    'select_language' => 'ഭാഷ തിരഞ്ഞെടുക്കുക',
+    'select_multiple_languages' => 'ഒന്നിലധികം ഭാഷകൾ തിരഞ്ഞെടുക്കുക',
     'completing' => 'പൂർത്തിയാക്കുന്നു...',
     'complete_registration' => 'രജിസ്ട്രേഷൻ പൂർത്തിയാക്കുക',
     'previous' => 'മുമ്പത്തെ',

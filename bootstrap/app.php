@@ -5,6 +5,7 @@ use App\Http\Middleware\IsTenantUserMiddleware;
 use App\Http\Middleware\IsTenantPathMiddleware;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use App\Http\Middleware\SetDefaultLangMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -16,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'is_tenant_path'          => IsTenantPathMiddleware::class,
             'is_tenant_user'          => IsTenantUserMiddleware::class,
+            'set_default_lang'        => SetDefaultLangMiddleware::class,
 
             // laravel localization
             'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,

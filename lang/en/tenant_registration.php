@@ -38,6 +38,8 @@ return [
     'sub_language_label' => 'Website Sub Language',
     'admin_main_language_label' => 'Admin Panel Main Language',
     'admin_sub_language_label' => 'Admin Panel Sub Language',
+    'select_language' => 'Select Language',
+    'select_multiple_languages' => 'Select Multiple Languages',
     'completing' => 'Completing...',
     'complete_registration' => 'Complete Registration',
     'previous' => 'Previous',

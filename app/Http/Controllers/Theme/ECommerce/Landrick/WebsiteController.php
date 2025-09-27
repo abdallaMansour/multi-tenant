@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Tenant\Theme\ECommerce\Landrick;
+namespace App\Http\Controllers\Theme\ECommerce\Landrick;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tenant_Setting;

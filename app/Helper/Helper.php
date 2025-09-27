@@ -7,14 +7,30 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Tenant_Setting;
 
 if (!function_exists('getAllKeyLangs')) {
-    function getAllKeyLangs() {
+    function getAllKeyLangs()
+    {
         return array_keys(config('laravellocalization.supportedLocales'));
+    }
+}
+
+// check if function getPathLang
+if (!function_exists('getPathLang')) {
+    function getPathLang()
+    {
+        $prefix = Request::segment(1);
+        $allKeyLangs = getAllKeyLangs();
+
+        if (in_array($prefix, $allKeyLangs))
+            return $prefix;
+
+        return null;
     }
 }
 
 // check if function getTenantPrefix
 if (!function_exists('getTenantPrefix')) {
-    function getTenantPrefix() {
+    function getTenantPrefix()
+    {
         $prefix = Request::segment(1);
         $allKeyLangs = getAllKeyLangs();
         // some times path starting with ar/ or en/ or etc.
@@ -28,7 +44,8 @@ if (!function_exists('getTenantPrefix')) {
 
 // check if function isTenantPath
 if (!function_exists('isTenantPath')) {
-    function isTenantPath() {
+    function isTenantPath()
+    {
         $prefix = getTenantPrefix();
 
         if ($prefix !== 'admin') {
@@ -42,7 +59,8 @@ if (!function_exists('isTenantPath')) {
 
 // check if function isTenantUser
 if (!function_exists('isTenantUser')) {
-    function isTenantUser() {
+    function isTenantUser()
+    {
         $tenant = Auth::guard('tenant')->user();
         return $tenant ?: false;
     }
@@ -50,7 +68,8 @@ if (!function_exists('isTenantUser')) {
 
 // check if function tenantConnectionDatabase
 if (!function_exists('tenantConnectionDatabase')) {
-    function tenantConnectionDatabase() {
+    function tenantConnectionDatabase()
+    {
 
         $prefix = getTenantPrefix();
         $tenant = Tenant::where('username', $prefix)->first();
@@ -80,7 +99,8 @@ if (!function_exists('tenantConnectionDatabase')) {
 
 // getSettingProperty
 if (!function_exists('getSettingProperty')) {
-    function getSettingProperty($label) {
+    function getSettingProperty($label)
+    {
         $query = tenantConnectionDatabase();
 
         $setting = Tenant_Setting::on($query)->where('label', $label)->first();
@@ -90,7 +110,13 @@ if (!function_exists('getSettingProperty')) {
 
 // check if function authUser
 if (!function_exists('authUser')) {
-    function authUser() {
+    /**
+     * Get the authenticated user.
+     *
+     * @return \App\Models\User|\App\Models\Tenant|null
+     */
+    function authUser()
+    {
         return Auth::user() ?? Auth::guard('tenant')->user();
     }
 }

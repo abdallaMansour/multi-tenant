@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Tenant;
 
 use App\Models\Tenant;
 use App\Mail\CheckMail;
@@ -87,7 +87,8 @@ class TenantRegisterController extends Controller
                 'business_activity_id' => $validated['business_activity_id'],
                 'main_language' => $validated['main_language'],
                 'sub_language' => $validated['sub_language'],
-                'admin_main_language' => $validated['admin_main_language'],
+                // 'admin_main_language' => $validated['admin_main_language'],
+                'default_lang' => $validated['default_lang'],
                 'admin_sub_language' => $validated['admin_sub_language'],
                 'email_verified_at' => now(),
                 'is_active' => false,

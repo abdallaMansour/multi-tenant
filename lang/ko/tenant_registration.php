@@ -38,6 +38,8 @@ return [
     'sub_language_label' => '웹사이트 서브 언어',
     'admin_main_language_label' => '관리자 패널 메인 언어',
     'admin_sub_language_label' => '관리자 패널 서브 언어',
+    'select_language' => '언어 선택',
+    'select_multiple_languages' => '여러 언어 선택',
     'completing' => '완료 중...',
     'complete_registration' => '등록 완료',
     'previous' => '이전',

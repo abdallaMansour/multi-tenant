@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Tenant\AuthController;
 use App\Http\Controllers\Tenant\SettingsController;
-use App\Http\Controllers\Tenant\Theme\ECommerce\Landrick\WebsiteController;
+use App\Http\Controllers\Theme\ECommerce\Landrick\WebsiteController;
 
 $prefix = getTenantPrefix();;
 

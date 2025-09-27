@@ -38,6 +38,8 @@ return [
     'sub_language_label' => 'اللغة الفرعية للموقع',
     'admin_main_language_label' => 'اللغة الرئيسية لوحة الإدارة',
     'admin_sub_language_label' => 'اللغة الفرعية لوحة الإدارة',
+    'select_language' => 'اختر اللغة',
+    'select_multiple_languages' => 'اختر عدة لغات',
     'completing' => 'جاري الإكمال...',
     'complete_registration' => 'إكمال التسجيل',
     'previous' => 'السابق',

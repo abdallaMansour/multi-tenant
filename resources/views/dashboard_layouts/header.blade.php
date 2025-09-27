@@ -59,11 +59,19 @@
                         {{ LaravelLocalization::getSupportedLocales()[authUser()?->default_lang]['native'] ?? LaravelLocalization::getCurrentLocaleNative() }}
                     </button>
                     <div class="dropdown-menu">
-                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                            <a class="dropdown-item" href="javascript:void(0)" onclick="changeLanguage('{{ $localeCode }}')">
-                                {{ $properties['native'] }}
-                            </a>
-                        @endforeach
+                        @if (auth('tenant')->check())
+                            @foreach (collect(LaravelLocalization::getSupportedLocales())->only(auth('tenant')->user()->admin_sub_language ?? []) as $localeCode => $properties)
+                                <a class="dropdown-item" href="javascript:void(0)" onclick="changeLanguage('{{ $localeCode }}')">
+                                    {{ $properties['native'] }}
+                                </a>
+                            @endforeach
+                        @else
+                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                <a class="dropdown-item" href="javascript:void(0)" onclick="changeLanguage('{{ $localeCode }}')">
+                                    {{ $properties['native'] }}
+                                </a>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

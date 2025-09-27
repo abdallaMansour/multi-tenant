@@ -38,6 +38,8 @@ return [
     'sub_language_label' => 'ウェブサイトのサブ言語',
     'admin_main_language_label' => '管理パネルのメイン言語',
     'admin_sub_language_label' => '管理パネルのサブ言語',
+    'select_language' => '言語を選択',
+    'select_multiple_languages' => '複数の言語を選択',
     'completing' => '完了中...',
     'complete_registration' => '登録を完了',
     'previous' => '前へ',

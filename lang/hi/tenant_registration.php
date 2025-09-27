@@ -38,6 +38,8 @@ return [
     'sub_language_label' => 'वेबसाइट की उप-भाषा',
     'admin_main_language_label' => 'एडमिन पैनल की मुख्य भाषा',
     'admin_sub_language_label' => 'एडमिन पैनल की उप-भाषा',
+    'select_language' => 'भाषा चुनें',
+    'select_multiple_languages' => 'कई भाषाएं चुनें',
     'completing' => 'पूरा किया जा रहा है...',
     'complete_registration' => 'पंजीकरण पूरा करें',
     'previous' => 'पिछला',

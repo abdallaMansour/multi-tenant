@@ -38,6 +38,8 @@ return [
     'sub_language_label' => 'Langue Secondaire du Site Web',
     'admin_main_language_label' => 'Langue Principale du Panneau d\'Administration',
     'admin_sub_language_label' => 'Langue Secondaire du Panneau d\'Administration',
+    'select_language' => 'Sélectionner la Langue',
+    'select_multiple_languages' => 'Sélectionner Plusieurs Langues',
     'completing' => 'Complétion en cours...',
     'complete_registration' => 'Compléter l\'Inscription',
     'previous' => 'Précédent',

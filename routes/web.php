@@ -9,14 +9,14 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ThemeController;
 use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\Admin\PackageController;
-use App\Http\Controllers\TenantRegisterController;
+use App\Http\Controllers\Tenant\TenantRegisterController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\BusinessActivityController;
 use App\Http\Controllers\Admin\DatabaseCredentialController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Admin\BusinessActivityRequirementController;
 
-Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => 'set_default_lang'], function () {
 
     Route::get('/', function () {
         return view('welcome');
@@ -128,21 +128,16 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     });
 
     Route::get('change-lang/{lang}', function ($lang) {
-        if (auth()->check()) {
-            auth()->user()->update(['default_lang' => $lang]);
+        if (authUser()) {
+            authUser()->update(['default_lang' => $lang]);
             return response()->json(['success' => true, 'message' => 'Language updated successfully']);
         }
         return response()->json(['success' => false, 'message' => 'User not authenticated'], 401);
     })->name('change-lang')->middleware('auth');
 
     Route::get('change-color-mode/{color_mode}', function ($color_mode) {
-        if (auth()->check()) {
-            auth()->user()->update(['color_mode' => $color_mode]);
-            return response()->json(['success' => true, 'message' => 'Color mode updated successfully']);
-        }
-
-        if (auth()->guard('tenant')->check()) {
-            auth()->guard('tenant')->user()->update(['color_mode' => $color_mode]);
+        if (authUser()) {
+            authUser()->update(['color_mode' => $color_mode]);
             return response()->json(['success' => true, 'message' => 'Color mode updated successfully']);
         }
 

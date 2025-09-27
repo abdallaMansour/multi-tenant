@@ -38,6 +38,8 @@ return [
     'sub_language_label' => '网站次要语言',
     'admin_main_language_label' => '管理面板主要语言',
     'admin_sub_language_label' => '管理面板次要语言',
+    'select_language' => '选择语言',
+    'select_multiple_languages' => '选择多种语言',
     'completing' => '完成中...',
     'complete_registration' => '完成注册',
     'previous' => '上一步',

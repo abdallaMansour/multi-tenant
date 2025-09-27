@@ -38,6 +38,8 @@ return [
     'sub_language_label' => 'ওয়েবসাইটের উপ-ভাষা',
     'admin_main_language_label' => 'অ্যাডমিন প্যানেলের মূল ভাষা',
     'admin_sub_language_label' => 'অ্যাডমিন প্যানেলের উপ-ভাষা',
+    'select_language' => 'ভাষা নির্বাচন করুন',
+    'select_multiple_languages' => 'একাধিক ভাষা নির্বাচন করুন',
     'completing' => 'সম্পূর্ণ করা হচ্ছে...',
     'complete_registration' => 'নিবন্ধন সম্পূর্ণ করুন',
     'previous' => 'পূর্ববর্তী',

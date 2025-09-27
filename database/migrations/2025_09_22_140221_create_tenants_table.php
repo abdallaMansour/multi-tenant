@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreignId('business_activity_id')->nullable()->constrained('business_activities')->onDelete('cascade');
             $table->string('main_language')->nullable();
             $table->string('sub_language')->nullable();
-            $table->string('admin_main_language')->nullable();
+            // $table->string('admin_main_language')->nullable();
             $table->string('admin_sub_language')->nullable();
             $table->string('default_lang')->nullable();
             $table->enum('color_mode', ['light', 'dark'])->default('light');

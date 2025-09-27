@@ -14,6 +14,7 @@
         :root {
             --primary-color: #3164F5;
         }
+
         .pg-taif {
             position: fixed;
             top: 0;
@@ -23,7 +24,7 @@
             z-index: 2;
             vertical-align: middle;
         }
-        
+
         .registration-container {
             min-height: 100vh;
             background: var(--primary-color) !important;
@@ -157,6 +158,21 @@
             box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
         }
 
+        select[multiple] {
+            min-height: 120px;
+        }
+
+        select[multiple] option {
+            padding: 8px 12px;
+            margin: 2px 0;
+        }
+
+        .form-text {
+            font-size: 14px;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
         .btn-primary {
             background: var(--primary-color);
             border: none;
@@ -283,6 +299,57 @@
             margin-bottom: 20px;
         }
     </style>
+    
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+        .select2-container--default .select2-selection--multiple {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            min-height: 50px;
+            padding: 5px;
+        }
+        
+        .select2-container--default .select2-selection--multiple:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+        
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 15px;
+            color: white;
+            padding: 4px 8px;
+            margin: 2px;
+        }
+        
+        .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+            color: white;
+            margin-right: 5px;
+        }
+        
+        .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+            color: #ffcccc;
+        }
+        
+        .select2-dropdown {
+            border: 2px solid var(--primary-color);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .select2-container--default .select2-search--dropdown .select2-search__field {
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 8px 12px;
+        }
+        
+        .select2-container--default .select2-search--dropdown .select2-search__field:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -371,7 +438,7 @@
                     <p class="text-muted mb-4">{{ __('tenant_registration.user_info_description') }}</p>
 
                     <form id="user-info-form">
-        @csrf
+                        @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -398,23 +465,22 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">{{ __('tenant_registration.main_language_label') }}</label>
-                                    <div class="language-grid" id="main-languages">
-                                        <div class="language-option" data-value="en">{{ __('tenant_registration.language_english') }}</div>
-                                        <div class="language-option" data-value="ar">{{ __('tenant_registration.language_arabic') }}</div>
-                                        <div class="language-option" data-value="fr">{{ __('tenant_registration.language_french') }}</div>
-                                        <div class="language-option" data-value="es">{{ __('tenant_registration.language_spanish') }}</div>
-                                    </div>
+                                    <select class="form-control" id="main-languages" name="main_language" required>
+                                        <option value="">{{ __('tenant_registration.select_language') }}</option>
+                                        @foreach (LaravelLocalization::getSupportedLocales() as $languageCode => $language)
+                                        <option value="{{ $languageCode }}">{{ $language['native'] }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">{{ __('tenant_registration.sub_language_label') }}</label>
-                                    <div class="language-grid" id="sub-languages">
-                                        <div class="language-option" data-value="en">{{ __('tenant_registration.language_english') }}</div>
-                                        <div class="language-option" data-value="ar">{{ __('tenant_registration.language_arabic') }}</div>
-                                        <div class="language-option" data-value="fr">{{ __('tenant_registration.language_french') }}</div>
-                                        <div class="language-option" data-value="es">{{ __('tenant_registration.language_spanish') }}</div>
-                                    </div>
+                                    <select class="form-control" id="sub-languages" name="sub_language[]" multiple required>
+                                        @foreach (LaravelLocalization::getSupportedLocales() as $languageCode => $language)
+                                        <option value="{{ $languageCode }}">{{ $language['native'] }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -423,23 +489,22 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">{{ __('tenant_registration.admin_main_language_label') }}</label>
-                                    <div class="language-grid" id="admin-main-languages">
-                                        <div class="language-option" data-value="en">{{ __('tenant_registration.language_english') }}</div>
-                                        <div class="language-option" data-value="ar">{{ __('tenant_registration.language_arabic') }}</div>
-                                        <div class="language-option" data-value="fr">{{ __('tenant_registration.language_french') }}</div>
-                                        <div class="language-option" data-value="es">{{ __('tenant_registration.language_spanish') }}</div>
-                                    </div>
+                                    <select class="form-control" id="admin-main-languages" name="default_lang" required>
+                                        <option value="">{{ __('tenant_registration.select_language') }}</option>
+                                        @foreach (LaravelLocalization::getSupportedLocales() as $languageCode => $language)
+                                        <option value="{{ $languageCode }}">{{ $language['native'] }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">{{ __('tenant_registration.admin_sub_language_label') }}</label>
-                                    <div class="language-grid" id="admin-sub-languages">
-                                        <div class="language-option" data-value="en">{{ __('tenant_registration.language_english') }}</div>
-                                        <div class="language-option" data-value="ar">{{ __('tenant_registration.language_arabic') }}</div>
-                                        <div class="language-option" data-value="fr">{{ __('tenant_registration.language_french') }}</div>
-                                        <div class="language-option" data-value="es">{{ __('tenant_registration.language_spanish') }}</div>
-                                    </div>
+                                    <select class="form-control" id="admin-sub-languages" name="admin_sub_language[]" multiple required>
+                                        @foreach (LaravelLocalization::getSupportedLocales() as $languageCode => $language)
+                                        <option value="{{ $languageCode }}">{{ $language['native'] }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -455,7 +520,7 @@
                                 <span id="user-info-text">{{ __('tenant_registration.complete_registration') }}</span>
                             </button>
                         </div>
-    </form>
+                    </form>
                 </div>
 
                 <!-- Success Step -->
@@ -530,14 +595,6 @@
                     });
                 });
 
-                // Language selection
-                document.querySelectorAll('.language-option').forEach(option => {
-                    option.addEventListener('click', () => {
-                        const container = option.closest('.language-grid');
-                        container.querySelectorAll('.language-option').forEach(opt => opt.classList.remove('selected'));
-                        option.classList.add('selected');
-                    });
-                });
 
                 // Business activity selection
                 document.getElementById('business-activities').addEventListener('click', (e) => {
@@ -659,10 +716,10 @@
                     phone: document.getElementById('phone').value,
                     otp_code: this.otpCode,
                     business_activity_id: document.querySelector('.business-activity-option.selected')?.dataset.id,
-                    main_language: document.querySelector('#main-languages .language-option.selected')?.dataset.value,
-                    sub_language: document.querySelector('#sub-languages .language-option.selected')?.dataset.value,
-                    admin_main_language: document.querySelector('#admin-main-languages .language-option.selected')?.dataset.value,
-                    admin_sub_language: document.querySelector('#admin-sub-languages .language-option.selected')?.dataset.value
+                    main_language: document.getElementById('main-languages').value,
+                    sub_language: $('#sub-languages').val() || [],
+                    default_lang: document.getElementById('admin-main-languages').value,
+                    admin_sub_language: $('#admin-sub-languages').val() || []
                 };
 
                 const submitBtn = document.querySelector('#user-info-form button[type="submit"]');
@@ -671,8 +728,8 @@
                 const errorDiv = document.getElementById('user-info-error');
 
                 // Validate required fields
-                if (!formData.business_activity_id || !formData.main_language || !formData.sub_language ||
-                    !formData.admin_main_language || !formData.admin_sub_language) {
+                if (!formData.business_activity_id || !formData.main_language || formData.sub_language.length === 0 ||
+                    !formData.default_lang || formData.admin_sub_language.length === 0) {
                     this.showError(errorDiv, '{{ __('tenant_registration.select_all_required') }}');
                     return;
                 }
@@ -790,6 +847,26 @@
         // Initialize the registration process
         document.addEventListener('DOMContentLoaded', () => {
             new TenantRegistration();
+        });
+    </script>
+    
+    <!-- jQuery and Select2 JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Initialize Select2 on multi-select elements
+            $('#sub-languages').select2({
+                placeholder: 'Select multiple languages...',
+                allowClear: true,
+                width: '100%'
+            });
+            
+            $('#admin-sub-languages').select2({
+                placeholder: 'Select multiple languages...',
+                allowClear: true,
+                width: '100%'
+            });
         });
     </script>
 </body>
